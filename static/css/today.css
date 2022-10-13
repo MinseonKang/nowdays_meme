@@ -1,17 +1,7 @@
 body {
-  background-color: #066aff;
+  background-color: white;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.containerOpp {
-  background-color: white;
-  border-radius: 50px;
-  width: 50%;
-  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +12,12 @@ body {
   height: 50%;
 }
 
-.introduce {
-  text-align: center;
+.containerOpp {
+  background-color: #066aff;
+  border-radius: 50px;
+  width: 50%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
