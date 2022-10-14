@@ -1,6 +1,5 @@
 const d = document;
   // d는 document
-
   // ===========================채팅박스================
 const makeChatBox = function(data, isMine) {
   //data: Objectf = {'name':, 'imgSrc':, 'text':,'link':}
@@ -41,12 +40,24 @@ const popupTag = function(element) {
   if(element == 'close') {
     d.getElementById('hide_back').classList.add('hide');
     d.getElementById('hide_container').classList.add('hide');
+    d.getElementById('hide_back').classList.remove('popup_animation');
+    d.getElementById('hide_container').classList.remove('popup_animation');
+    return 1;
   }
   let popupContent = d.getElementById('popup');
   popupContent.innerHTML = element.innerHTML;
+  let closeBtn = d.createElement('button');
+  closeBtn.innerText = "확인";
+  closeBtn.addEventListener('click', function() {
+    popupTag("close");
+  });
+  closeBtn.classList.add("close_btn");
+
+  popupContent.append(closeBtn);
   d.getElementById('hide_back').classList.remove('hide');
   d.getElementById('hide_container').classList.remove('hide');
-  
+  d.getElementById('hide_back').classList.add('popup_animation');
+  d.getElementById('hide_container').classList.add('popup_animation');
 }
 
 // ================= 테스트 코드:채팅========================
@@ -64,33 +75,38 @@ chat.append(tags[0]);
 chat.append(tags[1]);
 
 // ================= 테스트 코드:팝업========================
-let popupContent = d.createElement('div');
-popupContent.innerHTML = "<div>\
-  <h3 class='popup_name'>Popup Test</h3>\
-  <p>\
-    대충 popupTag() 에 대한 설명\
-    <ul>\
-      <li>\
-        파라미터<br>\
-        <span>\
-          makeCard() 로 만들어진 완성된 div 객체를 입력해서 popup 시킬예정\
-        </span>  \
-      </li>\
-      <br>\
-      <li>\
-        컨텐츠 입력<br>\
-        <span>\
-          미리 페이지 아래 샵입된 #popup의 innerHTML을 수정\
-        </span>\
-      </li>\
-      <br>\
-      <li>\
-        z-index<br>\
-        <span>\
-          popupTag()는 미리 준비된 tag들의 z-index를 조정해서 보이거나 사라짐\
-        </span>\
-      </li>\
-    </ul> \
-  </p>\
-</div>";
-popupTag(popupContent);
+
+let popupBtn = d.querySelector('.popupBtn');
+popupBtn.addEventListener('click', function() {
+  let popupContent = d.createElement('div');
+  popupContent.innerHTML = "<div>\
+    <h3 class='popup_name'>Popup Test</h3>\
+    <p>\
+      대충 popupTag() 에 대한 설명\
+      <ul>\
+        <li>\
+          파라미터<br>\
+          <span>\
+            makeCard() 로 만들어진 완성된 div 객체를 입력해서 popup 시킬예정\
+          </span>  \
+        </li>\
+        <br>\
+        <li>\
+          컨텐츠 입력<br>\
+          <span>\
+            미리 페이지 아래 샵입된 #popup의 innerHTML을 수정\
+          </span>\
+        </li>\
+        <br>\
+        <li>\
+          z-index<br>\
+          <span>\
+            popupTag()는 미리 준비된 tag들의 z-index를 조정해서 보이거나 사라짐\
+          </span>\
+        </li>\
+      </ul> \
+    </p>\
+  </div>";
+  popupTag(popupContent);
+
+});
