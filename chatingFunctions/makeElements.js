@@ -11,10 +11,12 @@ const makeChatBox = function(data, isMine) {
   let imageWrap = d.createElement('div');
   imageWrap.classList.add(isMine ? 'mine' : 'yours');
   imageWrap.classList.add('messages');
-
   let image = d.createElement('img');
   image.src = data.imgSrc;
   image.classList.add('chat_img');
+  image.addEventListener('click', function() {
+    image.classList.toggle('chat_big');
+  })
   imageWrap.append(image);
   answer.push(imageWrap);
 
@@ -30,6 +32,9 @@ const makeChatBox = function(data, isMine) {
   messageText.classList.add('message');
   messageText.classList.add('last');
   messagesWrap.append(messageText);
+  messagesWrap.addEventListener('click', function() {
+    messageText.classList.toggle('msg_big');
+  });
   answer.push(messagesWrap);
 
   return answer;
