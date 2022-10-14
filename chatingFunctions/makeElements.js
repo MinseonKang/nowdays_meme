@@ -1,4 +1,7 @@
 const d = document;
+  // d는 document
+
+  // ===========================채팅박스================
 const makeChatBox = function(data, isMine) {
   //data: Objectf = {'name':, 'imgSrc':, 'text':,'link':}
   //  -> 이미지가 없다면?
@@ -33,7 +36,20 @@ const makeChatBox = function(data, isMine) {
   return answer;
 }
 
-// ================= 테스트 코드 ========================
+// ======================Popup===============================
+const popupTag = function(element) {
+  if(element == 'close') {
+    d.getElementById('hide_back').classList.add('hide');
+    d.getElementById('hide_container').classList.add('hide');
+  }
+  let popupContent = d.getElementById('popup');
+  popupContent.innerHTML = element.innerHTML;
+  d.getElementById('hide_back').classList.remove('hide');
+  d.getElementById('hide_container').classList.remove('hide');
+  
+}
+
+// ================= 테스트 코드:채팅========================
 let tags = makeChatBox(
   {
     'name':'구워버린다',
@@ -43,7 +59,38 @@ let tags = makeChatBox(
   },
   false
 );
-
 let chat = d.getElementsByClassName("chat")[0];
 chat.append(tags[0]);
 chat.append(tags[1]);
+
+// ================= 테스트 코드:팝업========================
+let popupContent = d.createElement('div');
+popupContent.innerHTML = "<div>\
+  <h3 class='popup_name'>Popup Test</h3>\
+  <p>\
+    대충 popupTag() 에 대한 설명\
+    <ul>\
+      <li>\
+        파라미터<br>\
+        <span>\
+          makeCard() 로 만들어진 완성된 div 객체를 입력해서 popup 시킬예정\
+        </span>  \
+      </li>\
+      <br>\
+      <li>\
+        컨텐츠 입력<br>\
+        <span>\
+          미리 페이지 아래 샵입된 #popup의 innerHTML을 수정\
+        </span>\
+      </li>\
+      <br>\
+      <li>\
+        z-index<br>\
+        <span>\
+          popupTag()는 미리 준비된 tag들의 z-index를 조정해서 보이거나 사라짐\
+        </span>\
+      </li>\
+    </ul> \
+  </p>\
+</div>";
+popupTag(popupContent);
