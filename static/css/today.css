@@ -21,3 +21,54 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.container {
+  /* position: relative;
+  width: 100%;
+  height: 100%;
+   */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.img_box {
+  /* width: 100%;
+  height: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+.img_box.bg01 {
+  background-image: url(/static/image/bg01.png);
+}
+.img_box.bg02 {
+  background-image: url(/static/image/bg02.png);
+}
+.img_box.bg03 {
+  background-image: url(/static/image/bg03.png);
+}
+.img_box.bg04 {
+  background-image: url(/static/image/bg04.png);
+}
+
+#introimg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+}
