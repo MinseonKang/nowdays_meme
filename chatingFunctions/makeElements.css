@@ -1,4 +1,4 @@
-
+/* 메인폰트 */
 @font-face {
   font-family: "HBIOS-SYS";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2")
@@ -6,16 +6,17 @@
   font-weight: normal;
   font-style: normal;
 }
-
+/* imessage */
 body {
   /* font-family: helvetica; */
   font-family: "HBIOS-SYS";
   display: flex ;
   flex-direction: column;
   align-items: center;
-  /* background-color: black; */
-  /* height: 100%; */
-  /* z-index: 0; */
+  overflow-x: hidden;
+  margin: 0;
+  height: inherit;
+  width: 100vw;
 }
 .chat {
   width: 100%;
@@ -23,8 +24,10 @@ body {
   background-color: white;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  height: 100vh;
+  /* padding: 10px; */
+  height: 90vh;
+  width: 70vw;
+  /* margin: 8px; */
   /* 높이는 레이아웃 완성되면 조정될것 */
 }
 
@@ -50,6 +53,7 @@ body {
   margin-right: 25%;
   background-color: #eee;
   position: relative;
+  margin-left: 8px;
 }
 
 .yours .message.last:before {
@@ -85,6 +89,7 @@ body {
   background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
   background-attachment: fixed;
   position: relative;
+  margin-right: 8px;
 }
 
 .mine .message.last:before {
@@ -124,10 +129,17 @@ body {
 .chat_img {
   width: 40vw;
   border-radius: 10px;
+  margin: 0 8px;
 }
 .chat_img :not(.last){
   margin-bottom: -25px;
 }
+@media screen and (min-width: 1000px) {
+  .chat_img {
+    width: 400px;
+  }
+}
+/* message click event : close up */
 .msg_big {
   font-size: 2rem;
   padding: 15px 22px;
@@ -137,70 +149,144 @@ body {
   transition: 1s;
 }
 .chat_big {
-  /* transform: scale(1.5); */
   width: 60vw;
   transition: 1s;
 }
 .chat_img:not(.chat_big){
-  /* width: 40vw; */
   transition: 1s;
 }
-@media screen and (min-width: 1000px) {
-  .chat_img {
-    width: 400px;
-  }
-}
+/* popup function */
 #hide_back {
-  /* width: 100%; */
-  /* height: 100%; */
   position: absolute;
   background-color: lightgray;
-  /* z-index: 1; */
   opacity: 0.5;
+  z-index: 1;
+  /* height: inherit; */
 }
 #hide_container {
-  /* animation: popup_animation 0.5s; */
-  /* width: 100%; */
-  /* height: 100%; */
   display: flex;
+  flex-direction: column;
   position: absolute;
   justify-content: center;
   align-items: center;
+  z-index: 2;
+  height: 100%;
 }
 .popup_animation {
   width: 100%;
-  height: 100%;
-  transition: 1s;
+  height: 100vh;
+  transition: 0.5s;
 }
-#popup {
+/* #popup {
   width: 60vw;
-  height: 70vh;
+  height: 60vh;
   background-color: white;
   border-radius: 30px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-.popup_name {
-  text-align: center;
-  /* 삭제 검토 */
-}
+  position: relative;
+  margin: -5vw;
+} */
+/* .popup_name 삭제 */
 .hide {
-  z-index: -1;
+  z-index: -1 !important;
   width: 0;
   height: 0;
 }
 .close_btn {
   width : 4rem;
   height: 2rem;
-  background-color: inherit;
   border: 1px solid black;
   border-radius: 0.5rem;
+  margin-top: 10px;
 }
+/* 디자인에 관한 논의가 필요함 */
 .close_btn:hover {
   background-color: black;
   color: white;
   transition: 1s;
+}
+@media screen and (min-width: 1000px) {
+  /* #popup {
+    width: 600px;
+  }   */
+  .close_btn {
+    left: 268px;
+  }
+}
+
+/* card function */
+.card {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #066AFF;
+  width: 60vw;
+  height: 80vw;
+  padding: 16px;
+  border-radius: 30px;
+}
+.card_img {
+  width: 100%;
+  border-radius: 20px;
+}
+.card_name {
+  text-align: center;
+  margin: 2rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.card_name a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+.card_text {
+  margin: 0 2rem;
+}
+@media screen and (min-width: 700px) {
+  .card {
+    height: 560px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .card {
+    flex-direction: row;
+    height: 40vh;
+    transition: 0.5s;
+  }
+  .card>* {
+    margin-top: 5vh;
+  }
+  .card_img {
+    width: 50%;
+    height:fit-content;
+  }
+  .card_text {
+    font-size: 1.2rem;
+  }
+  .card_name {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 330px) and (max-width: 600px) {
+  .card_text {
+    margin: 0 1rem;
+    transition: 0.5s;
+  }
+  .card_name {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    transition: 0.5s;
+  }
+}
+@media screen and (max-width: 330px) {
+  .card_text {
+    margin: 0;
+    transition: 0.5s;
+    font-size: 0.7rem;
+  }
+  .card_name {
+    margin: 0;
+    font-size: 1rem;
+    transition: 0.5s;
+  }
 }
