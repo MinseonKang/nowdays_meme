@@ -28,8 +28,18 @@ body {
   height: 90vh;
   width: 70vw;
   /* margin: 8px; */
+  overflow-y: scroll;
+  overflow-x: hidden;
   /* 높이는 레이아웃 완성되면 조정될것 */
 }
+.chat::-webkit-scrollbar {
+  width: 8px;
+}
+.chat::-webkit-scrollbar-thumb {
+  background-color: lightgray;
+  border-radius: 4px;
+}
+
 
 .messages {
   margin-top: 30px;

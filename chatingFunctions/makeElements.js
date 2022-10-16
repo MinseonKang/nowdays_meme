@@ -122,7 +122,7 @@ let chat = selectorAll(".chat")[0];
 chat.append(tags[0]);
 chat.append(tags[1]);
 
-// ================= 테스트 코드:팝업========================
+// ================= 테스트 코드:팝업 and 카드========================
 
 let popupBtn = selector('.popupBtn');
 let testMeme = {
@@ -165,5 +165,9 @@ popupBtn.addEventListener('click', function() {
   // </div>";
   // popupTag(popupContent);
   popupTag(testCard);
-
 });
+// ================================= 채팅 스크롤바 ========================
+let tags2 = makeChatBox(testMeme, true);
+// let chat2 = selectorAll(".chat")[0];
+chat.append(tags2[0]);
+chat.append(tags2[1]);
