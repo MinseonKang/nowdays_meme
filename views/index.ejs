@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <!-- 크롬에서 번역 자동팝업 방지를 위해 설정 -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="static/css/index.css" />
+  </head>
+  <body>
+    <!-- header include -->
+    <%- include('./header.ejs') %>
+
+    <div class="chat">
+      <div class="mine messages">
+        <div class="message last">test</div>
+      </div>
+    </div>
+    <br />
+    <!-- <button class="popupBtn">popupTag() Test</button> -->
+
+    <div id="hide_back" class="hide"></div>
+    <div id="hide_container" class="hide">
+      <div id="popup">
+        <!-- 주석처리된 테스트코드는 삭제되었습니다. -->
+        
+      </div>
+    </div>
+    <script src="static/js/index.js"></script>
+  </body>
+</html>

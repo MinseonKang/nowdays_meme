@@ -18,6 +18,14 @@ app.get("/", function (req, res) {
   res.render("start");
 });
 
+app.get("/header", function (req, res) {
+  res.render("header");
+});
+
+app.get("/index", function (req, res) {
+  res.render("index");
+});
+
 // 3. 로컬 서버 동작
 app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
