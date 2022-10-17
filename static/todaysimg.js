@@ -37,6 +37,10 @@ pauseImg.addEventListener("click", function (e) {
 
 let replayClick = document.querySelector("i");
 console.log(replayClick);
+let replayIcon = document.querySelector("i");
+console.log(replayClick);
+
+
 
 replayClick.addEventListener("click", function (e) {
   showImage();
