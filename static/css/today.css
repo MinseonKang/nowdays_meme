@@ -1,0 +1,21 @@
+body {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  width: 50%;
+  height: 50%;
+}
+.containerOpp {
+  background-color: #066AFF;
+  border-radius: 50px;
+  width: 50%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
