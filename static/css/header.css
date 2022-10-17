@@ -5,11 +5,12 @@ header {
   align-items: center;
 }
 
-img {
+.header_box > img {
   width: 20vw;
   height: 20vw;
 }
-.searchBox {
+
+.search_box {
   width: 50vw;
   margin: 1vw;
   padding: 1vw;
@@ -21,19 +22,21 @@ img {
   align-items: center;
 }
 
-input[name="searchText"] {
+input[name="search_text"] {
   width: 90%;
   border-radius: 20px;
-  margin-left: 20px;
-  padding: 13px 15px;
+  margin-left: 10px;
+  padding: 1vw;
   border: 0;
   background-color: lightgrey;
 }
 
-.searchBtn {
-  width: 5vw;
-  height: 5vw;
+.search_btn {
+  width: 3vw;
+  height: 3vw;
+  margin-left: 10px;
   margin-right: 20px;
+  /* padding: 10px; */
   border: 0;
   background-color: lightgrey;
 }
