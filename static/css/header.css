@@ -1,0 +1,39 @@
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 20vw;
+  height: 20vw;
+}
+.searchBox {
+  width: 50vw;
+  margin: 1vw;
+  padding: 1vw;
+  background-color: lightgrey;
+  opacity: 50%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[name="searchText"] {
+  width: 90%;
+  border-radius: 20px;
+  margin-left: 20px;
+  padding: 13px 15px;
+  border: 0;
+  background-color: lightgrey;
+}
+
+.searchBtn {
+  width: 5vw;
+  height: 5vw;
+  margin-right: 20px;
+  border: 0;
+  background-color: lightgrey;
+}
