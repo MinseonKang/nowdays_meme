@@ -88,6 +88,13 @@ let memeObjects = [{
   }
 ];
 
+// ============sleep 함수(코드 실행 지연) ============================
+function sleep(sec) {
+  let start = Date.now(), now = start;
+  while (now - start < sec * 1000) {
+      now = Date.now();
+  }
+}
   // ===========================채팅박스================
 const makeChatBox = function(data, isMine, memeIndex = -1) {
   //data: memeObjectf -> {'name':, 'imgSrc':, 'content':,'link':}
@@ -199,14 +206,48 @@ const makeCard = function(data, memeIndex=-1) {
 }
 
 // =====================메세지 -> 카드 =======================
+
 const msg2card = function(msg) {
   // isMine = msg.classList.contains("mine");
-  memeIndex = msg.querySelector('span.hide');
+  let memeIndex = msg.querySelector('span.hide');
   memeIndex = Number(memeIndex.innerText);
   let replaceCard = makeCard(memeObjects[memeIndex],memeIndex);
-  msg.innerHTML = '';
-  msg.append(replaceCard);
+  msg.querySelector(".message").innerHTML = '';
+  msg.querySelector(".message").append(replaceCard);
+  msg.querySelector(".messages .messages").innerHTML = '';
+  addClass(msg.querySelector('.message'), 'card_message');
+  let readyToggle = true;
+  //무한루프 방지코드
+  msg.addEventListener('click', function() {
+    if(readyToggle) {
+      readyToggle = false;
+      card2msg(msg);
+    }
+  });
+}
 
+
+// =====================카드 -> 메세지 ======================
+const card2msg = function(card) {
+  // let memeIndex = card.querySelector();
+  // 처음에 메세지를 어떻게 만들었는지 생각 하자
+  // card2msg()는 msg2card()의 msg태그를 입력받는다.
+  let isMine = card.classList.contains('mine');
+  let memeIndex = Number(card.querySelector('span.hide').innerText);
+  let chat = selector('.chat');
+  let chatTag = makeChatBox(memeObjects[memeIndex], isMine, memeIndex);
+  let chatTagTemp = chatTag.classList; 
+  card.innerHTML = chatTag.innerHTML;
+  card.classList = chatTagTemp;
+  // 여기서부터 card는 그전과 같은 채팅
+  let readyToggle = true;
+  // 무한루프 방지코드
+  card.addEventListener('click', function() {
+    if(readyToggle) {
+      readyToggle = false;
+      msg2card(card);
+    }
+  });
 }
 
 
@@ -278,8 +319,8 @@ chat.append(tags2);
 // let chat2 = selectorAll(".chat")[0];
 let tags3 = makeChatBox(memeObjects[9], true, memeIndex=9);
 chat.append(tags3);
-// tags3.addEventListener('click', function() {
-//   msg2card(tags3);
-// });
+tags3.addEventListener('click', function() {
+  msg2card(tags3);
+});
 
 
