@@ -5,6 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Today's meme</title>
+    <!-- Bootstrap CDN -->
+    <!-- CDN Link (css) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css
+	  "
+    />
+    <!-- CDN Link (icon) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
 
     <!-- CSS 연결 -->
     <link rel="stylesheet" href="static/css/today.css" />
@@ -12,12 +24,14 @@
   <body onload="showImage()">
     <img id="introimg" border="0" />
     <div class="containerOpp">
-      <img src="static/image/logo.png" class="logo" />
+      <img src="/static/image/logo.png" class="logo" />
       <div class="title">오늘의 밈</div>
       <div class="container">
         <div class="img_box"></div>
+        <!-- replay icon -->
+        <i class="replay-icon bi bi-arrow-repeat"></i>
       </div>
-      <!-- 랜덤이미지용 jQuery cdn -->
+      <!-- 랜덤이미지용 jQuery cdn -->s
       <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
@@ -45,13 +59,8 @@
       >
         Tweet
       </a>
+      <!-- 공유버튼 -->
     </div>
-    <!-- Bootstrap CDN -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
     <!-- todaysimg.js 불러오긴 -->
     <script src="/static/todaysimg.js"></script>
   </body>
