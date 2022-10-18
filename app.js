@@ -18,10 +18,6 @@ app.get("/", function (req, res) {
   res.render("start");
 });
 
-app.get("/header", function (req, res) {
-  res.render("header");
-});
-
 app.get("/index", function (req, res) {
   res.render("index");
 });

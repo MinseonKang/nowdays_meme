@@ -134,53 +134,8 @@ let chat = selectorAll(".chat")[0];
 chat.append(tags[0]);
 chat.append(tags[1]);
 
-// ================= 테스트 코드:팝업 and 카드========================
-
-let popupBtn = selector(".popupBtn");
-let testMeme = {
-  name: "북극곰은 사람을 찢어",
-  imgSrc:
-    "https://w.namu.la/s/599570317e87a5972365ce5000beac36dd4a4ce411c5bc423b16ea5b08d0ad7ca29201054c7b0ccbadecdb60f99fa2f4bdeee1e4e71ca92de1fb9d733077ed86522f18ca461ec91c8377dd8f2bbbc61d100783a9fa0c85274d9905e9cc194b8dee3926db70ccad8b564cb80fa404ef88",
-  content:
-    "무한도전 해외극한알바 특집에서 자신을 북극으로 보내려고 하자 한 말이 유행이 되었어요.",
-  link: "https://www.youtube.com/watch?v=cV8srEt0-ms&feature=youtu.be",
-};
-let testCard = makeCard(testMeme);
-popupBtn.addEventListener("click", function () {
-  // let popupContent = d.createElement('div');
-  // popupContent.innerHTML = "<div>\
-  //   <h3 class='popup_name'>Popup Test</h3>\
-  //   <p>\
-  //     대충 popupTag() 에 대한 설명\
-  //     <ul>\
-  //       <li>\
-  //         파라미터<br>\
-  //         <span>\
-  //           makeCard() 로 만들어진 완성된 div 객체를 입력해서 popup 시킬예정\
-  //         </span>  \
-  //       </li>\
-  //       <br>\
-  //       <li>\
-  //         컨텐츠 입력<br>\
-  //         <span>\
-  //           미리 페이지 아래 샵입된 #popup의 innerHTML을 수정\
-  //         </span>\
-  //       </li>\
-  //       <br>\
-  //       <li>\
-  //         z-index<br>\
-  //         <span>\
-  //           popupTag()는 미리 준비된 tag들의 z-index를 조정해서 보이거나 사라짐\
-  //         </span>\
-  //       </li>\
-  //     </ul> \
-  //   </p>\
-  // </div>";
-  // popupTag(popupContent);
-  popupTag(testCard);
-});
 // ================================= 채팅 스크롤바 ========================
-let tags2 = makeChatBox(testMeme, true);
-// let chat2 = selectorAll(".chat")[0];
-chat.append(tags2[0]);
-chat.append(tags2[1]);
+// let tags2 = makeChatBox(testMeme, true);
+// // let chat2 = selectorAll(".chat")[0];
+// chat.append(tags2[0]);
+// chat.append(tags2[1]);

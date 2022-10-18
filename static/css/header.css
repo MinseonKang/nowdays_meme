@@ -10,8 +10,12 @@ header {
   height: 20vw;
 }
 
+a {
+  text-decoration: none;
+}
+
 .search_box {
-  width: 50vw;
+  width: 60vw;
   margin: 1vw;
   padding: 1vw;
   background-color: lightgrey;

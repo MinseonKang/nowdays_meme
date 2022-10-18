@@ -9,7 +9,7 @@
 /* imessage */
 body {
   /* font-family: helvetica; */
-  font-family: "HBIOS-SYS";
+  font-family: "HBIOS-SYS" !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,6 +18,11 @@ body {
   height: inherit;
   width: 100vw;
 }
+
+a {
+  text-decoration: none;
+}
+
 .chat {
   width: 100%;
   border: solid 1px #eee;
@@ -221,81 +226,41 @@ body {
     left: 268px;
   }
 }
-
-/* card function */
-.card {
-  display: flex;
-  flex-direction: column;
+.panel {
+  display: none;
+  width: 50vw;
+  padding: 50px;
+  margin: 50px;
+  text-align: center;
   color: white;
   background-color: #066aff;
-  width: 60vw;
-  height: 80vw;
-  padding: 16px;
-  border-radius: 30px;
+  border-radius: 10px;
 }
-.card_img {
-  width: 100%;
-  border-radius: 20px;
+
+.search_result {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas:
+    "img name"
+    "img content"
+    "img content"
+    "img content"
+    "img link";
 }
-.card_name {
-  text-align: center;
-  margin: 2rem 1rem;
-  font-size: 1.5rem;
-  font-weight: 500;
+
+#result_img {
+  grid-area: img;
 }
-.card_name a {
-  text-decoration: none;
-  color: white;
-  cursor: pointer;
+
+#result_name {
+  grid-area: name;
 }
-.card_text {
-  margin: 0 2rem;
+
+#result_content {
+  grid-area: content;
 }
-@media screen and (min-width: 700px) {
-  .card {
-    height: 560px;
-  }
-}
-@media screen and (min-width: 1000px) {
-  .card {
-    flex-direction: row;
-    height: 40vh;
-    transition: 0.5s;
-  }
-  .card > * {
-    margin-top: 5vh;
-  }
-  .card_img {
-    width: 50%;
-    height: fit-content;
-  }
-  .card_text {
-    font-size: 1.2rem;
-  }
-  .card_name {
-    font-size: 2rem;
-  }
-}
-@media screen and (min-width: 330px) and (max-width: 600px) {
-  .card_text {
-    margin: 0 1rem;
-    transition: 0.5s;
-  }
-  .card_name {
-    margin: 1rem 0;
-    font-size: 1.2rem;
-    transition: 0.5s;
-  }
-}
-@media screen and (max-width: 330px) {
-  .card_text {
-    margin: 0;
-    transition: 0.5s;
-    font-size: 0.7rem;
-  }
-  .card_name {
-    margin: 0;
-    font-size: 1rem;
-    transition: 0.5s;
-  }
+
+#result_link {
+  grid-area: link;
 }
