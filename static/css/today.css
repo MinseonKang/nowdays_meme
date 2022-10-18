@@ -93,7 +93,6 @@ body {
   font-family: "HBIOS-SYS";
   color: white;
   font-size: 50px;
-}
   align-items: center;
 }
 .logo {
@@ -101,7 +100,7 @@ body {
   height: 50%;
 }
 .containerOpp {
-  background-color: #066AFF;
+  background-color: #066aff;
   border-radius: 50px;
   width: 50%;
   height: 80%;
