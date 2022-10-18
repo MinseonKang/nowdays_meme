@@ -1,3 +1,5 @@
+const d = document;
+
 console.log("Connected2");
 
 // 랜덤이미지 추가
@@ -36,21 +38,20 @@ pauseImg.addEventListener("click", function (e) {
 // replay 아이콘 클릭이벤트
 
 let replayClick = document.querySelector("i");
-console.log(replayClick);
-let replayIcon = document.querySelector("i");
-console.log(replayClick);
+// console.log(replayClick);
+// console.log(replayClick.classList.contains("bi-pause-circle"));
 
 replayClick.addEventListener("click", function () {
-  if (replayClick.hasAttribute("class", "bi-pause-circle") == true) {
-    console.log(replayClick.hasAttribute("class", "bi-pause-circle"));
-    replayClick.classList.remove("bi-pause-circle"); // 멈춤 아이콘으로 변경
-    clearTimeout(timeOut);
-  } else if (replayClick.hasAttribute("class", "bi-pause-circle") == false) {
-    console.log(replayClick.hasAttribute("class", "bi-pause-circle"));
-    replayClick.classList.add("bi-pause-circle"); // 멈춤 아이콘으로 변경
-    let replaystop = document.querySelector(".i");
-    replaystop.innerText = "STOP";
+  if (replayClick.classList.contains("bi-pause-circle") == true) {
+    console.log("true");
+    replayClick.classList.remove("bi-pause-circle"); // replay 아이콘으로 변경
+    replayClick.innerText = "다시하기";
     location.reload();
+  } else if (replayClick.classList.contains("bi-pause-circle") == false) {
+    console.log("false임");
+    replayClick.classList.add("bi-pause-circle"); // 멈춤 아이콘으로 변경
+    replayClick.innerText = "멈추기";
+    clearTimeout(timeOut);
   }
   // if (replayClick.hasAttribute("class", "bi-pause-circle") == true) {
   //   showImage();
