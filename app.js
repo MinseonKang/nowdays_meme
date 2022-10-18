@@ -18,9 +18,9 @@ app.get("/", function (req, res) {
   res.render("start");
 });
 
-// app.get("/start", function (req, res) {
-//   res.render("start");
-// });
+app.get("/index", function (req, res) {
+  res.render("index");
+});
 
 // 3. 로컬 서버 동작
 app.listen(PORT, function () {
