@@ -18,48 +18,49 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
     />
 
+    <!-- 랜덤이미지용 jQuery cdn -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- 구글 font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gugi&family=Jua&family=Kirang+Haerang&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- CSS 연결 -->
     <link rel="stylesheet" href="static/css/today.css" />
   </head>
   <body onload="showImage()">
-    <img id="introimg" border="0" />
     <div class="containerOpp">
       <img src="/static/image/logo.png" class="logo" />
       <div class="title">오늘의 밈</div>
       <div class="container">
-        <div class="img_box"></div>
-        <!-- replay icon -->
-        <i class="replay-icon bi bi-arrow-repeat"></i>
+        <div class="img_box">
+          <img id="introimg" />
+        </div>
+        <div class="buttons">
+          <!-- replay icon -->
+          <i class="replay-icon bi bi-arrow-repeat">다시하기</i>
+          <!-- 트위터 공유 링크버튼 -->
+          <a
+            class="twitter-share-button"
+            href="https://twitter.com/share"
+            data-size="large"
+            data-text="custom share text"
+            data-url="https://dev.twitter.com/web/tweet-button"
+            data-hashtags="example,demo"
+            data-via="twitterdev"
+            data-related="twitterapi,twitter"
+          >
+            Tweet
+          </a>
+        </div>
       </div>
-      <!-- 랜덤이미지용 jQuery cdn -->s
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-        crossorigin="anonymous"
-      ></script>
-
-      <a
-        href="#"
-        class="btn btn-primary disabled"
-        tabindex="-1"
-        role="button"
-        aria-disabled="true"
-        >캡쳐</a
-      >
-      <!-- 트위터 공유 링크버튼 -->
-      <a
-        class="twitter-share-button"
-        href="https://twitter.com/share"
-        data-size="large"
-        data-text="custom share text"
-        data-url="https://dev.twitter.com/web/tweet-button"
-        data-hashtags="example,demo"
-        data-via="twitterdev"
-        data-related="twitterapi,twitter"
-      >
-        Tweet
-      </a>
-      <!-- 공유버튼 -->
     </div>
     <!-- todaysimg.js 불러오긴 -->
     <script src="/static/todaysimg.js"></script>

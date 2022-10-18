@@ -8,16 +8,6 @@ body {
   text-align: center;
 }
 
-.containerOpp {
-  background-color: white;
-  border-radius: 50px;
-  width: 50%;
-  height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .logo {
   width: 50%;
   height: 50%;

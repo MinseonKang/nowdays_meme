@@ -40,9 +40,21 @@ console.log(replayClick);
 let replayIcon = document.querySelector("i");
 console.log(replayClick);
 
-
-
-replayClick.addEventListener("click", function (e) {
-  showImage();
-  replayClick.classList.toggle("bi-pause-circle"); // 멈춤 아이콘으로 변경
+replayClick.addEventListener("click", function () {
+  if (replayClick.hasAttribute("class", "bi-pause-circle") == true) {
+    console.log(replayClick.hasAttribute("class", "bi-pause-circle"));
+    replayClick.classList.remove("bi-pause-circle"); // 멈춤 아이콘으로 변경
+    clearTimeout(timeOut);
+  } else if (replayClick.hasAttribute("class", "bi-pause-circle") == false) {
+    console.log(replayClick.hasAttribute("class", "bi-pause-circle"));
+    replayClick.classList.add("bi-pause-circle"); // 멈춤 아이콘으로 변경
+    let replaystop = document.querySelector(".i");
+    replaystop.innerText = "STOP";
+    location.reload();
+  }
+  // if (replayClick.hasAttribute("class", "bi-pause-circle") == true) {
+  //   showImage();
+  // } else {
+  //   stopImage();
+  // }
 });
