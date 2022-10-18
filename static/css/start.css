@@ -1,18 +1,55 @@
+@font-face {
+  font-family: "HBIOS-SYS";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background-color: #066aff;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "HBIOS-SYS";
+}
+
+#pauseResume {
+  color: white;
+  font-size: 2vw;
+}
+
+.container_box {
+  background-color: white;
+  border-radius: 50px;
+  width: 40%;
+  height: 70%;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  flex-direction: column;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 1;
+  opacity: 0.95;
 }
 
 .logo {
   width: 50%;
   height: 50%;
+  opacity: 1;
 }
 
 .introduce {
-  text-align: center;
+  margin: 10px;
+}
+
+.btn {
+  width: 50%;
+  margin: 50px;
 }

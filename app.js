@@ -18,6 +18,10 @@ app.get("/", function (req, res) {
   res.render("start");
 });
 
+app.get("/index", function (req, res) {
+  res.render("index");
+});
+
 app.get("/today", function (req, res) {
   res.render("today");
 });

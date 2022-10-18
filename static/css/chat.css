@@ -1,0 +1,132 @@
+@font-face {
+  font-family: "HBIOS-SYS";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "HBIOS-SYS";
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+/* input-box1 */
+.input-box1 #chat-text {
+  border: 0;
+  width: 70vw;
+  border-radius: 18px;
+  margin: 5px;
+  padding-left: 13px;  
+}
+
+.input-div1 {
+  border: 2px solid lightgray;
+  border-radius: 18px;
+  margin: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+/* input-box2 */
+.input-box1,
+.input-box2 {
+  margin: 1vw;
+  background-color: lightgrey;
+  padding: 1vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 50%;
+  border-radius: 20px;
+}
+
+.input-box2 {
+  display: none;
+}
+
+#input-text {
+ width: 80rem;
+ border-radius: 20px;
+ padding: 13px 15px;
+}
+
+.post-button {
+  border: none;
+  background-color: lightgray;
+}
+
+.bi-arrow-up-circle-fill {
+  color: #066AFF;
+}
+
+.input-box:hover {
+  opacity: 100%;
+}
+
+#choose-file {
+  display: none;
+}
+
+.input-div2:hover {
+  color: #066AFF; 
+}
+
+.input-div2 {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.meme-content,
+.input-file-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.meme-content input {
+  border: 0;
+  width: 60vw;
+  border-radius: 18px;
+  margin: 2px;
+  padding-left: 13px;
+}
+
+.meme-content .input-content {
+  height: 50px;
+}
+
+.preview {
+  display: none;
+}
+
+#preview {
+  width: 4rem;
+  padding: 1px;
+}
+
+.display-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+
+footer i {
+  font-size: 30px;
+}
+
