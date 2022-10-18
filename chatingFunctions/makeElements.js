@@ -216,6 +216,7 @@ const msg2card = function(msg) {
   msg.querySelector(".message").append(replaceCard);
   msg.querySelector(".messages .messages").innerHTML = '';
   addClass(msg.querySelector('.message'), 'card_message');
+  removeClass(msg, 'chat_animation');
   let readyToggle = true;
   //무한루프 방지코드
   msg.addEventListener('click', function() {
@@ -240,6 +241,7 @@ const card2msg = function(card) {
   card.innerHTML = chatTag.innerHTML;
   card.classList = chatTagTemp;
   // 여기서부터 card는 그전과 같은 채팅
+  addClass(card, 'chat_animation');
   let readyToggle = true;
   // 무한루프 방지코드
   card.addEventListener('click', function() {
