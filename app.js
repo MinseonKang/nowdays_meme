@@ -22,10 +22,6 @@ app.get("/index", function (req, res) {
   res.render("index");
 });
 
-app.get("/chat", function (req, res) {
-  res.render("chat");
-});
-
 app.get("/today", function (req, res) {
   res.render("today");
 });
