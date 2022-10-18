@@ -22,6 +22,14 @@ app.get("/index", function (req, res) {
   res.render("index");
 });
 
+app.get("/chat", function (req, res) {
+  res.render("chat");
+});
+
+app.get("/today", function (req, res) {
+  res.render("today");
+});
+
 // 3. 로컬 서버 동작
 app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
