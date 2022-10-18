@@ -25,7 +25,14 @@ const imgSrc = "imgSrc";
 const content = "content";
 const link = "link";
 
-// ===========================채팅박스================
+// ============sleep 함수(코드 실행 지연) ============================
+function sleep(sec) {
+  let start = Date.now(), now = start;
+  while (now - start < sec * 1000) {
+      now = Date.now();
+  }
+}
+  // ===========================채팅박스================
 const makeChatBox = function(data, isMine, memeIndex = -1) {
   //data: memeObjectf -> {'name':, 'imgSrc':, 'content':,'link':}
   //  -> 이미지가 없다면?
@@ -67,8 +74,10 @@ const makeChatBox = function(data, isMine, memeIndex = -1) {
     addClass(memeIdNum, 'hide');
     memeIdNum.innerText = memeIndex;
     messagesWrap.append(memeIdNum);
-    
   }
+
+  //animation을위해 추가됨
+  addClass(messagesWrap, 'chat_animation');
   
   return messagesWrap;
 }
@@ -76,7 +85,8 @@ const makeChatBox = function(data, isMine, memeIndex = -1) {
 const makeCard = function(data, memeIndex=-1) {
   //data: memeObjectf -> {'name':, 'imgSrc':, 'content':,'link':}
   let card = create('div');
-  addClass(card, 'card');
+  addClass(card, 'memeCard');
+  // bootstrap 과 충돌로 class를 조정
   let cardImg = create('img');
   addClass(cardImg, 'card_img');
   cardImg.src = data.imgSrc;
@@ -103,6 +113,53 @@ const makeCard = function(data, memeIndex=-1) {
     card.append(memeIdNum);
   }
   return card;
+}
+// =====================메세지 -> 카드 =======================
+
+const msg2card = function(msg) {
+  // console.log(msg2card);
+  // isMine = msg.classList.contains("mine");
+  let memeIndex = msg.querySelector('span.hide');
+  memeIndex = Number(memeIndex.innerText);
+  let replaceCard = makeCard(memeObjects[memeIndex], memeIndex);
+  msg.querySelector(".message").innerHTML = '';
+  msg.querySelector(".message").append(replaceCard);
+  msg.querySelector(".messages .messages").innerHTML = '';
+  addClass(msg.querySelector('.message'), 'card_message');
+  removeClass(msg, 'chat_animation');
+  let readyToggle = true;
+  //무한루프 방지코드
+  msg.addEventListener('click', function() {
+    if(readyToggle) {
+      readyToggle = false;
+      card2msg(msg);
+    }
+  });
+}
+
+
+// =====================카드 -> 메세지 ======================
+const card2msg = function(card) {
+  // let memeIndex = card.querySelector();
+  // 처음에 메세지를 어떻게 만들었는지 생각 하자
+  // card2msg()는 msg2card()의 msg태그를 입력받는다.
+  let isMine = card.classList.contains('mine');
+  let memeIndex = Number(card.querySelector('span.hide').innerText);
+  let chat = selector('.chat');
+  let chatTag = makeChatBox(memeObjects[memeIndex], isMine, memeIndex);
+  let chatTagTemp = chatTag.classList; 
+  card.innerHTML = chatTag.innerHTML;
+  card.classList = chatTagTemp;
+  // 여기서부터 card는 그전과 같은 채팅
+  addClass(card, 'chat_animation');
+  let readyToggle = true;
+  // 무한루프 방지코드
+  card.addEventListener('click', function() {
+    if(readyToggle) {
+      readyToggle = false;
+      msg2card(card);
+    }
+  });
 }
 
 // ================= 메인 코드:채팅========================
@@ -194,11 +251,15 @@ let memeObjects = [{
   link : 'https://mn.kbs.co.kr/mobile/news/view.do?ncd=2021544'
   }
 ];
-isMineBool = true;
+let isMineBool = true;
 for(let i=0; i<memeObjects.length; i++) {
-  tag = makeChatBox(memeObjects[i], isMineBool, memeIndex=i);
-  isMineBool = ! isMineBool;
+  let tag = makeChatBox(memeObjects[i], isMineBool, memeIndex=i);
   chat.append(tag);
+  tag.addEventListener('click', function() {
+    msg2card(tag);
+    // console.log('eventlistner');
+  });
+  isMineBool = ! isMineBool;
 }
 
 // ================사용되지않는 부분 삭제================

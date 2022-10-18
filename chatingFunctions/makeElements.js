@@ -137,8 +137,10 @@ const makeChatBox = function(data, isMine, memeIndex = -1) {
     addClass(memeIdNum, 'hide');
     memeIdNum.innerText = memeIndex;
     messagesWrap.append(memeIdNum);
-    
   }
+
+  //animation을위해 추가됨
+  addClass(messagesWrap, 'chat_animation');
   
   return messagesWrap;
 }
@@ -235,7 +237,6 @@ const card2msg = function(card) {
   // card2msg()는 msg2card()의 msg태그를 입력받는다.
   let isMine = card.classList.contains('mine');
   let memeIndex = Number(card.querySelector('span.hide').innerText);
-  let chat = selector('.chat');
   let chatTag = makeChatBox(memeObjects[memeIndex], isMine, memeIndex);
   let chatTagTemp = chatTag.classList; 
   card.innerHTML = chatTag.innerHTML;
@@ -315,7 +316,7 @@ popupBtn.addEventListener('click', function() {
   // popupTag(popupContent);
   popupTag(testCard);
 });
-// ================================= 채팅 스크롤바 ========================
+// ================================= 테스트:카드, 쳇 스위치 ========================
 let tags2 = makeChatBox(testMeme, true);
 chat.append(tags2);
 // let chat2 = selectorAll(".chat")[0];

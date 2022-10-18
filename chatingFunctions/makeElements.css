@@ -47,7 +47,7 @@ body {
   flex-direction: column;
 }
 .chat_animation {
-  animation: chatAnimation 1s;
+  animation: chatAnimation 1.5s;
 }
 .message {
   border-radius: 20px;
@@ -156,6 +156,7 @@ body {
   }
 }
 /* message click event : close up */
+/* 카드, 채팅 스위치 기능으로 replace */
 /* .msg_big {
   font-size: 2rem;
   padding: 15px 22px;
@@ -228,6 +229,7 @@ body {
   z-index: -1 !important;
   width: 0 !important;
   height: 0 !important;
+  opacity: 0;
 }
 
 .close_btn {
