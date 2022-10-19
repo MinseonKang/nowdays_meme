@@ -77,12 +77,11 @@ body {
 
 /* replay iconS  */
 .replay-icon {
-  position: relative;
-  font-size: 4vw;
+  /* position: relative; */
+  font-size: 5vw;
   z-index: 7;
   color: black;
   font-family: "HBIOS-SYS";
-  align-items: center;
 }
 
 @font-face {
@@ -99,10 +98,7 @@ body {
   font-size: 5vw;
   align-items: center;
 }
-/* .logo {
-  width: 50%;
-  height: 50%;
-} */
+
 .containerOpp {
   background-color: #066aff;
   border-radius: 50px;
@@ -117,20 +113,14 @@ body {
 .link-icon {
   position: relative;
   display: inline-block;
-  width: auto;
-  font-size: 14px;
+  font-family: "HBIOS-SYS";
   font-weight: 500;
-  color: #333;
-  margin-right: 10px;
-  padding-top: 50px;
+  color: white;
+  align-items: center;
 }
-/* 공유버튼  twitter*/
-.link-icon.twitter {
-  background-image: url(./images/icon-twitter.png);
-  background-repeat: no-repeat;
-}
-/* 공유버튼  facebook*/
-.link-icon.facebook {
-  background-image: url(./images/icon-facebook.png);
-  background-repeat: no-repeat;
+
+.link-icon > img {
+  width: 5vw;
+  height: 5vh;
+  margin: 1vw;
 }

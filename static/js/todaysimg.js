@@ -46,34 +46,29 @@ replayClick.addEventListener("click", function () {
     // console.log("true");
     replayClick.classList.remove("bi-arrow-repeat"); // replay 아이콘으로 변경
     replayClick.classList.add("bi-pause-circle"); // 멈춤 아이콘으로 변경
-    replayClick.innerText = "멈추기";
+    // replayClick.innerText = "멈추기";
     location.reload();
   } else if (replayClick.classList.contains("bi-arrow-repeat") == false) {
     // console.log("false임");
     replayClick.classList.add("bi-arrow-repeat"); // 멈춤 아이콘으로 변경
     replayClick.classList.remove("bi-pause-circle"); // replay 아이콘으로 변경
 
-    replayClick.innerText = "다시하기";
+    // replayClick.innerText = "다시하기";
     clearTimeout(timeOut);
   }
-  // if (replayClick.hasAttribute("class", "bi-arrow-repeat") == true) {
-  //   showImage();
-  // } else {
-  //   stopImage();
-  // }
 });
 
 // 공유버튼
 
 function shareTwitter() {
-  let sendText = "개발새발"; // 전달할 텍스트
-  let sendUrl = "devpad.tistory.com/"; // 전달할 URL
+  let sendText = "오늘의 밈"; // 전달할 텍스트
+  let sendUrl = "http://115.85.181.225:8000/today"; // 전달할 URL
   window.open(
     "https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl
   );
 }
 
 function shareFacebook() {
-  let sendUrl = "devpad.tistory.com/"; // 전달할 URL
+  let sendUrl = "http://115.85.181.225:8000/today"; // 전달할 URL
   window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 }
