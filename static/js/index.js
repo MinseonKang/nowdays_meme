@@ -362,7 +362,22 @@ $(document).ready(function () {
   });
 });
 
-// =============== 사용자가 입력한 내용 memeObjects에 추가============
+// ============배경화면 바꾸는 기능 ============
+function bgChange() {
+  let bgUrl = [
+    "/static/image/indexbg1.jpg",
+    "/static/image/indexbg2.jpg",
+    "/static/image/indexbg3.jpg",
+    "/static/image/indexbg4.jpg"
+  ];
+
+  var num = Math.floor(Math.random() * bgUrl.length);
+  console.log(`'url("${bgUrl[num]}")'`)
+  document.body.style.backgroundImage = `url("${bgUrl[num]}")`
+}
+
+// document.body.style.backgroundImage = 'url("/static/image/indexbg1.jpg")'
+
 let inputName = selector('.input-name');
 let inputContent = selector('.input-content');
 let inputLink = selector('.input-link');

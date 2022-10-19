@@ -20,11 +20,20 @@ function readURL(input) {
   }
 }
 
+// input.div1 클릭하면 input.div2로 바뀜
+let inputBox1 = document.querySelector(".input-box1");
+let inputBox2 = document.querySelector(".input-box2");
 let inputDiv1 = document.querySelector(".input-div1");
-inputDiv1.addEventListener("click", function () {
-  let inputBox1 = document.querySelector(".input-box1");
-  let inputBox2 = document.querySelector(".input-box2");
+let inputDiv2 = document.querySelector(".input-div2");
 
+inputBox1.addEventListener("click", function () {
   inputBox2.style.display = "flex";
   inputBox1.style.display = "none";
 });
+
+// **********
+//.input.div2 더블 클릭하면 input-div1으로 다시 바뀜
+inputBox2.addEventListener("dblclick", function() {
+ inputBox1.style.display = 'flex';
+ inputBox2.style.display = 'none';
+})
