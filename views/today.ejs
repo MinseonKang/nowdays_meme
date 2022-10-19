@@ -25,12 +25,18 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- CSS 연결 -->
+    <!-- today CSS 연결 -->
     <link rel="stylesheet" href="static/css/today.css" />
+
+    <!-- header CSS 연결 -->
+    <link rel="stylesheet" href="/static/css/header.css" />
   </head>
   <body onload="showImage()">
+    <!-- header include -->
+    <%- include('./header.ejs') %>
+
+    <!-- <img src="/static/image/logo.png" class="logo" /> -->
     <div class="containerOpp">
-      <img src="/static/image/logo.png" class="logo" />
       <div class="title">오늘의 밈</div>
       <div class="container">
         <div class="img_box">
@@ -38,7 +44,7 @@
         </div>
         <div class="buttons">
           <!-- replay icon -->
-          <i class="replay-icon bi bi-arrow-repeat">다시하기</i>
+          <i class="replay-icon bi bi-pause-circle">멈추기</i>
           <!-- 트위터 공유 링크버튼 -->
           <a
             class="twitter-share-button"
@@ -52,6 +58,19 @@
           >
             Tweet
           </a>
+          <!-- 공유 링크버튼 -->
+          <a
+            id="btnTwitter"
+            class="link-icon twitter"
+            href="javascript:shareTwitter();"
+            >트위터</a
+          >
+          <a
+            id="btnFacebook"
+            class="link-icon facebook"
+            href="javascript:shareFacebook();"
+            >페이스북</a
+          >
         </div>
       </div>
     </div>

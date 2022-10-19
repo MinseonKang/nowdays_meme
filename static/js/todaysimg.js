@@ -39,23 +39,41 @@ pauseImg.addEventListener("click", function (e) {
 
 let replayClick = document.querySelector("i");
 // console.log(replayClick);
-// console.log(replayClick.classList.contains("bi-pause-circle"));
+// console.log(replayClick.classList.contains("bi-arrow-repeat"));
 
 replayClick.addEventListener("click", function () {
-  if (replayClick.classList.contains("bi-pause-circle") == true) {
-    console.log("true");
-    replayClick.classList.remove("bi-pause-circle"); // replay 아이콘으로 변경
-    replayClick.innerText = "다시하기";
-    location.reload();
-  } else if (replayClick.classList.contains("bi-pause-circle") == false) {
-    console.log("false임");
+  if (replayClick.classList.contains("bi-arrow-repeat") == true) {
+    // console.log("true");
+    replayClick.classList.remove("bi-arrow-repeat"); // replay 아이콘으로 변경
     replayClick.classList.add("bi-pause-circle"); // 멈춤 아이콘으로 변경
     replayClick.innerText = "멈추기";
+    location.reload();
+  } else if (replayClick.classList.contains("bi-arrow-repeat") == false) {
+    // console.log("false임");
+    replayClick.classList.add("bi-arrow-repeat"); // 멈춤 아이콘으로 변경
+    replayClick.classList.remove("bi-pause-circle"); // replay 아이콘으로 변경
+
+    replayClick.innerText = "다시하기";
     clearTimeout(timeOut);
   }
-  // if (replayClick.hasAttribute("class", "bi-pause-circle") == true) {
+  // if (replayClick.hasAttribute("class", "bi-arrow-repeat") == true) {
   //   showImage();
   // } else {
   //   stopImage();
   // }
 });
+
+// 공유버튼
+
+function shareTwitter() {
+  let sendText = "개발새발"; // 전달할 텍스트
+  let sendUrl = "devpad.tistory.com/"; // 전달할 URL
+  window.open(
+    "https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl
+  );
+}
+
+function shareFacebook() {
+  let sendUrl = "devpad.tistory.com/"; // 전달할 URL
+  window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+}
