@@ -28,7 +28,7 @@ const link = "link";
 // ============sleep 함수(코드 실행 지연) ============================
 function sleep(sec) {
 
-  let start = Date.now(),
+  let start = Date.now();
     now = start;
   while (now - start < sec * 1000) {
     now = Date.now();
@@ -40,7 +40,6 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   //  -> 이미지가 없다면?
   //isMine: true, false
   // return을 <div class="chat"></div>에 추가
-  let answer = [];
   let imageWrap = create('div');
   addClass(imageWrap, isMine ? 'mine' : 'yours');
   addClass(imageWrap, 'messages');
@@ -361,4 +360,33 @@ $(document).ready(function () {
   $(".search_btn").click(function () {
     $(".panel").slideToggle("slow");
   });
+});
+
+// =============== 사용자가 입력한 내용 memeObjects에 추가============
+let inputName = selector('.input-name');
+let inputContent = selector('.input-content');
+let inputLink = selector('.input-link');
+let inputImg = selector('#choose-file');
+let postButton = selector('.post-button');
+
+postButton.addEventListener('click', function() {
+  let newMeme = {
+    name : inputName.value,
+    imgSrc : selector('#preview').src,
+    content : inputLink.value,
+    link : inputLink.value,
+    memeIndex : memeObjects.length
+  }
+  memeObjects.push(newMeme);
+  // 입력창 초기화
+  selector(".input-box1").style = "display: auto";
+  selector(".input-box2").style = "display: none";
+  // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨
+  inputName.value = '';
+  inputContent.value = '';
+  inputLink.value = '';
+  inputImg.value = '';
+  selector("#preview").src = '';
+  selector(".input-origin").style = "display: auto";
+  selector(".preview").style = "display: none";
 });
