@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+#text1 {
+  width: 150px;
+  /* word-break:normal; */
+  background-color: blue;
+  
+}
+

@@ -27,7 +27,8 @@ const link = "link";
 
 // ============sleep 함수(코드 실행 지연) ============================
 function sleep(sec) {
-  let start = Date.now(),
+
+  let start = Date.now();
     now = start;
   while (now - start < sec * 1000) {
     now = Date.now();
@@ -39,11 +40,10 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   //  -> 이미지가 없다면?
   //isMine: true, false
   // return을 <div class="chat"></div>에 추가
-  let answer = [];
-  let imageWrap = create("div");
-  addClass(imageWrap, isMine ? "mine" : "yours");
-  addClass(imageWrap, "messages");
-  let image = create("img");
+  let imageWrap = create('div');
+  addClass(imageWrap, isMine ? 'mine' : 'yours');
+  addClass(imageWrap, 'messages');
+  let image = create('img');
   image.src = data.imgSrc;
   addClass(image, "chat_img");
   // image.addEventListener('click', function() {
@@ -57,14 +57,16 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   // image 사이즈 에 관해 rescale 필요하다
   // css 에서 @media로 설정하기
 
+
   addClass(messagesWrap, isMine ? "mine" : "yours");
   addClass(messagesWrap, "messages");
 
-  let messageText = create("div");
+  let messageText = create('div');
   messageText.innerText = data.name;
-  addClass(messageText, "message");
-  addClass(messageText, "last");
+  addClass(messageText, 'message');
+  addClass(messageText, 'last');
   messagesWrap.append(messageText);
+
   messagesWrap.addEventListener("click", function () {
     toggleClass(messageText, "msg_big");
     toggleClass(image, "chat_big");
@@ -78,6 +80,7 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   }
 
   //animation을위해 추가됨
+
   addClass(messagesWrap, "chat_animation");
 
   return messagesWrap;
@@ -92,18 +95,18 @@ const makeCard = function (data, memeIndex = -1) {
   addClass(cardImg, "card_img");
   cardImg.src = data.imgSrc;
   card.append(cardImg);
-  let cardToString = create("div");
-  addClass(cardToString, "card_to_string");
-  let cardLink = create("a");
+  let cardToString = create('div');
+  addClass(cardToString, 'card_to_string');
+  let cardLink = create('a');
   cardLink.href = data.link;
-  cardLink.target = "_blank";
-  let cardName = create("div");
-  addClass(cardName, "card_name");
+  cardLink.target = '_blank';
+  let cardName = create('div');
+  addClass(cardName, 'card_name');
   cardName.append(cardLink);
   cardLink.innerText = data.name;
   cardToString.append(cardName);
-  let cardText = create("div");
-  addClass(cardText, "card_text");
+  let cardText = create('div');
+  addClass(cardText, 'card_text');
   cardText.innerText = data.content;
   cardToString.append(cardText);
   card.append(cardToString);
@@ -114,6 +117,7 @@ const makeCard = function (data, memeIndex = -1) {
     card.append(memeIdNum);
   }
   return card;
+
 };
 // =====================메세지 -> 카드 =======================
 
@@ -136,6 +140,7 @@ const msg2card = function (msg) {
       card2msg(msg);
     }
   });
+
 };
 
 // =====================카드 -> 메세지 ======================
@@ -178,6 +183,7 @@ let tags = makeChatBox(
 );
 let chat = selector(".chat");
 chat.append(tags);
+
 
 let memeObjects = [
   {
@@ -356,25 +362,6 @@ $(document).ready(function () {
   });
 });
 
-// =============== 사용자가 입력한 내용 memeObjects에 추가============
-let inputName = d.querySelector('.input-name');
-let inputContent = d.querySelector('.input-name');
-let inputLink = d.querySelector('.input-name');
-let inputImg = d.querySelector('#choose-file');
-
-let postButton = document.querySelector('.post-button')
-
-postButton.addEventListener('click', function() {
-
-  let newMeme = {
-    name : inputName.value,
-    imgSrc : inputImg.value,
-    content : inputLink.value,
-    link : inputLink.value,
-  }
-  memeObjects.unshift(newMeme);
-})
-
 // ============배경화면 바꾸는 기능 ============
 function bgChange() {
   let bgUrl = [
@@ -390,3 +377,31 @@ function bgChange() {
 }
 
 // document.body.style.backgroundImage = 'url("/static/image/indexbg1.jpg")'
+
+let inputName = selector('.input-name');
+let inputContent = selector('.input-content');
+let inputLink = selector('.input-link');
+let inputImg = selector('#choose-file');
+let postButton = selector('.post-button');
+
+postButton.addEventListener('click', function() {
+  let newMeme = {
+    name : inputName.value,
+    imgSrc : selector('#preview').src,
+    content : inputLink.value,
+    link : inputLink.value,
+    memeIndex : memeObjects.length
+  }
+  memeObjects.push(newMeme);
+  // 입력창 초기화
+  selector(".input-box1").style = "display: auto";
+  selector(".input-box2").style = "display: none";
+  // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨
+  inputName.value = '';
+  inputContent.value = '';
+  inputLink.value = '';
+  inputImg.value = '';
+  selector("#preview").src = '';
+  selector(".input-origin").style = "display: auto";
+  selector(".preview").style = "display: none";
+});
