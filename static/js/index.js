@@ -18,6 +18,9 @@ const removeClass = function (element, classStr) {
 const toggleClass = function (element, classStr) {
   element.classList.toggle(classStr);
 };
+const print = function (content, dir=false) {
+  dir ? console.dir(content) : console.log(content);
+};
 
 // =========Object keys to String ====================
 const name = "name";
@@ -383,8 +386,9 @@ let inputContent = selector('.input-content');
 let inputLink = selector('.input-link');
 let inputImg = selector('#choose-file');
 let postButton = selector('.post-button');
-
 postButton.addEventListener('click', function() {
+  // 만약 입력이 비었다면
+  
   let newMeme = {
     name : inputName.value,
     imgSrc : selector('#preview').src,
@@ -396,7 +400,7 @@ postButton.addEventListener('click', function() {
   // 입력창 초기화
   selector(".input-box1").style = "display: auto";
   selector(".input-box2").style = "display: none";
-  // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨
+  // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨->더블클릭으로 구현됨
   inputName.value = '';
   inputContent.value = '';
   inputLink.value = '';
@@ -404,4 +408,12 @@ postButton.addEventListener('click', function() {
   selector("#preview").src = '';
   selector(".input-origin").style = "display: auto";
   selector(".preview").style = "display: none";
+
+  // 채팅창에 입력받은 내용 추가
+  let inputChat = makeChatBox(newMeme, true, newMeme.memeIndex);
+  // 파란메세지 인지 회색인지 결정?
+  inputChat.addEventListener('click', function() {
+    msg2card(inputChat);
+  });
+  chat.prepend(inputChat);
 });
