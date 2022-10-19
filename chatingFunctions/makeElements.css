@@ -9,8 +9,8 @@
 /* imessage */
 body {
   /* font-family: helvetica; */
-  font-family: "HBIOS-SYS" !important;
-  display: flex;
+  font-family: "HBIOS-SYS";
+  display: flex ;
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
@@ -18,14 +18,9 @@ body {
   height: inherit;
   width: 100vw;
 }
-
-a {
-  text-decoration: none;
-}
-
 .chat {
-  /* width: 100%; */
-  border: solid 1px #eee;
+  width: 100%;
+  border: solid 1px #EEE;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -51,11 +46,9 @@ a {
   display: flex;
   flex-direction: column;
 }
-
 .chat_animation {
   animation: chatAnimation 1.5s;
 }
-
 .message {
   border-radius: 20px;
   padding: 8px 15px;
@@ -63,12 +56,7 @@ a {
   margin-bottom: 5px;
   display: inline-block;
 }
-.message .memeCard{
-  background-color: inherit;
-  padding: 0;
-}
-
-.message .memeCard {
+.message .card {
   background-color: inherit;
   padding: 0;
 }
@@ -95,7 +83,6 @@ a {
   background: #eee;
   border-bottom-right-radius: 15px;
 }
-
 .yours .message.last:after {
   content: "";
   position: absolute;
@@ -106,12 +93,6 @@ a {
   height: 20px;
   background: white;
   border-bottom-right-radius: 10px;
-}
-
-.yours .memeCard,
-.yours .memeCard a {
-  color: black;
-  text-decoration: none;
 }
 
 .mine {
@@ -153,40 +134,35 @@ a {
 }
 
 /* @media screen and (max-width: 320px){
-
-    .chat_img {
-      width: 100px;
-      border-radius: 10px;
-    }
-    .chat_img :not(.last){
-      margin-bottom: -25px;
-    }
-  } */
-
+  .chat_img {
+    width: 100px;
+    border-radius: 10px;
+  }
+  .chat_img :not(.last){
+    margin-bottom: -25px;
+  }
+} */
 .chat_img {
   width: 40vw;
   border-radius: 10px;
   margin: 0 8px;
 }
-
-
-.chat_img :not(.last) {
+.chat_img :not(.last){
   margin-bottom: -25px;
 }
-
 @media screen and (min-width: 1000px) {
   .chat_img {
     width: 400px;
   }
 }
 /* message click event : close up */
-
+/* 카드, 채팅 스위치 기능으로 replace */
 /* .msg_big {
   font-size: 2rem;
   padding: 15px 22px;
   transition: 1s;
 }
-.msg_big .memeCard{
+.msg_big .card {
   border-radius: 20px;
   border: 1px solid lightgray;
   padding-bottom: 20px;
@@ -209,17 +185,16 @@ a {
 @keyframes chatAnimation {
   from {
     opacity: 0;
-
-  }
-  to {
+  } to {
     opacity: 1;
   }
 }
 
+
 /* popup function */
 #hide_back {
   position: absolute;
-  background-color: lightgray;
+  background-color: gray;
   opacity: 0.5;
   z-index: 1;
   /* height: inherit; */
@@ -233,29 +208,32 @@ a {
   z-index: 2;
   height: 100%;
 }
+/* #hide_container div:not(.hide) {
+  transition: 10s;
+} */
 .popup_animation {
   width: 100%;
   height: 100vh;
   transition: 0.5s;
 }
 /* #popup {
-    width: 60vw;
-    height: 60vh;
-    background-color: white;
-    border-radius: 30px;
-    position: relative;
-    margin: -5vw;
-  } */
+  width: 60vw;
+  height: 60vh;
+  background-color: white;
+  border-radius: 30px;
+  position: relative;
+  margin: -5vw;
+} */
 /* .popup_name 삭제 */
 .hide {
   z-index: -1 !important;
-  width: 0;
-  height: 0;
+  width: 0 !important;
+  height: 0 !important;
   opacity: 0;
-  /* opacity 카드<->채팅 에서 변경됨 */
 }
+
 .close_btn {
-  width: 4rem;
+  width : 4rem;
   height: 2rem;
   border: 1px solid black;
   border-radius: 0.5rem;
@@ -269,118 +247,105 @@ a {
 }
 @media screen and (min-width: 1000px) {
   /* #popup {
-      width: 600px;
-    }   */
+    width: 600px;
+  }   */
   .close_btn {
     left: 268px;
   }
 }
 
 /* card function */
-.memeCard {
+.card {
   display: flex;
   flex-direction: column;
   color: white;
-  border: 1px solid inherit;
-  background-color: #066aff;
+  background-color: #066AFF;
   width: 100%;
   height: 100%;
   padding: 16px;
   border-radius: 30px;
   animation: card_animation 1s;
   text-overflow: hidden;
-
+  
 }
 .card_message {
   padding: 0;
 }
-
 .card_img {
   width: 100%;
   border-radius: 20px 20px 0 0;
 }
-
 .card_name {
   text-align: center;
   margin: 2rem 1rem;
   font-size: 1.5rem;
   font-weight: 500;
 }
-.mine .card_name a {
+.card_name a {
   text-decoration: none;
   color: white;
   cursor: pointer;
 }
-
 .card_text {
   margin: 0 2rem 2rem 2rem;
 }
 
-@media screen and (min-width: 1200px) {
-  .memeCard {
-    flex-direction: row;
-    align-items: center;
-    min-width: 700px;
-    /* width: 700px; */
-  }
-  .memeCard img {
-    width: 100%;
-    min-width: 400px;
-    border-radius: 20px;
-    margin: 20px 0 20px 20px;
-    z-index: 2;
+
+@media screen and (min-width: 700px) {
+  .card {
+    height: 560px;
   }
 }
-
+@media screen and (min-width: 1000px) {
+  .card {
+    animation: card_animation 1s;
+    flex-direction: row;
+    height: 40vh;
+    transition: 0.5s;
+  }
+  .card>* {
+    margin-top: 5vh;
+  }
+  .card_img {
+    width: 50%;
+    height:fit-content;
+  }
+  .card_text {
+    font-size: 1.2rem;
+  }
+  .card_name {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 330px) and (max-width: 600px) {
+  .card_text {
+    margin: 0 1rem;
+    transition: 0.5s;
+  }
+  .card_name {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    transition: 0.5s;
+  }
+}
+@media screen and (max-width: 330px) {
+  .card_text {
+    margin: 0;
+    transition: 0.5s;
+    font-size: 0.7rem;
+  }
+  .card_name {
+    margin: 0;
+    font-size: 1rem;
+    transition: 0.5s;
+  }
+}
 @keyframes card_animation {
   from {
     width: 300%;
     height: 0;
-
-  }
-  to {
-    width: 100%;
+  } to {
+    width : 100%;
     width: 100%;
   }
 }
-
-/* 이 밑으로는 search.ejs와 연결 */
-.panel {
-  display: none;
-  width: 50vw;
-  padding: 50px;
-  margin: 50px;
-  text-align: center;
-  color: white;
-  background-color: #066aff;
-  border-radius: 10px;
-}
-
-.search_result {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-areas:
-    "img name"
-    "img content"
-    "img content"
-    "img content"
-    "img link";
-}
-
-#result_img {
-  grid-area: img;
-}
-
-#result_name {
-  grid-area: name;
-}
-
-#result_content {
-  grid-area: content;
-}
-
-#result_link {
-  grid-area: link;
-}
-
