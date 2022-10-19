@@ -53,6 +53,7 @@ footer {
 
 .input-box2 {
   display: none;
+  opacity: 100;
 }
 
 #input-text {

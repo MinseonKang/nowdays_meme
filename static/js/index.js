@@ -355,3 +355,38 @@ $(document).ready(function () {
     $(".panel").slideToggle("slow");
   });
 });
+
+// =============== 사용자가 입력한 내용 memeObjects에 추가============
+let inputName = d.querySelector('.input-name');
+let inputContent = d.querySelector('.input-name');
+let inputLink = d.querySelector('.input-name');
+let inputImg = d.querySelector('#choose-file');
+
+let postButton = document.querySelector('.post-button')
+
+postButton.addEventListener('click', function() {
+
+  let newMeme = {
+    name : inputName.value,
+    imgSrc : inputImg.value,
+    content : inputLink.value,
+    link : inputLink.value,
+  }
+  memeObjects.unshift(newMeme);
+})
+
+// ============배경화면 바꾸는 기능 ============
+function bgChange() {
+  let bgUrl = [
+    "/static/image/indexbg1.jpg",
+    "/static/image/indexbg2.jpg",
+    "/static/image/indexbg3.jpg",
+    "/static/image/indexbg4.jpg"
+  ];
+
+  var num = Math.floor(Math.random() * bgUrl.length);
+  console.log(`'url("${bgUrl[num]}")'`)
+  document.body.style.backgroundImage = `url("${bgUrl[num]}")`
+}
+
+// document.body.style.backgroundImage = 'url("/static/image/indexbg1.jpg")'
