@@ -82,9 +82,6 @@ cardContainer.append(card4);
 
 
 
-
-
-=======
 const memeList = [
   {
     name: "구워버린다",
@@ -113,4 +110,3 @@ for (let i = 0; i < memeList.length; i++) {
   name.classList.add("message last");
   chat.append(name);
 }
->>>>>>> b1e3f9eb0bff579ebc82e6e75efbe0c1dfb738c8

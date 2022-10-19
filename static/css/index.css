@@ -10,7 +10,7 @@
 body {
   /* font-family: helvetica; */
   font-family: "HBIOS-SYS" !important;
-  display: flex ;
+  display: flex;
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
@@ -18,9 +18,14 @@ body {
   height: inherit;
   width: 100vw;
 }
+
+a {
+  text-decoration: none;
+}
+
 .chat {
   /* width: 100%; */
-  border: solid 1px #EEE;
+  border: solid 1px #eee;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -46,9 +51,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .chat_animation {
   animation: chatAnimation 1.5s;
 }
+
 .message {
   border-radius: 20px;
   padding: 8px 15px;
@@ -57,6 +64,11 @@ body {
   display: inline-block;
 }
 .message .memeCard{
+  background-color: inherit;
+  padding: 0;
+}
+
+.message .memeCard {
   background-color: inherit;
   padding: 0;
 }
@@ -83,6 +95,7 @@ body {
   background: #eee;
   border-bottom-right-radius: 15px;
 }
+
 .yours .message.last:after {
   content: "";
   position: absolute;
@@ -94,10 +107,13 @@ body {
   background: white;
   border-bottom-right-radius: 10px;
 }
-.yours .memeCard, .yours .memeCard a{
+
+.yours .memeCard,
+.yours .memeCard a {
   color: black;
   text-decoration: none;
 }
+
 .mine {
   align-items: flex-end;
 }
@@ -137,29 +153,34 @@ body {
 }
 
 /* @media screen and (max-width: 320px){
-  .chat_img {
-    width: 100px;
-    border-radius: 10px;
-  }
-  .chat_img :not(.last){
-    margin-bottom: -25px;
-  }
-} */
+
+    .chat_img {
+      width: 100px;
+      border-radius: 10px;
+    }
+    .chat_img :not(.last){
+      margin-bottom: -25px;
+    }
+  } */
+
 .chat_img {
   width: 40vw;
   border-radius: 10px;
   margin: 0 8px;
 }
-.chat_img :not(.last){
+
+
+.chat_img :not(.last) {
   margin-bottom: -25px;
 }
+
 @media screen and (min-width: 1000px) {
   .chat_img {
     width: 400px;
   }
 }
 /* message click event : close up */
-/* 카드, 채팅 스위치 기능으로 replace */
+
 /* .msg_big {
   font-size: 2rem;
   padding: 15px 22px;
@@ -188,10 +209,13 @@ body {
 @keyframes chatAnimation {
   from {
     opacity: 0;
-  } to {
+
+  }
+  to {
     opacity: 1;
   }
 }
+
 /* popup function */
 #hide_back {
   position: absolute;
@@ -253,27 +277,29 @@ body {
 }
 
 /* card function */
-.memeCard{
+.memeCard {
   display: flex;
   flex-direction: column;
   color: white;
   border: 1px solid inherit;
-  background-color: #066AFF;
+  background-color: #066aff;
   width: 100%;
   height: 100%;
   padding: 16px;
   border-radius: 30px;
   animation: card_animation 1s;
   text-overflow: hidden;
-  
+
 }
 .card_message {
   padding: 0;
 }
+
 .card_img {
   width: 100%;
   border-radius: 20px 20px 0 0;
 }
+
 .card_name {
   text-align: center;
   margin: 2rem 1rem;
@@ -285,6 +311,7 @@ body {
   color: white;
   cursor: pointer;
 }
+
 .card_text {
   margin: 0 2rem 2rem 2rem;
 }
@@ -309,8 +336,51 @@ body {
   from {
     width: 300%;
     height: 0;
-  } to {
-    width : 100%;
+
+  }
+  to {
+    width: 100%;
     width: 100%;
   }
 }
+
+/* 이 밑으로는 search.ejs와 연결 */
+.panel {
+  display: none;
+  width: 50vw;
+  padding: 50px;
+  margin: 50px;
+  text-align: center;
+  color: white;
+  background-color: #066aff;
+  border-radius: 10px;
+}
+
+.search_result {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas:
+    "img name"
+    "img content"
+    "img content"
+    "img content"
+    "img link";
+}
+
+#result_img {
+  grid-area: img;
+}
+
+#result_name {
+  grid-area: name;
+}
+
+#result_content {
+  grid-area: content;
+}
+
+#result_link {
+  grid-area: link;
+}
+

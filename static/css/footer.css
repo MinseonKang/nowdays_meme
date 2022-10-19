@@ -25,7 +25,7 @@ footer {
   width: 70vw;
   border-radius: 18px;
   margin: 5px;
-  padding-left: 13px;  
+  padding-left: 13px;
 }
 
 .input-div1 {
@@ -56,9 +56,9 @@ footer {
 }
 
 #input-text {
- width: 80rem;
- border-radius: 20px;
- padding: 13px 15px;
+  width: 80rem;
+  border-radius: 20px;
+  padding: 13px 15px;
 }
 
 .post-button {
@@ -67,7 +67,7 @@ footer {
 }
 
 .bi-arrow-up-circle-fill {
-  color: #066AFF;
+  color: #066aff;
 }
 
 .input-box:hover {
@@ -79,7 +79,7 @@ footer {
 }
 
 .input-div2:hover {
-  color: #066AFF; 
+  color: #066aff;
 }
 
 .input-div2 {
@@ -129,4 +129,3 @@ footer {
 footer i {
   font-size: 30px;
 }
-

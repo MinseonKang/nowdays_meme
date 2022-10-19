@@ -1,0 +1,63 @@
+<footer>
+  <form class="input-box1">
+    <div class="input-div1">
+      <input
+        type="text"
+        name=""
+        id="chat-text"
+        placeholder="밈을 추가해보세요."
+      />
+      <i class="bi bi-arrow-up-circle-fill"></i>
+    </div>
+  </form>
+
+  <form method="post" class="input-box2">
+    <div class="input-div2">
+      <div class="input-origin">
+        <label class="input-file-button" for="choose-file">
+          <i class="bi bi-image"></i>
+          <p>사진</p>
+        </label>
+        <input
+          type="file"
+          onchange="readURL(this)"
+          id="choose-file"
+          name="choose-file"
+        />
+      </div>
+
+      <div class="preview">
+        <img id="preview" />
+        <label class="input-another-button" for="choose-file">
+          <i class="bi bi-arrow-clockwise"></i>
+        </label>
+        <input
+          type="file"
+          onchange="readURL(this)"
+          id="choose-file"
+          name="choose-file"
+        />
+      </div>
+    </div>
+
+    <div class="meme-content">
+      <label for="input-name"></label>
+      <input type="text" name="input-name" placeholder="밈 제목" />
+
+      <label for="input-content"></label>
+      <input
+        type="text"
+        class="input-content"
+        name="input-content"
+        placeholder="내용"
+      />
+
+      <label for="input-link"></label>
+      <input type="text" name="input-content" placeholder="원본 링크 첨부" />
+    </div>
+
+    <button class="post-button">
+      <i class="bi bi-arrow-up-circle-fill"></i>
+    </button>
+  </form>
+</footer>
