@@ -32,10 +32,12 @@ const link = "link";
 function sleep(sec) {
 
   let start = Date.now();
-    now = start;
+  now = start;
   while (now - start < sec * 1000) {
     now = Date.now();
   }
+  print('now' + now);
+  print('start' + start);
 }
 // ===========================채팅박스================
 const makeChatBox = function (data, isMine, memeIndex = -1) {
@@ -305,16 +307,61 @@ let memeObjects = [
     link: "https://mn.kbs.co.kr/mobile/news/view.do?ncd=2021544",
   },
 ];
+// =====================================================
+// 하나씩 파란색, 회색 번갈아가며 메세지를 .chat에서 출력
+// for, while, 단순 반복 복붙, 이벤트리스너 실패
 let isMineBool = true;
-for (let i = 0; i < memeObjects.length; i++) {
-  let tag = makeChatBox(memeObjects[i], isMineBool, (memeIndex = i));
-  chat.append(tag);
-  tag.addEventListener("click", function () {
+// for (let i = 0; i < memeObjects.length; i++) {
+//   // sleep(1);
+//   let tag = makeChatBox(memeObjects[i], isMineBool, i);
+//   chat.append(tag);
+//   tag.addEventListener("click", function () {
+//     msg2card(tag);
+//     // console.log('eventlistner');
+//   });
+//   isMineBool = !isMineBool;
+// }
+// let messages = selectorAll('.chat>.messages');
+// for(let msg of messages) {
+//   msg.style = "display: none";
+  
+// }
+
+let memeIndex = 0;
+let intervalID;
+let chatContainer = selector('.chat_container');
+const printChat = function() {
+  if(memeIndex >= memeObjects.length) {
+    clearInterval(intervalID);
+    return 1;
+  }
+  let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
+  tag.addEventListener('click', function() {
     msg2card(tag);
-    // console.log('eventlistner');
-  });
+  })
+  chat.prepend(tag);
+  // chat.scrollTo(0, chatContainer.scrollHeight);
+  memeIndex++;
   isMineBool = !isMineBool;
 }
+
+intervalID = setInterval(printChat, 2000);
+
+// let isPrintEnd = false;
+// let isReadyNext = true;
+// let tag;
+// while(memeIndex < memeObjects.length) {
+//   sleep(1);
+//   tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
+//   chat.append(tag);
+//   tag.addEventListener('click', function() {
+//     msg2card(tag);
+//   });
+//   isMineBool = !isMineBool;
+//   memeIndex++;
+// }
+
+// ========================================================
 
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
@@ -425,4 +472,4 @@ inputImg.addEventListener('change', function() {
   selector(".preview").style = "display: auto";
 });
 
-// 자동스크롤기능
+// 자동스크롤기능->페이지 로드후 채팅이 하나하나 .chat에서 출력되는 걸로 사용
