@@ -45,12 +45,14 @@ replayClick.addEventListener("click", function () {
   if (replayClick.classList.contains("bi-arrow-repeat") == true) {
     // console.log("true");
     replayClick.classList.remove("bi-arrow-repeat"); // replay 아이콘으로 변경
+    replayClick.classList.remove("fa-fade"); // replay 아이콘으로 변경
     replayClick.classList.add("bi-pause-circle"); // 멈춤 아이콘으로 변경
     // replayClick.innerText = "멈추기";
     location.reload();
   } else if (replayClick.classList.contains("bi-arrow-repeat") == false) {
     // console.log("false임");
     replayClick.classList.add("bi-arrow-repeat"); // 멈춤 아이콘으로 변경
+    replayClick.classList.add("fa-fade"); // 멈춤 아이콘으로 변경
     replayClick.classList.remove("bi-pause-circle"); // replay 아이콘으로 변경
 
     // replayClick.innerText = "다시하기";
