@@ -219,17 +219,14 @@ let memeObjects = [
   },
   {
     name: "그 잡채",
-    imgSrc: '"그 자체"라는 뜻으로 잡채의 발음이 유사함을 이용한 말장난이에요.',
-    content:
-      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbmzQSG%2FbtrM65zTud0%2FQaOtP7WVWLKqirjwxPpkf1%2Fimg.jpg",
+    imgSrc: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbmzQSG%2FbtrM65zTud0%2FQaOtP7WVWLKqirjwxPpkf1%2Fimg.jpg",
+    content: '"그 자체"라는 뜻으로 잡채의 발음이 유사함을 이용한 말장난이에요.',
     link: "https://m.cafe.daum.net/subdued20club/ReHf/3795292?listURI=%2Fsubdued20club%2FReHf",
   },
   {
     name: "신기방기 뿡뿡방기",
-    imgSrc:
-      "세븐틴 정한이 만든 유행어로 이를 유행시켜 달라는 정한의 말에 팬들에게 유행처럼 번지게 되었어요.",
-    content:
-      "https://post-phinf.pstatic.net/MjAyMjAyMjVfMjU4/MDAxNjQ1NzIzNTYxODQx.B6KzGtl7a97op8YADphJ_m7S2zlj0mf65jY_GP53SBog.DXKjutBd5sEhJ1woycn9mpLBslXMFdWCIj7xeDNytnog.JPEG/%EC%8B%A0%EA%B8%B0%EB%B0%A9%EA%B8%B0%EB%BF%A1%EB%BF%A1%EB%B0%A9%EA%B8%B0.jpg?type=w1200",
+    imgSrc:"https://post-phinf.pstatic.net/MjAyMjAyMjVfMjU4/MDAxNjQ1NzIzNTYxODQx.B6KzGtl7a97op8YADphJ_m7S2zlj0mf65jY_GP53SBog.DXKjutBd5sEhJ1woycn9mpLBslXMFdWCIj7xeDNytnog.JPEG/%EC%8B%A0%EA%B8%B0%EB%B0%A9%EA%B8%B0%EB%BF%A1%EB%BF%A1%EB%B0%A9%EA%B8%B0.jpg?type=w1200",
+    content: "세븐틴 정한이 만든 유행어로 이를 유행시켜 달라는 정한의 말에 팬들에게 유행처럼 번지게 되었어요.",
     link: "https://www.youtube.com/watch?v=_pf-RHEGrsc",
   },
   {
@@ -250,9 +247,9 @@ let memeObjects = [
   {
     name: "북극곰은 사람을 찢어",
     imgSrc:
-      "https://w.namu.la/s/599570317e87a5972365ce5000beac36dd4a4ce411c5bc423b16ea5b08d0ad7ca29201054c7b0ccbadecdb60f99fa2f4bdeee1e4e71ca92de1fb9d733077ed860417902ce580bb9d4ed3ec6cb5a922022ff943b8833aa022e191a35ce8abca7994a13af5702565d4f4ba1861f900b803",
+    "무한도전 해외극한알바 특집에서 자신을 북극으로 보내려고 하자 한 말이 유행이 되었어요.",
     content:
-      "무한도전 해외극한알바 특집에서 자신을 북극으로 보내려고 하자 한 말이 유행이 되었어요.",
+      "https://w.namu.la/s/599570317e87a5972365ce5000beac36dd4a4ce411c5bc423b16ea5b08d0ad7ca29201054c7b0ccbadecdb60f99fa2f4bdeee1e4e71ca92de1fb9d733077ed860417902ce580bb9d4ed3ec6cb5a922022ff943b8833aa022e191a35ce8abca7994a13af5702565d4f4ba1861f900b803",
     link: "https://www.youtube.com/watch?v=cV8srEt0-ms&feature=youtu.be",
   },
   {
@@ -373,10 +370,13 @@ function bgChange() {
 
   var num = Math.floor(Math.random() * bgUrl.length);
   console.log(`'url("${bgUrl[num]}")'`)
-  document.body.style.backgroundImage = `url("${bgUrl[num]}")`
+  // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
+  document.body.style.background = `url("${bgUrl[num]}")`;
+  document.body.style.backgroundSize = 'cover';
+
 }
 
-// document.body.style.backgroundImage = 'url("/static/image/indexbg1.jpg")'
+
 
 let inputName = selector('.input-name');
 let inputContent = selector('.input-content');

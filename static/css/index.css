@@ -19,6 +19,14 @@ body {
   width: 100vw;
 }
 
+.bg-change{
+  font-size: 0.8em;
+  position: fixed;
+  margin: 8px;
+  top: 0;
+  right: 0px;
+}
+
 a {
   text-decoration: none;
 }
@@ -383,4 +391,3 @@ a {
 #result_link {
   grid-area: link;
 }
-
