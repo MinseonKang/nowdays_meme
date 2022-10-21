@@ -18,6 +18,9 @@ const removeClass = function (element, classStr) {
 const toggleClass = function (element, classStr) {
   element.classList.toggle(classStr);
 };
+const print = function (content, dir=false) {
+  dir ? console.dir(content) : console.log(content);
+};
 
 // =========Object keys to String ====================
 const name = "name";
@@ -27,12 +30,13 @@ const link = "link";
 
 // ============sleep 함수(코드 실행 지연) ============================
 function sleep(sec) {
-
   let start = Date.now();
-    now = start;
+  now = start;
   while (now - start < sec * 1000) {
     now = Date.now();
   }
+  print('now' + now);
+  print('start' + start);
 }
 // ===========================채팅박스================
 const makeChatBox = function (data, isMine, memeIndex = -1) {
@@ -40,10 +44,10 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   //  -> 이미지가 없다면?
   //isMine: true, false
   // return을 <div class="chat"></div>에 추가
-  let imageWrap = create('div');
-  addClass(imageWrap, isMine ? 'mine' : 'yours');
-  addClass(imageWrap, 'messages');
-  let image = create('img');
+  let imageWrap = create("div");
+  addClass(imageWrap, isMine ? "mine" : "yours");
+  addClass(imageWrap, "messages");
+  let image = create("img");
   image.src = data.imgSrc;
   addClass(image, "chat_img");
   // image.addEventListener('click', function() {
@@ -57,14 +61,13 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   // image 사이즈 에 관해 rescale 필요하다
   // css 에서 @media로 설정하기
 
-
   addClass(messagesWrap, isMine ? "mine" : "yours");
   addClass(messagesWrap, "messages");
 
-  let messageText = create('div');
+  let messageText = create("div");
   messageText.innerText = data.name;
-  addClass(messageText, 'message');
-  addClass(messageText, 'last');
+  addClass(messageText, "message");
+  addClass(messageText, "last");
   messagesWrap.append(messageText);
 
   messagesWrap.addEventListener("click", function () {
@@ -95,18 +98,18 @@ const makeCard = function (data, memeIndex = -1) {
   addClass(cardImg, "card_img");
   cardImg.src = data.imgSrc;
   card.append(cardImg);
-  let cardToString = create('div');
-  addClass(cardToString, 'card_to_string');
-  let cardLink = create('a');
+  let cardToString = create("div");
+  addClass(cardToString, "card_to_string");
+  let cardLink = create("a");
   cardLink.href = data.link;
-  cardLink.target = '_blank';
-  let cardName = create('div');
-  addClass(cardName, 'card_name');
+  cardLink.target = "_blank";
+  let cardName = create("div");
+  addClass(cardName, "card_name");
   cardName.append(cardLink);
   cardLink.innerText = data.name;
   cardToString.append(cardName);
-  let cardText = create('div');
-  addClass(cardText, 'card_text');
+  let cardText = create("div");
+  addClass(cardText, "card_text");
   cardText.innerText = data.content;
   cardToString.append(cardText);
   card.append(cardToString);
@@ -117,7 +120,6 @@ const makeCard = function (data, memeIndex = -1) {
     card.append(memeIdNum);
   }
   return card;
-
 };
 // =====================메세지 -> 카드 =======================
 
@@ -140,7 +142,6 @@ const msg2card = function (msg) {
       card2msg(msg);
     }
   });
-
 };
 
 // =====================카드 -> 메세지 ======================
@@ -170,7 +171,7 @@ const card2msg = function (card) {
 // ================= 메인 코드:채팅========================
 let tags = makeChatBox(
   {
-    name: "구워버린다",
+    name: "채팅함수 테스트로 index.js에서 만들어진 채팅으로 카드기능이 없어요",
     imgSrc:
       "data:image/jpeg;base64,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",
     // kakao서버 문제로 로드되지 않음
@@ -183,7 +184,6 @@ let tags = makeChatBox(
 );
 let chat = selector(".chat");
 chat.append(tags);
-
 
 let memeObjects = [
   {
@@ -219,14 +219,17 @@ let memeObjects = [
   },
   {
     name: "그 잡채",
-    imgSrc: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbmzQSG%2FbtrM65zTud0%2FQaOtP7WVWLKqirjwxPpkf1%2Fimg.jpg",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbmzQSG%2FbtrM65zTud0%2FQaOtP7WVWLKqirjwxPpkf1%2Fimg.jpg",
     content: '"그 자체"라는 뜻으로 잡채의 발음이 유사함을 이용한 말장난이에요.',
     link: "https://m.cafe.daum.net/subdued20club/ReHf/3795292?listURI=%2Fsubdued20club%2FReHf",
   },
   {
     name: "신기방기 뿡뿡방기",
-    imgSrc:"https://post-phinf.pstatic.net/MjAyMjAyMjVfMjU4/MDAxNjQ1NzIzNTYxODQx.B6KzGtl7a97op8YADphJ_m7S2zlj0mf65jY_GP53SBog.DXKjutBd5sEhJ1woycn9mpLBslXMFdWCIj7xeDNytnog.JPEG/%EC%8B%A0%EA%B8%B0%EB%B0%A9%EA%B8%B0%EB%BF%A1%EB%BF%A1%EB%B0%A9%EA%B8%B0.jpg?type=w1200",
-    content: "세븐틴 정한이 만든 유행어로 이를 유행시켜 달라는 정한의 말에 팬들에게 유행처럼 번지게 되었어요.",
+    imgSrc:
+      "https://post-phinf.pstatic.net/MjAyMjAyMjVfMjU4/MDAxNjQ1NzIzNTYxODQx.B6KzGtl7a97op8YADphJ_m7S2zlj0mf65jY_GP53SBog.DXKjutBd5sEhJ1woycn9mpLBslXMFdWCIj7xeDNytnog.JPEG/%EC%8B%A0%EA%B8%B0%EB%B0%A9%EA%B8%B0%EB%BF%A1%EB%BF%A1%EB%B0%A9%EA%B8%B0.jpg?type=w1200",
+    content:
+      "세븐틴 정한이 만든 유행어로 이를 유행시켜 달라는 정한의 말에 팬들에게 유행처럼 번지게 되었어요.",
     link: "https://www.youtube.com/watch?v=_pf-RHEGrsc",
   },
   {
@@ -295,20 +298,116 @@ let memeObjects = [
     imgSrc:
       "data:image/jpeg;base64,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",
     content:
-      "어깨 위에 눈 쌓인 모습이 상당히 인상적이다. 영상을 보면 그 처절함에 몸서리를 칠 정도였다. 시간대가 넘어갈수록 머리와 어깨에 눈이 쌓이는 양이 늘어나는 모습이 보이고 목소리가 떨린다. 뉴스광장 이후 편성된 7시 50분 기상특보 중 8시에 현장을 연결했을 때는 카메라가 넘어온 줄 모르고 자기가 할 멘션을 작게 중얼거리면서 연습하는 장면이 방송에 그대로 나가 버린 것이다.",
+      "어깨 위에 눈 쌓인 모습이 상당히 인상적입니다. 영상을 보면 그 처절함에 몸서리를 칠 정도예요. 시간대가 넘어갈수록 머리와 어깨에 눈이 쌓이는 양이 늘어나는 모습이 보이고 목소리가 떨립니다. 뉴스광장 이후 편성된 7시 50분 기상특보 중 8시에 현장을 연결했을 때는 카메라가 넘어온 줄 모르고 자기가 할 멘션을 작게 중얼거리면서 연습하는 장면이 방송에 그대로 나가 버린 거죠!",
     link: "https://mn.kbs.co.kr/mobile/news/view.do?ncd=2021544",
   },
+  {
+    name: "당연이 줄 수 있지, 문자 한번 다시 다오~^^",
+    imgSrc: "https://gogumafarm.kr/article/99/article_5.png",
+    content:
+      "커뮤니티에 게시된지는 오래되었지만 최근에 밈으로 많이 사용하고 있어요. 알바생에게 화끈하게 대답해주는 사장님의 쾌남 같은 말투에 ‘당연히 할 수 있다’를 특히나 강조할 때 많이 쓰는 밈이에요. 얼마 전 모트모트의 페이스북 게시물에 이 밈을 사용하여 글을 작성했는데요. 많은 유저들이 알아보며 재밌다는 반응을 보였어요. '당연이'라고 맞춤법을 틀린 것이 하나의 포인트기 때문에 큰 이슈가 없다면 틀린 맞춤법으로 만들어 보는 것도 추천 드릴게요.",
+    link: "https://theqoo.net/square/1551333655",
+  },
+  {
+    name: "(여기서부터 잔인함)",
+    imgSrc: "https://gogumafarm.kr/article/99/article_7.png",
+    content:
+      "이건 특이하게 틱톡에서 시작된 밈인데요. 틱톡의 유저가 한 콘텐츠에 남긴 댓글이 트위터로 퍼지면서 밈이 된 경우예요. 이야기를 쓰다가 중요한 부분이나 반전, 충격적인 이야기를 할 때 이 문장을 사용하여 집중도를 높이는 거죠!",
+    link: "#",
+  },
+  {
+    name: "상남자특) 하남자특)",
+    imgSrc: "https://cdn.maily.so/7vkl5p5lhgdglmabbmbqr89576uv",
+    content:
+      "유튜브 침착맨 영상 중 ‘상남자특) 순댓국 특 먹음’ 콘텐츠에서 상남자 특징과 그와 반대되는 하남자 특징을 이야기 하는 클립이 트위터로 퍼져나가면서 유행하게 되었어요. ‘상남자특’에서 남자 부분은 마음대로 바꿔서 쓰면 돼요. 어떤 명사를 집어 넣어도 되니 활용도 편하고, 특히 어떤 행동을 유도할 때 사용하면 좋겠죠? 실제로 트위터를 운영 중인 채널에서는 트렌드를 빠르게 캐치하여 이렇게 사용하기도 했어요.",
+    link: "https://www.youtube.com/watch?v=31FwmCAEJww",
+  },
+  {
+    name: "스껄",
+    imgSrc: "https://pbs.twimg.com/media/FN3-eQkaAAczl6P.jpg",
+    content:
+      "‘skrr’은 의성어기 때문에 별 의미 없이 기분이 좋거나 감탄을 표현할 때 쓰이는데 이것을 아무 문장 뒤에 붙여주면 돼요! 하지만 이 밈은 아직 쓰는 사람이 적기 때문에 약간 고민해보고 써도 좋을 것 같아요. 밈을 썼는데 아무도 모르면 민망하잖아요?",
+    link: "https://twitter.com/mssssnnn/status/1503370577893277700?s=20&t=UzkUxTKBTBukKWrlW14ymw",
+  },
+  {
+    name: "내가 감히 또 잘못을",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cqWN/image/dDbZbVSq3BURpfhnaMtz33uuln0.jpg",
+    content:
+      "배우로 성공한 연기돌로 윤아와 임시완, 디오를 언급하며 그 외 다른 아이돌을 언급하지 않은 것은 자신이 모르거나 떠올리지 못해서 그런것이라며 나쁜 의도가 없음을 필사적으로 어필하고 있는데요. 자신의 의견은 한줄로 작성한 것에 비해 나쁜 의도가 없다는 것을 어필하기 위한 주석이 더 긴 것이 웃기다는 이유로 여러 커뮤니티에서 밈이 되었는데요. 요즘에는 소신 발언을 할 때, 명확하지 않은 것에 대해 언급할 때 등의 상황에서 주로 쓴다고 합니다.",
+    link: "#",
+  },
+  {
+    name: "어쩔 티비",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cqWN/image/f7Id7cDR3Q8Z4WIdjMV4jtmOJIQ",
+    content:
+      "어쩔티비는 어쩌라고 가서 티비나 봐의 줄임말로 요즘엔 티비 대신 온갖 가전 제품을 붙여서 활용하기도 한다네요. 특히 요즘 초등학생들 사이에서는 어쩔티비에 저쩔티비라고 받아치는게 국룰이라고 하니 참고하세요!",
+    link: "#",
+  },
+  {
+    name: "나는 네가 줏대 있게 살았으면 좋겠어",
+    imgSrc: "https://i.ytimg.com/vi/MySJDBbQMy0/maxresdefault.jpg",
+    content:
+      "네가 먹고 판단해. 남의 말에 휘둘리지 말고. 난 너가 줏대있게 인생 살았으면 좋겠어. 남이 맛있다 해도, 네가 직접 먹어보고 판단해. 스트레이키즈 창빈이 먹고 있던 샌드위치가 맛있냐는 승민에게 한 대답에서 유래했어요. 후에도 이 발언은 각종 SNS로 퍼지며 인스타그램의 필터로까지 만들어져 현재에도 다양한 상황에서 쓰이고 있다네요!",
+    link: "https://www.youtube.com/watch?v=MySJDBbQMy0",
+  },
 ];
+// =====================================================
+// 하나씩 파란색, 회색 번갈아가며 메세지를 .chat에서 출력
+// for, while, 단순 반복 복붙, 이벤트리스너 실패
 let isMineBool = true;
-for (let i = 0; i < memeObjects.length; i++) {
-  let tag = makeChatBox(memeObjects[i], isMineBool, (memeIndex = i));
-  chat.append(tag);
-  tag.addEventListener("click", function () {
+// for (let i = 0; i < memeObjects.length; i++) {
+//   // sleep(1);
+//   let tag = makeChatBox(memeObjects[i], isMineBool, i);
+//   chat.append(tag);
+//   tag.addEventListener("click", function () {
+//     msg2card(tag);
+//     // console.log('eventlistner');
+//   });
+//   isMineBool = !isMineBool;
+// }
+// let messages = selectorAll('.chat>.messages');
+// for(let msg of messages) {
+//   msg.style = "display: none";
+  
+// }
+
+let memeIndex = 0;
+let intervalID;
+let chatContainer = selector('.chat_container');
+const printChat = function() {
+  if(memeIndex >= memeObjects.length) {
+    clearInterval(intervalID);
+    return 1;
+  }
+  let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
+  tag.addEventListener('click', function() {
     msg2card(tag);
-    // console.log('eventlistner');
-  });
+  })
+  chat.prepend(tag);
+  // chat.scrollTo(0, chatContainer.scrollHeight);
+  memeIndex++;
   isMineBool = !isMineBool;
 }
+
+intervalID = setInterval(printChat, 2000);
+
+// let isPrintEnd = false;
+// let isReadyNext = true;
+// let tag;
+// while(memeIndex < memeObjects.length) {
+//   sleep(1);
+//   tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
+//   chat.append(tag);
+//   tag.addEventListener('click', function() {
+//     msg2card(tag);
+//   });
+//   isMineBool = !isMineBool;
+//   memeIndex++;
+// }
+
+// ========================================================
 
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
@@ -343,11 +442,14 @@ function searchMeme(e) {
 
   // 결과 값 화면 출력
   document.getElementById("result_name").innerHTML = result.map((d) => d.name);
-  document.getElementById("result_img").innerHTML = result.map((d) => d.imgSrc);
+  document.getElementById("result_img").src = result.map((d) => {
+    console.log(d.imgSrc);
+    return d.imgSrc;
+  });
   document.getElementById("result_content").innerHTML = result.map(
     (d) => d.content
   );
-  document.getElementById("result_link").innerHTML = result.map((d) => d.link);
+  document.getElementById("result_link").href = result.map((d) => d.link);
 }
 
 // // 클릭 시 search 함수 호출
@@ -365,7 +467,7 @@ function bgChange() {
     "/static/image/indexbg1.jpg",
     "/static/image/indexbg2.jpg",
     "/static/image/indexbg3.jpg",
-    "/static/image/indexbg4.jpg"
+    "/static/image/indexbg4.jpg",
   ];
 
   var num = Math.floor(Math.random() * bgUrl.length);
@@ -373,6 +475,7 @@ function bgChange() {
   // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
   document.body.style.background = `url("${bgUrl[num]}")`;
   document.body.style.backgroundSize = 'cover';
+
 
 }
 
@@ -383,12 +486,16 @@ let inputContent = selector('.input-content');
 let inputLink = selector('.input-link');
 let inputImg = selector('#choose-file');
 let postButton = selector('.post-button');
-
 postButton.addEventListener('click', function() {
+  // 만약 입력이 비었다면 작동하지 않음
+  if(Boolean(! inputName.value.trim()) || ! Boolean(inputContent.value.trim())) {
+    return 1;
+  }
+  //
   let newMeme = {
     name : inputName.value,
     imgSrc : selector('#preview').src,
-    content : inputLink.value,
+    content : inputContent.value,
     link : inputLink.value,
     memeIndex : memeObjects.length
   }
@@ -396,7 +503,8 @@ postButton.addEventListener('click', function() {
   // 입력창 초기화
   selector(".input-box1").style = "display: auto";
   selector(".input-box2").style = "display: none";
-  // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨
+
+  // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨->더블클릭으로 구현됨
   inputName.value = '';
   inputContent.value = '';
   inputLink.value = '';
@@ -404,4 +512,18 @@ postButton.addEventListener('click', function() {
   selector("#preview").src = '';
   selector(".input-origin").style = "display: auto";
   selector(".preview").style = "display: none";
+
+  // 채팅창에 입력받은 내용 추가
+  let inputChat = makeChatBox(newMeme, true, newMeme.memeIndex);
+  // 파란메세지 인지 회색인지 결정?
+  inputChat.addEventListener('click', function() {
+    msg2card(inputChat);
+  });
+  chat.prepend(inputChat);
 });
+// 밈 입력, 업로드 후 사진을 다시 선택하면 새로고침이 표시되지 않는 문제를 위해 추가
+inputImg.addEventListener('change', function() {
+  selector(".preview").style = "display: auto";
+});
+
+// 자동스크롤기능->페이지 로드후 채팅이 하나하나 .chat에서 출력되는 걸로 사용
