@@ -73,10 +73,6 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   addClass(messageText, "last");
   messagesWrap.append(messageText);
 
-  messagesWrap.addEventListener("click", function () {
-    toggleClass(messageText, "msg_big");
-    toggleClass(image, "chat_big");
-  });
   // answer.push(messagesWrap);
   if (memeIndex > -1) {
     let memeIdNum = create("span");
@@ -127,27 +123,6 @@ const makeCard = function (data, memeIndex = -1) {
 
 // =====================메세지 -> 카드 =======================
 
-// const msg2card = function (msg) {
-//   // console.log(msg2card);
-//   // isMine = msg.classList.contains("mine");
-//   let memeIndex = msg.querySelector("span.hide");
-//   memeIndex = Number(memeIndex.innerText);
-//   let replaceCard = makeCard(memeObjects[memeIndex], memeIndex);
-//   msg.querySelector(".message").innerHTML = "";
-//   msg.querySelector(".message").append(replaceCard);
-//   msg.querySelector(".messages .messages").innerHTML = "";
-//   addClass(msg.querySelector(".message"), "card_message");
-//   removeClass(msg, "chat_animation");
-//   let readyToggle = true;
-//   //무한루프 방지코드
-//   let inContent = msg.querySelector(".memeCard");
-//   inContent.addEventListener("click", function () {
-//     if (readyToggle) {
-//       readyToggle = false;
-//       card2msg(msg);
-//     }
-//   });
-// };
 const msg2card = function (msg) {
   isMine = hasClass(msg, "mine");
   let memeIndex = Number(selector('span.hide', msg).innerText);
@@ -172,29 +147,7 @@ const msg2card = function (msg) {
 }
 
 // =====================카드 -> 메세지 ======================
-// const card2msg = function (card) {
-//   // let memeIndex = card.querySelector();
-//   // 처음에 메세지를 어떻게 만들었는지 생각 하자
-//   // card2msg()는 msg2card()의 msg태그를 입력받는다.
-//   let isMine = card.classList.contains("mine");
-//   let memeIndex = Number(card.querySelector("span.hide").innerText);
-//   let chat = selector(".chat");
-//   let chatTag = makeChatBox(memeObjects[memeIndex], isMine, memeIndex);
-//   let chatTagTemp = chatTag.classList;
-//   card.innerHTML = chatTag.innerHTML;
-//   card.classList = chatTagTemp;
-//   // 여기서부터 card는 그전과 같은 채팅
-//   addClass(card, "chat_animation");
-//   let readyToggle = true;
-//   // 무한루프 방지코드
-//   let inContent = card.querySelector('img');
-//   inContent.addEventListener("click", function () {
-//     if (readyToggle) {
-//       readyToggle = false;
-//       msg2card(card);
-//     }
-//   });
-// };
+
 const card2msg = function (card) {
   // 처음에 메세지를 어떻게 만들었는지 생각 하자
   // card2msg()는 msg2card()의 msg태그를 입력받는다.
@@ -408,6 +361,7 @@ let memeObjects = [
 // =====================================================
 // 하나씩 파란색, 회색 번갈아가며 메세지를 .chat에서 출력
 // for, while, 단순 반복 복붙, 이벤트리스너 실패
+// 이곳에서 객체에 like정보 추가-> 함수를 수정하기엔 일이 너무 크다
 let isMineBool = true;
 let memeIndex = 0;
 let intervalID;
@@ -417,6 +371,7 @@ const printChat = function() {
     clearInterval(intervalID);
     return 1;
   }
+  memeObjects[memeIndex].like = false;
   let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
   let inContent = tag.querySelector('img');
   inContent.addEventListener('click', function() {
