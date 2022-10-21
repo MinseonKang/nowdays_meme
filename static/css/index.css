@@ -38,21 +38,19 @@ a {
   flex-direction: column;
 }
 .chat_container .flex_space {
-  height: 300px;
+  height: 70px;
 }
 .chat {
-  /* width: 100%; */
   border: solid 1px #eee;
   background-color: white;
   display: flex;
   flex-direction: column;
-  /* padding: 10px; */
+  margin-top: 15px;
+  border-radius: 5px;
   height: 90vh;
-  width: 70vw;
-  /* margin: 8px; */
+  width: 80vw;
   overflow-y: scroll;
   overflow-x: hidden;
-  /* 높이는 레이아웃 완성되면 조정될것 */
 }
 .chat::-webkit-scrollbar {
   width: 8px;
@@ -174,17 +172,6 @@ a {
   border-bottom-left-radius: 10px;
 }
 
-/* @media screen and (max-width: 320px){
-
-    .chat_img {
-      width: 100px;
-      border-radius: 10px;
-    }
-    .chat_img :not(.last){
-      margin-bottom: -25px;
-    }
-  } */
-
 .chat_img {
   width: 40vw;
   border-radius: 10px;
@@ -195,38 +182,22 @@ a {
   margin-bottom: -25px;
 }
 
+.scroll_text {
+  position: fixed;
+  color: lightgray;
+  bottom: 100px;
+  right: 10vw;
+  cursor: pointer;
+}
+.scroll_text i {
+  color: inherit;
+}
+
 @media screen and (min-width: 1000px) {
   .chat_img {
     width: 400px;
   }
 }
-/* message click event : close up */
-
-/* .msg_big {
-  font-size: 2rem;
-  padding: 15px 22px;
-  transition: 1s;
-}
-.msg_big .memeCard{
-  border-radius: 20px;
-  border: 1px solid lightgray;
-  padding-bottom: 20px;
-}
-.msg_big img {
-  width: 100%;
-  border-radius: 17px 17px 0 0;
-}
-
-.message:not(.msg_big) {
-  transition: 1s;
-}
-.chat_big {
-  width: 60vw;
-  transition: 1s;
-}
-.chat_img:not(.chat_big){
-  transition: 1s;
-} */
 
 /* 채팅 생성시 에니메이션에 .chat의 모서리 에서 점점 나오는 에니메이션을 추가 */
 @keyframes chatAnimationMine {
@@ -272,14 +243,7 @@ a {
   height: 100vh;
   transition: 0.5s;
 }
-/* #popup {
-    width: 60vw;
-    height: 60vh;
-    background-color: white;
-    border-radius: 30px;
-    position: relative;
-    margin: -5vw;
-  } */
+
 /* .popup_name 삭제 */
 .hide {
   z-index: -1 !important;

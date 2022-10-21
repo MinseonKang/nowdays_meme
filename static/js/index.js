@@ -136,9 +136,11 @@ const msg2card = function (msg) {
   removeClass(msg, "chat_animation");
   let readyToggle = true;
   //무한루프 방지코드
-  msg.addEventListener("click", function () {
+  let inContent = msg.querySelector(".memeCard");
+  inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
+      print(msg, true);
       card2msg(msg);
     }
   });
@@ -160,7 +162,8 @@ const card2msg = function (card) {
   addClass(card, "chat_animation");
   let readyToggle = true;
   // 무한루프 방지코드
-  card.addEventListener("click", function () {
+  let inContent = card.querySelector('img');
+  inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
       msg2card(card);
@@ -357,22 +360,6 @@ let memeObjects = [
 // 하나씩 파란색, 회색 번갈아가며 메세지를 .chat에서 출력
 // for, while, 단순 반복 복붙, 이벤트리스너 실패
 let isMineBool = true;
-// for (let i = 0; i < memeObjects.length; i++) {
-//   // sleep(1);
-//   let tag = makeChatBox(memeObjects[i], isMineBool, i);
-//   chat.append(tag);
-//   tag.addEventListener("click", function () {
-//     msg2card(tag);
-//     // console.log('eventlistner');
-//   });
-//   isMineBool = !isMineBool;
-// }
-// let messages = selectorAll('.chat>.messages');
-// for(let msg of messages) {
-//   msg.style = "display: none";
-  
-// }
-
 let memeIndex = 0;
 let intervalID;
 let chatContainer = selector('.chat_container');
@@ -382,7 +369,8 @@ const printChat = function() {
     return 1;
   }
   let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
-  tag.addEventListener('click', function() {
+  let inContent = tag.querySelector('img');
+  inContent.addEventListener('click', function() {
     msg2card(tag);
   })
   chat.prepend(tag);
@@ -390,25 +378,7 @@ const printChat = function() {
   memeIndex++;
   isMineBool = !isMineBool;
 }
-
 intervalID = setInterval(printChat, 2000);
-
-// let isPrintEnd = false;
-// let isReadyNext = true;
-// let tag;
-// while(memeIndex < memeObjects.length) {
-//   sleep(1);
-//   tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
-//   chat.append(tag);
-//   tag.addEventListener('click', function() {
-//     msg2card(tag);
-//   });
-//   isMineBool = !isMineBool;
-//   memeIndex++;
-// }
-
-// ========================================================
-
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
   // data 값을 하나하나 꺼내와서
@@ -475,11 +445,7 @@ function bgChange() {
   // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
   document.body.style.background = `url("${bgUrl[num]}")`;
   document.body.style.backgroundSize = 'cover';
-
-
 }
-
-
 
 let inputName = selector('.input-name');
 let inputContent = selector('.input-content');
@@ -527,3 +493,8 @@ inputImg.addEventListener('change', function() {
 });
 
 // 자동스크롤기능->페이지 로드후 채팅이 하나하나 .chat에서 출력되는 걸로 사용
+
+// 위로가기 기능
+selector('.scroll_text').addEventListener('click', function(event) {
+  chat.scrollTo(0, 0);
+});
