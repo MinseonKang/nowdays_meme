@@ -54,7 +54,6 @@ a {
   border-radius: 4px;
 }
 
-
 .messages {
   margin-top: 30px;
   display: flex;
@@ -75,7 +74,7 @@ a {
   margin-bottom: 5px;
   display: inline-block;
 }
-.message .memeCard{
+.message .memeCard {
   background-color: inherit;
   padding: 0;
 }
@@ -183,7 +182,6 @@ a {
   border-radius: 10px;
   margin: 0 8px;
 }
-
 
 .chat_img :not(.last) {
   margin-bottom: -25px;
@@ -317,7 +315,6 @@ a {
   border-radius: 30px;
   animation: card_animation 1s;
   text-overflow: hidden;
-
 }
 .card_message {
   padding: 0;
@@ -364,7 +361,6 @@ a {
   from {
     width: 300%;
     height: 0;
-
   }
   to {
     width: 100%;
@@ -372,12 +368,12 @@ a {
   }
 }
 
-/* 이 밑으로는 search.ejs와 연결 */
+/* 이 밑으로는 search css */
 .panel {
   display: none;
-  width: 50vw;
+  width: 80vw;
   padding: 50px;
-  margin: 50px;
+  margin: 10px;
   text-align: center;
   color: white;
   background-color: #066aff;
@@ -387,7 +383,7 @@ a {
 .search_result {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1.5fr 2fr;
   grid-template-areas:
     "img name"
     "img content"
@@ -398,17 +394,32 @@ a {
 
 #result_img {
   grid-area: img;
+  width: 100%;
 }
 
 #result_name {
   grid-area: name;
+  font-size: 3vw;
+  margin-left: 4vw;
 }
 
 #result_content {
   grid-area: content;
+  text-align: left;
+  margin-bottom: 2vw;
+  margin-left: 4vw;
 }
 
 #result_link {
   grid-area: link;
 }
 
+.result_link_btn {
+  margin: 2vw;
+  width: 18vw;
+  height: 3vw;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  margin-left: 4vw;
+}
