@@ -6,6 +6,9 @@
   font-weight: normal;
   font-style: normal;
 }
+html {
+  scroll-behavior: smooth;
+}
 /* imessage */
 body {
   /* font-family: helvetica; */
@@ -22,7 +25,13 @@ body {
 a {
   text-decoration: none;
 }
-
+.chat_container {
+  display: flex;
+  flex-direction: column;
+}
+.chat_container .flex_space {
+  height: 300px;
+}
 .chat {
   /* width: 100%; */
   border: solid 1px #eee;
@@ -51,8 +60,11 @@ a {
   flex-direction: column;
 }
 
-.chat_animation {
-  animation: chatAnimation 1.5s;
+.chat_animation.mine {
+  animation: chatAnimationMine 1s;
+}
+.chat_animation.yours {
+  animation: chatAnimationYours 1s;
 }
 
 .message {
@@ -117,10 +129,12 @@ a {
   align-items: flex-end;
 }
 
+/* 에니메이션을 위해 그라데이션을 평균값으로 교체 */
 .mine .message {
   color: white;
   margin-left: 25%;
-  background: linear-gradient(to bottom, #00d0ea 0%, #0085d1 100%);
+  /* background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); */
+  background-color: #00AADD;
   background-attachment: fixed;
   position: relative;
   margin-right: 8px;
@@ -134,7 +148,8 @@ a {
   right: -8px;
   height: 20px;
   width: 20px;
-  background: linear-gradient(to bottom, #00d0ea 0%, #0085d1 100%);
+  /* background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); */
+  background-color: #00AADD;
   background-attachment: fixed;
   border-bottom-left-radius: 15px;
 }
@@ -204,12 +219,26 @@ a {
 .chat_img:not(.chat_big){
   transition: 1s;
 } */
-@keyframes chatAnimation {
+
+/* 채팅 생성시 에니메이션에 .chat의 모서리 에서 점점 나오는 에니메이션을 추가 */
+@keyframes chatAnimationMine {
   from {
     opacity: 0;
+    transform: translateX(50%);
   }
   to {
     opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes chatAnimationYours {
+  from {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 

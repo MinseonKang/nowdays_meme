@@ -18,6 +18,9 @@ const removeClass = function (element, classStr) {
 const toggleClass = function (element, classStr) {
   element.classList.toggle(classStr);
 };
+const print = function (content, dir=false) {
+  dir ? console.dir(content) : console.log(content);
+};
 
 // =========Object keys to String ====================
 const name = "name";
@@ -32,6 +35,8 @@ function sleep(sec) {
   while (now - start < sec * 1000) {
     now = Date.now();
   }
+  print('now' + now);
+  print('start' + start);
 }
 // ===========================채팅박스================
 const makeChatBox = function (data, isMine, memeIndex = -1) {
@@ -166,7 +171,7 @@ const card2msg = function (card) {
 // ================= 메인 코드:채팅========================
 let tags = makeChatBox(
   {
-    name: "구워버린다",
+    name: "채팅함수 테스트로 index.js에서 만들어진 채팅으로 카드기능이 없어요",
     imgSrc:
       "data:image/jpeg;base64,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",
     // kakao서버 문제로 로드되지 않음
@@ -348,16 +353,61 @@ let memeObjects = [
     link: "https://www.youtube.com/watch?v=MySJDBbQMy0",
   },
 ];
+// =====================================================
+// 하나씩 파란색, 회색 번갈아가며 메세지를 .chat에서 출력
+// for, while, 단순 반복 복붙, 이벤트리스너 실패
 let isMineBool = true;
-for (let i = 0; i < memeObjects.length; i++) {
-  let tag = makeChatBox(memeObjects[i], isMineBool, (memeIndex = i));
-  chat.append(tag);
-  tag.addEventListener("click", function () {
+// for (let i = 0; i < memeObjects.length; i++) {
+//   // sleep(1);
+//   let tag = makeChatBox(memeObjects[i], isMineBool, i);
+//   chat.append(tag);
+//   tag.addEventListener("click", function () {
+//     msg2card(tag);
+//     // console.log('eventlistner');
+//   });
+//   isMineBool = !isMineBool;
+// }
+// let messages = selectorAll('.chat>.messages');
+// for(let msg of messages) {
+//   msg.style = "display: none";
+  
+// }
+
+let memeIndex = 0;
+let intervalID;
+let chatContainer = selector('.chat_container');
+const printChat = function() {
+  if(memeIndex >= memeObjects.length) {
+    clearInterval(intervalID);
+    return 1;
+  }
+  let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
+  tag.addEventListener('click', function() {
     msg2card(tag);
-    // console.log('eventlistner');
-  });
+  })
+  chat.prepend(tag);
+  // chat.scrollTo(0, chatContainer.scrollHeight);
+  memeIndex++;
   isMineBool = !isMineBool;
 }
+
+intervalID = setInterval(printChat, 2000);
+
+// let isPrintEnd = false;
+// let isReadyNext = true;
+// let tag;
+// while(memeIndex < memeObjects.length) {
+//   sleep(1);
+//   tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
+//   chat.append(tag);
+//   tag.addEventListener('click', function() {
+//     msg2card(tag);
+//   });
+//   isMineBool = !isMineBool;
+//   memeIndex++;
+// }
+
+// ========================================================
 
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
@@ -427,30 +477,49 @@ function bgChange() {
 
 // document.body.style.backgroundImage = 'url("/static/image/indexbg1.jpg")'
 
-let inputName = selector(".input-name");
-let inputContent = selector(".input-content");
-let inputLink = selector(".input-link");
-let inputImg = selector("#choose-file");
-let postButton = selector(".post-button");
-
-postButton.addEventListener("click", function () {
+let inputName = selector('.input-name');
+let inputContent = selector('.input-content');
+let inputLink = selector('.input-link');
+let inputImg = selector('#choose-file');
+let postButton = selector('.post-button');
+postButton.addEventListener('click', function() {
+  // 만약 입력이 비었다면 작동하지 않음
+  if(Boolean(! inputName.value.trim()) || ! Boolean(inputContent.value.trim())) {
+    return 1;
+  }
+  //
   let newMeme = {
-    name: inputName.value,
-    imgSrc: selector("#preview").src,
-    content: inputLink.value,
-    link: inputLink.value,
-    memeIndex: memeObjects.length,
-  };
+    name : inputName.value,
+    imgSrc : selector('#preview').src,
+    content : inputContent.value,
+    link : inputLink.value,
+    memeIndex : memeObjects.length
+  }
   memeObjects.push(newMeme);
   // 입력창 초기화
   selector(".input-box1").style = "display: auto";
   selector(".input-box2").style = "display: none";
-  // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨
-  inputName.value = "";
-  inputContent.value = "";
-  inputLink.value = "";
-  inputImg.value = "";
-  selector("#preview").src = "";
+
+  // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨->더블클릭으로 구현됨
+  inputName.value = '';
+  inputContent.value = '';
+  inputLink.value = '';
+  inputImg.value = '';
+  selector("#preview").src = '';
   selector(".input-origin").style = "display: auto";
   selector(".preview").style = "display: none";
+
+  // 채팅창에 입력받은 내용 추가
+  let inputChat = makeChatBox(newMeme, true, newMeme.memeIndex);
+  // 파란메세지 인지 회색인지 결정?
+  inputChat.addEventListener('click', function() {
+    msg2card(inputChat);
+  });
+  chat.prepend(inputChat);
 });
+// 밈 입력, 업로드 후 사진을 다시 선택하면 새로고침이 표시되지 않는 문제를 위해 추가
+inputImg.addEventListener('change', function() {
+  selector(".preview").style = "display: auto";
+});
+
+// 자동스크롤기능->페이지 로드후 채팅이 하나하나 .chat에서 출력되는 걸로 사용
