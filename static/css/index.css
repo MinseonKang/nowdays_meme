@@ -197,6 +197,9 @@ a {
   .chat_img {
     width: 400px;
   }
+  .memeCard{
+   width: auto; 
+  }
 }
 
 /* 채팅 생성시 에니메이션에 .chat의 모서리 에서 점점 나오는 에니메이션을 추가 */
@@ -281,19 +284,20 @@ a {
   color: white;
   border: 1px solid inherit;
   background-color: #066aff;
-  width: 100%;
+  width: 40vw;
   height: 100%;
   padding: 16px;
   border-radius: 30px;
   animation: card_animation 1s;
   text-overflow: hidden;
 }
+/* 카드 사이즈 조정시 에니메이션 속성도 수정해야됨 */
 .card_message {
   padding: 0;
 }
 
 .card_img {
-  width: 100%;
+  width: 40vw;
   border-radius: 20px 20px 0 0;
 }
 
@@ -308,9 +312,12 @@ a {
   color: white;
   cursor: pointer;
 }
-
+.card_to_string {
+  overflow: hidden;
+}
 .card_text {
   margin: 0 2rem 2rem 2rem;
+  animation: card_text_animation 1s;
 }
 
 @media screen and (min-width: 1200px) {
@@ -331,12 +338,21 @@ a {
 
 @keyframes card_animation {
   from {
-    width: 300%;
+    width: 0;
     height: 0;
   }
   to {
+    width: 40vw;
+    height: 100%;
+  }
+}
+@keyframes card_text_animation {
+  from {
+    width: 300%;
+    height: 0;
+  } to {
     width: 100%;
-    width: 100%;
+    height: auto;
   }
 }
 

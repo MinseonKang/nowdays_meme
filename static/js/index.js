@@ -3,8 +3,8 @@ const d = document;
 const create = function (tagStr) {
   return d.createElement(tagStr);
 };
-const selector = function (selector) {
-  return d.querySelector(selector);
+const selector = function (selector, target=document) {
+  return target.querySelector(selector);
 };
 const selectorAll = function (selector) {
   return d.querySelectorAll(selector);
@@ -18,6 +18,9 @@ const removeClass = function (element, classStr) {
 const toggleClass = function (element, classStr) {
   element.classList.toggle(classStr);
 };
+const hasClass = function(element, className) {
+  return element.classList.contains(className);
+}
 const print = function (content, dir=false) {
   dir ? console.dir(content) : console.log(content);
 };
@@ -121,38 +124,82 @@ const makeCard = function (data, memeIndex = -1) {
   }
   return card;
 };
+
 // =====================메세지 -> 카드 =======================
 
+// const msg2card = function (msg) {
+//   // console.log(msg2card);
+//   // isMine = msg.classList.contains("mine");
+//   let memeIndex = msg.querySelector("span.hide");
+//   memeIndex = Number(memeIndex.innerText);
+//   let replaceCard = makeCard(memeObjects[memeIndex], memeIndex);
+//   msg.querySelector(".message").innerHTML = "";
+//   msg.querySelector(".message").append(replaceCard);
+//   msg.querySelector(".messages .messages").innerHTML = "";
+//   addClass(msg.querySelector(".message"), "card_message");
+//   removeClass(msg, "chat_animation");
+//   let readyToggle = true;
+//   //무한루프 방지코드
+//   let inContent = msg.querySelector(".memeCard");
+//   inContent.addEventListener("click", function () {
+//     if (readyToggle) {
+//       readyToggle = false;
+//       card2msg(msg);
+//     }
+//   });
+// };
 const msg2card = function (msg) {
-  // console.log(msg2card);
-  // isMine = msg.classList.contains("mine");
-  let memeIndex = msg.querySelector("span.hide");
-  memeIndex = Number(memeIndex.innerText);
-  let replaceCard = makeCard(memeObjects[memeIndex], memeIndex);
-  msg.querySelector(".message").innerHTML = "";
-  msg.querySelector(".message").append(replaceCard);
-  msg.querySelector(".messages .messages").innerHTML = "";
-  addClass(msg.querySelector(".message"), "card_message");
-  removeClass(msg, "chat_animation");
+  isMine = hasClass(msg, "mine");
+  let memeIndex = Number(selector('span.hide', msg).innerText);
+  let replaceCard= makeCard(memeObjects[memeIndex], memeIndex);
+  selector('.message', msg).innerHTML = '';
+  selector('.message', msg).append(replaceCard);
+  selector('.messages .messages', msg).innerHTML = '';
+  addClass(selector('.message', msg), 'card_message');
+  removeClass(msg, 'chat_animation');
   let readyToggle = true;
-  //무한루프 방지코드
-  let inContent = msg.querySelector(".memeCard");
+  // readyToggle -> 무한루프 방지
+  let unListener = msg.cloneNode(true);
+  msg.parentNode.replaceChild(unListener, msg);
+  let inContent = selector('.memeCard', unListener);
   inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
-      print(msg, true);
-      card2msg(msg);
+      card2msg(unListener);
     }
   });
-};
+
+}
 
 // =====================카드 -> 메세지 ======================
+// const card2msg = function (card) {
+//   // let memeIndex = card.querySelector();
+//   // 처음에 메세지를 어떻게 만들었는지 생각 하자
+//   // card2msg()는 msg2card()의 msg태그를 입력받는다.
+//   let isMine = card.classList.contains("mine");
+//   let memeIndex = Number(card.querySelector("span.hide").innerText);
+//   let chat = selector(".chat");
+//   let chatTag = makeChatBox(memeObjects[memeIndex], isMine, memeIndex);
+//   let chatTagTemp = chatTag.classList;
+//   card.innerHTML = chatTag.innerHTML;
+//   card.classList = chatTagTemp;
+//   // 여기서부터 card는 그전과 같은 채팅
+//   addClass(card, "chat_animation");
+//   let readyToggle = true;
+//   // 무한루프 방지코드
+//   let inContent = card.querySelector('img');
+//   inContent.addEventListener("click", function () {
+//     if (readyToggle) {
+//       readyToggle = false;
+//       msg2card(card);
+//     }
+//   });
+// };
 const card2msg = function (card) {
-  // let memeIndex = card.querySelector();
   // 처음에 메세지를 어떻게 만들었는지 생각 하자
   // card2msg()는 msg2card()의 msg태그를 입력받는다.
-  let isMine = card.classList.contains("mine");
-  let memeIndex = Number(card.querySelector("span.hide").innerText);
+  let isMine = hasClass(card, "mine");
+  let memeIndex = Number(selector('span.hide', card).innerText);
   let chat = selector(".chat");
   let chatTag = makeChatBox(memeObjects[memeIndex], isMine, memeIndex);
   let chatTagTemp = chatTag.classList;
@@ -161,12 +208,14 @@ const card2msg = function (card) {
   // 여기서부터 card는 그전과 같은 채팅
   addClass(card, "chat_animation");
   let readyToggle = true;
-  // 무한루프 방지코드
-  let inContent = card.querySelector('img');
+  // readyToggle -> 무한루프 방지코드
+  let unListener = card.cloneNode(true);
+  card.parentNode.replaceChild(unListener, card);
+  let inContent = selector('img', unListener);
   inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
-      msg2card(card);
+      msg2card(unListener);
     }
   });
 };
