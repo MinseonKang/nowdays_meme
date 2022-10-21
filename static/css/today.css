@@ -96,11 +96,19 @@ body {
   font-size: 5vw;
   align-items: center;
 }
+.img-namebox {
+  width: 70%;
+  height: 6vw;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
 .img-name {
   font-family: "HBIOS-SYS";
   color: white;
   font-size: 3vw;
-  align-items: center;
+  text-align: center;
+  /* overflow: hidden; */
 }
 
 .containerOpp {
@@ -118,9 +126,10 @@ body {
   position: relative;
   display: inline-block;
   font-family: "HBIOS-SYS";
-  font-weight: 500;
+  /* font-weight: 500; */
   color: white;
   align-items: center;
+  /* font-size: 5vh; */
 }
 
 .fa-brands {
@@ -148,4 +157,32 @@ body {
 
 .fa-brands:hover {
   color: black;
+}
+
+.shareButtons {
+  margin-bottom: 2%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+/* 
+.nav-buttons {
+  margin-bottom: 3%;
+  font-size: 5vw;
+} */
+
+.nav-btn {
+  justify-content: center;
+  margin-right: 1vh;
+}
+
+.shareButtons p {
+  font-size: 2.5vw;
+  margin: 0;
+  color: #066aff;
+}
+
+.btn {
+  margin-top: 2.5vw;
+  margin: 1vw;
 }

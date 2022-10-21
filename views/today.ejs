@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>요.밈.알</title>
+
+    <!-- today CSS 연결 -->
+    <link rel="stylesheet" href="static/css/today.css" />
     <!-- Bootstrap CDN -->
     <!-- CDN Link (css) -->
     <link
@@ -19,7 +22,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
     />
     <!-- fontawesome icon CDN -->
-    <script src="https://kit.fontawesome.com/c0b197f0ca.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/c0b197f0ca.js"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- 랜덤이미지용 jQuery cdn -->
     <script
@@ -27,9 +33,6 @@
       integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
       crossorigin="anonymous"
     ></script>
-
-    <!-- today CSS 연결 -->
-    <link rel="stylesheet" href="static/css/today.css" />
 
     <!-- header CSS 연결 -->
     <link rel="stylesheet" href="/static/css/header.css" />
@@ -41,33 +44,44 @@
     <!-- <img src="/static/image/logo.png" class="logo" /> -->
     <div class="containerOpp">
       <div class="title">오늘의 밈</div>
-      <div class="img-name"></div>
+      <div class="img-namebox">
+        <div class="img-name"></div>
+      </div>
       <div class="container">
         <div class="img_box">
           <img id="introimg" />
         </div>
-          <!-- replay icon -->
-          <div class="fa-3x">
-            <i class="replay-icon bi bi-pause-circle fa-fade" ></i>
+        <!-- replay icon -->
+        <div class="fa-3x">
+          <i class="replay-icon bi bi-pause-circle fa-fade"></i>
+        </div>
+        <div class="shareButtons">
+          <div class="nav-btn">
+            <button type="button" class="btn btn-light btn-nav">
+              <p><a href="/index">돌아가기</a></p>
+            </button>
+            <button type="button" class="btn btn-light btn-nav">
+              <p>QUIZ</p>
+            </button>
           </div>
-          <div class="shareButtons">
-            <!-- 공유 링크버튼 -->
-            <a
-              id="btnTwitter"
-              class="link-icon twitter"href="javascript:shareTwitter();">
-               <!-- <img src="/static/image/icon-twitter.png" />
+          <!-- 공유 링크버튼 -->
+          <a
+            id="btnTwitter"
+            class="link-icon twitter"
+            href="javascript:shareTwitter();"
+          >
+            <!-- <img src="/static/image/icon-twitter.png" />
                -->
-               <i class="fa-brands fa-twitter"></i>
-              </a
-            >
-            <a
-              id="btnFacebook"
-              class="link-icon facebook"href="javascript:shareFacebook();">
-              <!-- <img src="/static/image/icon-facebook.png" /> -->
-              <i class="fa-brands fa-facebook"></i>
-              </a
-            >
-            </div>
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a
+            id="btnFacebook"
+            class="link-icon facebook"
+            href="javascript:shareFacebook();"
+          >
+            <!-- <img src="/static/image/icon-facebook.png" /> -->
+            <i class="fa-brands fa-facebook"></i>
+          </a>
         </div>
       </div>
     </div>
