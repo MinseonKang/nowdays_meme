@@ -250,9 +250,9 @@ let memeObjects = [
   {
     name: "북극곰은 사람을 찢어",
     imgSrc:
-      "https://w.namu.la/s/599570317e87a5972365ce5000beac36dd4a4ce411c5bc423b16ea5b08d0ad7ca29201054c7b0ccbadecdb60f99fa2f4bdeee1e4e71ca92de1fb9d733077ed860417902ce580bb9d4ed3ec6cb5a922022ff943b8833aa022e191a35ce8abca7994a13af5702565d4f4ba1861f900b803",
+    "무한도전 해외극한알바 특집에서 자신을 북극으로 보내려고 하자 한 말이 유행이 되었어요.",
     content:
-      "무한도전 해외극한알바 특집에서 자신을 북극으로 보내려고 하자 한 말이 유행이 되었어요.",
+      "https://w.namu.la/s/599570317e87a5972365ce5000beac36dd4a4ce411c5bc423b16ea5b08d0ad7ca29201054c7b0ccbadecdb60f99fa2f4bdeee1e4e71ca92de1fb9d733077ed860417902ce580bb9d4ed3ec6cb5a922022ff943b8833aa022e191a35ce8abca7994a13af5702565d4f4ba1861f900b803",
     link: "https://www.youtube.com/watch?v=cV8srEt0-ms&feature=youtu.be",
   },
   {
@@ -471,11 +471,15 @@ function bgChange() {
   ];
 
   var num = Math.floor(Math.random() * bgUrl.length);
-  console.log(`'url("${bgUrl[num]}")'`);
-  document.body.style.backgroundImage = `url("${bgUrl[num]}")`;
+  console.log(`'url("${bgUrl[num]}")'`)
+  // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
+  document.body.style.background = `url("${bgUrl[num]}")`;
+  document.body.style.backgroundSize = 'cover';
+
+
 }
 
-// document.body.style.backgroundImage = 'url("/static/image/indexbg1.jpg")'
+
 
 let inputName = selector('.input-name');
 let inputContent = selector('.input-content');

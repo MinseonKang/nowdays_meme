@@ -25,15 +25,18 @@
     <link rel="stylesheet" href="/static/css/footer.css" />
   </head>
   <body>
+      <button class="bg-change" onclick="bgChange()">배경 변경</button>
+
+
     <!-- header include -->
     <%- include('./header.ejs') %>
 
-    <button onclick="bgChange()">배경 변경</button>
     <div class="chat_container">
       <div class="chat">
         <div class="mine messages">
           <div class="message last">test</div>
         </div>
+
       </div>
       <div class="flex_space"></div>
     </div>

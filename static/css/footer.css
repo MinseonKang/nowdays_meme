@@ -17,6 +17,7 @@ footer {
   right: 0;
   width: 80vw;
   margin: 0 auto;
+  z-index: 3;
 }
 
 /* input-box1 */
@@ -42,6 +43,7 @@ footer {
 .input-box1,
 .input-box2 {
   margin: 1vw;
+  width: 80vw;
   background-color: lightgrey;
   padding: 1vw;
   display: flex;
@@ -52,8 +54,9 @@ footer {
 }
 
 .input-box2 {
-  display: none;
-  opacity: 100;
+  position: absolute;
+  bottom: -200px;
+  opacity: 1;
 }
 
 #input-text {
@@ -84,10 +87,7 @@ footer {
 }
 
 .input-div2 {
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: space-around;
+  margin: 5px;
 }
 
 .meme-content,
@@ -100,14 +100,14 @@ footer {
 
 .meme-content input {
   border: 0;
-  width: 60vw;
+  width: 65vw;
   border-radius: 18px;
   margin: 2px;
   padding-left: 13px;
 }
 
 .meme-content .input-content {
-  height: 50px;
+  height: 60px;
 }
 
 .preview {
@@ -129,4 +129,33 @@ footer {
 
 footer i {
   font-size: 30px;
+}
+
+.slideout {
+  animation: slide-out 1s linear forwards;
+}
+
+@keyframes slide-out {
+  from {
+    position:absolute;
+    bottom: 0;
+  }
+  to {
+    position: absolute;
+    bottom:-200px;
+  }
+}
+
+.slidein {
+  animation: slide-in 1s linear forwards;
+}
+@keyframes slide-in {
+  from {
+    position:absolute;
+    bottom: -200px;
+  }
+  to {
+    position: absolute;
+    bottom: 0;
+  }
 }
