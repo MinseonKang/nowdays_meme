@@ -96,6 +96,12 @@ body {
   font-size: 5vw;
   align-items: center;
 }
+.img-name {
+  font-family: "HBIOS-SYS";
+  color: white;
+  font-size: 3vw;
+  align-items: center;
+}
 
 .containerOpp {
   background-color: #066aff;
