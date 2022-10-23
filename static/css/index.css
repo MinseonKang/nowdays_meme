@@ -76,15 +76,15 @@ a {
 .message {
   border-radius: 20px;
   padding: 8px 15px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  display: inline-block;
+  margin: 5px 8px;
+  display: inline-block;  
 }
-.message .memeCard {
-  background-color: inherit;
-  padding: 0;
+.message :not(.memeCard) {
+  max-width: 40vw;
 }
-
+.chat_animation .message.last {
+  max-width: 40vw;
+}
 .message .memeCard {
   background-color: inherit;
   padding: 0;
@@ -95,10 +95,8 @@ a {
 }
 
 .yours .message {
-  margin-right: 25%;
   background-color: #eee;
   position: relative;
-  margin-left: 8px;
 }
 
 .yours .message.last:before {
@@ -138,12 +136,12 @@ a {
 /* 에니메이션을 위해 그라데이션을 평균값으로 교체 */
 .mine .message {
   color: white;
-  margin-left: 25%;
+  /* margin-left: 25%; */
   /* background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); */
   background-color: #00AADD;
   background-attachment: fixed;
   position: relative;
-  margin-right: 8px;
+  /* margin-right: 8px; */
 }
 
 .mine .message.last:before {
@@ -188,9 +186,20 @@ a {
   bottom: 100px;
   right: 10vw;
   cursor: pointer;
+  user-select: none;
 }
 .scroll_text i {
   color: inherit;
+}
+
+.heart_container {
+  display: flex;
+  margin: 0 8px;
+  align-items: center;
+} 
+.heart {
+  margin: 4px;
+  user-select: none;
 }
 
 @media screen and (min-width: 1000px) {
@@ -199,6 +208,9 @@ a {
   }
   .memeCard{
    width: auto; 
+  }
+  .message :not(.memeCard) {
+    max-width: 400px;
   }
 }
 
@@ -320,20 +332,35 @@ a {
   animation: card_text_animation 1s;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1000px) and (max-width: 1200px){
   .memeCard {
+    width: 400px;
+    animation: card_animation1000 1s;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .chat>.messages.mine:not(.chat_animation) {
+    animation: chatAnimationMine 1s;
+  }
+  .chat>.messages.yours:not(.chat_animation) {
+    animation: chatAnimationYours 1s;
+  }
+  .memeCard {
+    /* animation: none; */
     flex-direction: row;
     align-items: center;
     min-width: 700px;
     /* width: 700px; */
   }
   .memeCard img {
-    animation: card_animation 1s;
     width: 100%;
     min-width: 400px;
     border-radius: 20px;
     margin: 20px 0 20px 20px;
     z-index: 2;
+  }
+  .card_text {
+    animation: none;
   }
 }
 
@@ -347,12 +374,22 @@ a {
     height: 100%;
   }
 }
+@keyframes card_animation1000 {
+  from {
+    width: 0;
+    height: 0;
+  } 
+  to {
+    width: 400px;
+    height: 100%;
+  }
+}
 @keyframes card_text_animation {
   from {
     width: 300%;
     height: 0;
   } to {
-    width: 100%;
+    width: auto;
     height: auto;
   }
 }
