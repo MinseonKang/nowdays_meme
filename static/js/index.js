@@ -42,7 +42,7 @@ function sleep(sec) {
   print('start' + start);
 }
 // ===========================채팅박스================
-const makeChatBox = function (data, isMine, memeIndex = -1) {
+const makeChatBox = function (data, isMine, memeIndex = 0) {
   //data: memeObjectf -> {'name':, 'imgSrc':, 'content':,'link':}
   //  -> 이미지가 없다면?
   //isMine: true, false
@@ -53,16 +53,9 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   let image = create("img");
   image.src = data.imgSrc;
   addClass(image, "chat_img");
-  // image.addEventListener('click', function() {
-  //   image.classList.toggle('chat_big');
-  // })
   imageWrap.append(image);
-  // answer.push(imageWrap);
   let messagesWrap = create("div");
   messagesWrap.append(imageWrap);
-
-  // image 사이즈 에 관해 rescale 필요하다
-  // css 에서 @media로 설정하기
 
   addClass(messagesWrap, isMine ? "mine" : "yours");
   addClass(messagesWrap, "messages");
@@ -71,18 +64,36 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   messageText.innerText = data.name;
   addClass(messageText, "message");
   addClass(messageText, "last");
-  messagesWrap.append(messageText);
+  // messagesWrap.append(messageText);
 
-  // answer.push(messagesWrap);
-  if (memeIndex > -1) {
-    let memeIdNum = create("span");
-    addClass(memeIdNum, "hide");
-    memeIdNum.innerText = memeIndex;
-    messagesWrap.append(memeIdNum);
-  }
+  let heartIcon = create('span');
+  addClass(heartIcon, "material-symbols-outlined");
+  addClass(heartIcon, "heart");
+  heartIcon.innerText = "favorite"
+  heartIcon.addEventListener('click', function() {
+    // print(selector('.is_like', this.parentNode));
+    // print(typeof(selector('.is_like', this.parentNode).innerText));
+    print(this.parentNode);
+  });
+
+  let heartContainer = create('div');
+  addClass(heartContainer, 'heart_container');
+  heartContainer.append(messageText);
+  isMine ? heartContainer.prepend(heartIcon) : heartContainer.append(heartIcon);
+  messagesWrap.append(heartContainer);
+
+  let memeIdNum = create("span");
+  addClass(memeIdNum, "hide");
+  memeIdNum.innerText = memeIndex;
+  messagesWrap.append(memeIdNum);
+
+  let isLike = create('span');
+  addClass(isLike, 'is_like');
+  addClass(isLike, 'hide');
+  isLike.innerText = data.like;
+  messagesWrap.append(isLike);
 
   //animation을위해 추가됨
-
   addClass(messagesWrap, "chat_animation");
 
   return messagesWrap;
