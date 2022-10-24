@@ -9,6 +9,46 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* 마우스 클릭 이벤트 */
+@keyframes clicked {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#clickEffect {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+}
+
+#clickEffect::after {
+  content: "";
+  display: block;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
+#clickEffect.effect {
+  display: block;
+}
+
+#clickEffect.effect::after {
+  animation: clicked 0.5s cubic-bezier(0.29, 0, 0.15, 1);
+}
+
 /* imessage */
 body {
   /* font-family: helvetica; */
@@ -459,11 +499,8 @@ a {
 }
 
 .material-symbols-outlined {
-  color: #FF9999;
-  font-variation-settings:
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+  color: #ff9999;
+  font-variation-settings: "wght" 400, "GRAD" 0, "opsz" 48;
 }
 .material-symbols-outlined:not(.like) {
   transition: 1s;
@@ -503,4 +540,3 @@ a {
 .nav {
   font-size: 1vw;
 }
-

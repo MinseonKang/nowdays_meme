@@ -3,7 +3,7 @@ const d = document;
 const create = function (tagStr) {
   return d.createElement(tagStr);
 };
-const selector = function (selector, target=document) {
+const selector = function (selector, target = document) {
   return target.querySelector(selector);
 };
 const selectorAll = function (selector) {
@@ -18,10 +18,10 @@ const removeClass = function (element, classStr) {
 const toggleClass = function (element, classStr) {
   element.classList.toggle(classStr);
 };
-const hasClass = function(element, className) {
+const hasClass = function (element, className) {
   return element.classList.contains(className);
-}
-const print = function (content, dir=false) {
+};
+const print = function (content, dir = false) {
   dir ? console.dir(content) : console.log(content);
 };
 
@@ -38,8 +38,8 @@ function sleep(sec) {
   while (now - start < sec * 1000) {
     now = Date.now();
   }
-  print('now' + now);
-  print('start' + start);
+  print("now" + now);
+  print("start" + start);
 }
 // ===========================채팅박스================
 const makeChatBox = function (data, isMine, memeIndex = 0) {
@@ -66,17 +66,17 @@ const makeChatBox = function (data, isMine, memeIndex = 0) {
   addClass(messageText, "last");
   // messagesWrap.append(messageText);
 
-  let heartIcon = create('span');
+  let heartIcon = create("span");
   addClass(heartIcon, "material-symbols-outlined");
   addClass(heartIcon, "heart");
-  Boolean(data.like) ? addClass(heartIcon, 'like') : null;
-  heartIcon.innerText = "favorite"
-  heartIcon.addEventListener('click', function() {
+  Boolean(data.like) ? addClass(heartIcon, "like") : null;
+  heartIcon.innerText = "favorite";
+  heartIcon.addEventListener("click", function () {
     heartToggle(this);
   });
 
-  let heartContainer = create('div');
-  addClass(heartContainer, 'heart_container');
+  let heartContainer = create("div");
+  addClass(heartContainer, "heart_container");
   heartContainer.append(messageText);
   isMine ? heartContainer.prepend(heartIcon) : heartContainer.append(heartIcon);
   messagesWrap.append(heartContainer);
@@ -86,9 +86,9 @@ const makeChatBox = function (data, isMine, memeIndex = 0) {
   memeIdNum.innerText = memeIndex;
   messagesWrap.append(memeIdNum);
 
-  let isLikeSpan = create('span');
-  addClass(isLikeSpan, 'is_like');
-  addClass(isLikeSpan, 'hide');
+  let isLikeSpan = create("span");
+  addClass(isLikeSpan, "is_like");
+  addClass(isLikeSpan, "hide");
   isLikeSpan.innerText = data.like;
   messagesWrap.append(isLikeSpan);
 
@@ -98,14 +98,18 @@ const makeChatBox = function (data, isMine, memeIndex = 0) {
   return messagesWrap;
 };
 // =====================heart switch ==================
-const heartToggle = function(heart) {
+const heartToggle = function (heart) {
   // heart : .chat>.messages>.heart_container>.heart
-  let isLike = Number(selector('.is_like', heart.parentNode.parentNode).innerText);
-  Boolean(isLike) ? removeClass(heart, 'like') : addClass(heart, 'like');
-  selector('.is_like', heart.parentNode.parentNode).innerText = (++isLike)%2;
-  let memeIndex = Number(selector('span.hide', heart.parentNode.parentNode).innerText);
-  memeObjects[memeIndex].like = (isLike)%2;
-}
+  let isLike = Number(
+    selector(".is_like", heart.parentNode.parentNode).innerText
+  );
+  Boolean(isLike) ? removeClass(heart, "like") : addClass(heart, "like");
+  selector(".is_like", heart.parentNode.parentNode).innerText = ++isLike % 2;
+  let memeIndex = Number(
+    selector("span.hide", heart.parentNode.parentNode).innerText
+  );
+  memeObjects[memeIndex].like = isLike % 2;
+};
 
 //=======================카드 =========================
 const makeCard = function (data, memeIndex = -1) {
@@ -145,29 +149,28 @@ const makeCard = function (data, memeIndex = -1) {
 
 const msg2card = function (msg) {
   isMine = hasClass(msg, "mine");
-  let memeIndex = Number(selector('span.hide', msg).innerText);
-  let replaceCard= makeCard(memeObjects[memeIndex], memeIndex);
-  selector('.message', msg).innerHTML = '';
-  selector('.message', msg).append(replaceCard);
-  selector('.messages .messages', msg).innerHTML = '';
-  addClass(selector('.message', msg), 'card_message');
-  removeClass(msg, 'chat_animation');
+  let memeIndex = Number(selector("span.hide", msg).innerText);
+  let replaceCard = makeCard(memeObjects[memeIndex], memeIndex);
+  selector(".message", msg).innerHTML = "";
+  selector(".message", msg).append(replaceCard);
+  selector(".messages .messages", msg).innerHTML = "";
+  addClass(selector(".message", msg), "card_message");
+  removeClass(msg, "chat_animation");
   let readyToggle = true;
   // readyToggle -> 무한루프 방지
   let unListener = msg.cloneNode(true);
   msg.parentNode.replaceChild(unListener, msg);
-  let inContent = selector('.memeCard', unListener);
+  let inContent = selector(".memeCard", unListener);
   inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
       card2msg(unListener);
     }
   });
-  selector('.heart', unListener).addEventListener('click', function() {
+  selector(".heart", unListener).addEventListener("click", function () {
     heartToggle(this);
   });
-
-}
+};
 
 // =====================카드 -> 메세지 ======================
 
@@ -175,7 +178,7 @@ const card2msg = function (card) {
   // 처음에 메세지를 어떻게 만들었는지 생각 하자
   // card2msg()는 msg2card()의 msg태그를 입력받는다.
   let isMine = hasClass(card, "mine");
-  let memeIndex = Number(selector('span.hide', card).innerText);
+  let memeIndex = Number(selector("span.hide", card).innerText);
   let chat = selector(".chat");
   let chatTag = makeChatBox(memeObjects[memeIndex], isMine, memeIndex);
   let chatTagTemp = chatTag.classList;
@@ -187,14 +190,14 @@ const card2msg = function (card) {
   // readyToggle -> 무한루프 방지코드
   let unListener = card.cloneNode(true);
   card.parentNode.replaceChild(unListener, card);
-  let inContent = selector('img', unListener);
+  let inContent = selector("img", unListener);
   inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
       msg2card(unListener);
     }
   });
-  selector('.heart', unListener).addEventListener('click', function() {
+  selector(".heart", unListener).addEventListener("click", function () {
     heartToggle(this);
   });
 };
@@ -363,7 +366,8 @@ let memeObjects = [
   },
   {
     name: "북극곰은 사람을 찢어",
-    imgSrc: "https://blog.kakaocdn.net/dn/b9Ah09/btrl5vGjghY/emwBIAHmPT4qdPEA9HfdBk/img.png",
+    imgSrc:
+      "https://blog.kakaocdn.net/dn/b9Ah09/btrl5vGjghY/emwBIAHmPT4qdPEA9HfdBk/img.png",
     content:
       "무한도전 해외극한알바 특집에서 정준하가 자신을 북극으로 보내려고 하자 한 말이 유행이 되었어요.",
     link: "https://www.youtube.com/watch?v=cV8srEt0-ms&feature=youtu.be",
@@ -467,20 +471,26 @@ let memeObjects = [
   },
   {
     name: "내봬누",
-    imgSrc: "data:image/jpeg;base64,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",
-    content: "'내일 봬요 누나'의 줄임말로 티빙 오리지날 시리즈 <환승연애2>에 등장해 유행하기 시작했어요. '현규'가 '해은'에게 데이트를 신청하면서 던진 직진 멘트에서 유래했어요.",
+    imgSrc:
+      "data:image/jpeg;base64,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",
+    content:
+      "'내일 봬요 누나'의 줄임말로 티빙 오리지날 시리즈 <환승연애2>에 등장해 유행하기 시작했어요. '현규'가 '해은'에게 데이트를 신청하면서 던진 직진 멘트에서 유래했어요.",
     link: "https://youtu.be/v-U5Sr0pQ-g",
   },
   {
     name: "힝구리퐁퐁",
-    imgSrc: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbTk8S7%2FbtrBbdw7nSl%2FEBzEkPT4SepgnLSU2KbZNk%2Fimg.png",
-    content: "'ㅠㅠ'를 쓰는 시대는 갔다. 요즘 요즘 SNS에서 웃픈 상황일 때에  '힝구리퐁퐁'이라는 단어를 많이 사용한다고 합니다.'힝구리퐁퐁'은 BTS 정국의 인스타 스토리 무물에 등장하며 밈이 되었습니다.",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbTk8S7%2FbtrBbdw7nSl%2FEBzEkPT4SepgnLSU2KbZNk%2Fimg.png",
+    content:
+      "'ㅠㅠ'를 쓰는 시대는 갔다. 요즘 요즘 SNS에서 웃픈 상황일 때에  '힝구리퐁퐁'이라는 단어를 많이 사용한다고 합니다.'힝구리퐁퐁'은 BTS 정국의 인스타 스토리 무물에 등장하며 밈이 되었습니다.",
     link: "https://www.youtube.com/shorts/gHxey6Rr1Sw",
   },
   {
     name: "감동이 심해",
-    imgSrc: "https://img.insight.co.kr/static/2022/04/12/700/img_20220412095454_e2pna5xp.webp",
-    content: "일상생활에서 감동을 받는 상황에서 요즘은 '감동 심해~'라고 표현합니다. '감동 심해'란? '감동이 심하다 심해'의 줄임말인데요, 상대방에게 감동받은 이 순간 고마움을 표현함과 동시에 귀염귀염 한 이미지를 보여줄 수 있어요.",
+    imgSrc:
+      "https://img.insight.co.kr/static/2022/04/12/700/img_20220412095454_e2pna5xp.webp",
+    content:
+      "일상생활에서 감동을 받는 상황에서 요즘은 '감동 심해~'라고 표현합니다. '감동 심해'란? '감동이 심하다 심해'의 줄임말인데요, 상대방에게 감동받은 이 순간 고마움을 표현함과 동시에 귀염귀염 한 이미지를 보여줄 수 있어요.",
     link: "https://www.youtube.com/watch?v=P6jTpkw1bu0",
   },
 ];
@@ -491,23 +501,23 @@ let memeObjects = [
 let isMineBool = true;
 let memeIndex = 0;
 let intervalID;
-let chatContainer = selector('.chat_container');
-const printChat = function() {
-  if(memeIndex >= memeObjects.length) {
+let chatContainer = selector(".chat_container");
+const printChat = function () {
+  if (memeIndex >= memeObjects.length) {
     clearInterval(intervalID);
     return 1;
   }
   memeObjects[memeIndex].like = 0;
   let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
-  let inContent = tag.querySelector('img');
-  inContent.addEventListener('click', function() {
+  let inContent = tag.querySelector("img");
+  inContent.addEventListener("click", function () {
     msg2card(tag);
-  })
+  });
   chat.prepend(tag);
   // chat.scrollTo(0, chatContainer.scrollHeight);
   memeIndex++;
   isMineBool = !isMineBool;
-}
+};
 intervalID = setInterval(printChat, 2000);
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
@@ -573,20 +583,20 @@ function bgChange() {
   ];
 
   var num = Math.floor(Math.random() * bgUrl.length);
-  console.log(`'url("${bgUrl[num]}")'`)
+  console.log(`'url("${bgUrl[num]}")'`);
   // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
   document.body.style.background = `url("${bgUrl[num]}")`;
-  document.body.style.backgroundSize = 'cover';
+  document.body.style.backgroundSize = "cover";
 }
 
-let inputName = selector('.input-name');
-let inputContent = selector('.input-content');
-let inputLink = selector('.input-link');
-let inputImg = selector('#choose-file');
-let postButton = selector('.post-button');
-postButton.addEventListener('click', function() {
+let inputName = selector(".input-name");
+let inputContent = selector(".input-content");
+let inputLink = selector(".input-link");
+let inputImg = selector("#choose-file");
+let postButton = selector(".post-button");
+postButton.addEventListener("click", function () {
   // 만약 입력이 비었다면 작동하지 않음
-  if(Boolean(! inputName.value.trim()) || ! Boolean(inputContent.value.trim())) {
+  if (Boolean(!inputName.value.trim()) || !Boolean(inputContent.value.trim())) {
     return 1;
   }
   //
@@ -597,40 +607,68 @@ postButton.addEventListener('click', function() {
     link : inputLink.value,
     memeIndex : memeObjects.length,
     'like': 0
-  }
+  };
   memeObjects.push(newMeme);
   // 입력창 초기화
-  removeClass(selector('.input-box2'), 'slidein');
-  addClass(selector('.input-box2'), 'slideout');
-  removeClass(selector('.input-box1'), 'slideout');
-  addClass(selector('.input-box1'), 'slidein');
+  removeClass(selector(".input-box2"), "slidein");
+  addClass(selector(".input-box2"), "slideout");
+  removeClass(selector(".input-box1"), "slideout");
+  addClass(selector(".input-box1"), "slidein");
   // selector(".input-box2").style = "display: none";
 
   // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨->더블클릭으로 구현됨
-  inputName.value = '';
-  inputContent.value = '';
-  inputLink.value = '';
-  inputImg.value = '';
-  selector("#preview").src = '';
+  inputName.value = "";
+  inputContent.value = "";
+  inputLink.value = "";
+  inputImg.value = "";
+  selector("#preview").src = "";
   selector(".input-origin").style = "display: auto";
   selector(".preview").style = "display: none";
 
   // 채팅창에 입력받은 내용 추가
   let inputChat = makeChatBox(newMeme, true, newMeme.memeIndex);
   // 파란메세지 인지 회색인지 결정?
-  inputChat.addEventListener('click', function() {
+  inputChat.addEventListener("click", function () {
     msg2card(inputChat);
   });
   chat.prepend(inputChat);
 });
 // 밈 입력, 업로드 후 사진을 다시 선택하면 새로고침이 표시되지 않는 문제를 위해 추가
-inputImg.addEventListener('change', function() {
+inputImg.addEventListener("change", function () {
   selector(".preview").style = "display: auto";
 });
 
 // 자동스크롤기능->페이지 로드후 채팅이 하나하나 .chat에서 출력되는 걸로 사용
 
 // 위로가기 기능
-selector('.scroll_text').addEventListener('click', function(event) {
+selector(".scroll_text").addEventListener("click", function (event) {
   chat.scrollTo(0, 0);
 });
+
+// 마우스 클릭 이벤트
+let removeTimeOut;
+
+function clickPosition(e) {
+  const target = document.getElementById("clickEffect"),
+    a = 40; // #clickEffect의 너비 & 높이 값 / 2
+
+  e.button === 0 &&
+    ((target.style.transform = `translate(${e.clientX - a}px, ${
+      e.clientY - a
+    }px)`),
+    target.classList.contains("effect")
+      ? (clearTimeout(removeTimeOut),
+        target.classList.remove("effect"),
+        void target.offsetWidth,
+        target.classList.add("effect"),
+        removeEffect())
+      : (target.classList.add("effect"), removeEffect()));
+}
+
+function removeEffect() {
+  removeTimeOut = setTimeout(function () {
+    document.getElementById("clickEffect").classList.remove("effect");
+  }, 500); // #clickEffect.effect::after의 시간 (.5s) * 1000
+}
+
+document.addEventListener("mousedown", clickPosition);
