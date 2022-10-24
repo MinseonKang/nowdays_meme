@@ -18,7 +18,7 @@ const removeClass = function (element, classStr) {
 const toggleClass = function (element, classStr) {
   element.classList.toggle(classStr);
 };
-const print = function (content, dir=false) {
+const print = function (content, dir = false) {
   dir ? console.dir(content) : console.log(content);
 };
 
@@ -35,8 +35,8 @@ function sleep(sec) {
   while (now - start < sec * 1000) {
     now = Date.now();
   }
-  print('now' + now);
-  print('start' + start);
+  print("now" + now);
+  print("start" + start);
 }
 // ===========================채팅박스================
 const makeChatBox = function (data, isMine, memeIndex = -1) {
@@ -250,7 +250,7 @@ let memeObjects = [
   {
     name: "북극곰은 사람을 찢어",
     imgSrc:
-    "무한도전 해외극한알바 특집에서 자신을 북극으로 보내려고 하자 한 말이 유행이 되었어요.",
+      "무한도전 해외극한알바 특집에서 자신을 북극으로 보내려고 하자 한 말이 유행이 되었어요.",
     content:
       "https://w.namu.la/s/599570317e87a5972365ce5000beac36dd4a4ce411c5bc423b16ea5b08d0ad7ca29201054c7b0ccbadecdb60f99fa2f4bdeee1e4e71ca92de1fb9d733077ed860417902ce580bb9d4ed3ec6cb5a922022ff943b8833aa022e191a35ce8abca7994a13af5702565d4f4ba1861f900b803",
     link: "https://www.youtube.com/watch?v=cV8srEt0-ms&feature=youtu.be",
@@ -370,26 +370,26 @@ let isMineBool = true;
 // let messages = selectorAll('.chat>.messages');
 // for(let msg of messages) {
 //   msg.style = "display: none";
-  
+
 // }
 
 let memeIndex = 0;
 let intervalID;
-let chatContainer = selector('.chat_container');
-const printChat = function() {
-  if(memeIndex >= memeObjects.length) {
+let chatContainer = selector(".chat_container");
+const printChat = function () {
+  if (memeIndex >= memeObjects.length) {
     clearInterval(intervalID);
     return 1;
   }
   let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
-  tag.addEventListener('click', function() {
+  tag.addEventListener("click", function () {
     msg2card(tag);
-  })
+  });
   chat.prepend(tag);
   // chat.scrollTo(0, chatContainer.scrollHeight);
   memeIndex++;
   isMineBool = !isMineBool;
-}
+};
 
 intervalID = setInterval(printChat, 2000);
 
@@ -471,58 +471,54 @@ function bgChange() {
   ];
 
   var num = Math.floor(Math.random() * bgUrl.length);
-  console.log(`'url("${bgUrl[num]}")'`)
+  console.log(`'url("${bgUrl[num]}")'`);
   // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
   document.body.style.background = `url("${bgUrl[num]}")`;
-  document.body.style.backgroundSize = 'cover';
-
-
+  document.body.style.backgroundSize = "cover";
 }
 
-
-
-let inputName = selector('.input-name');
-let inputContent = selector('.input-content');
-let inputLink = selector('.input-link');
-let inputImg = selector('#choose-file');
-let postButton = selector('.post-button');
-postButton.addEventListener('click', function() {
+let inputName = selector(".input-name");
+let inputContent = selector(".input-content");
+let inputLink = selector(".input-link");
+let inputImg = selector("#choose-file");
+let postButton = selector(".post-button");
+postButton.addEventListener("click", function () {
   // 만약 입력이 비었다면 작동하지 않음
-  if(Boolean(! inputName.value.trim()) || ! Boolean(inputContent.value.trim())) {
+  if (Boolean(!inputName.value.trim()) || !Boolean(inputContent.value.trim())) {
     return 1;
   }
   //
   let newMeme = {
-    name : inputName.value,
-    imgSrc : selector('#preview').src,
-    content : inputContent.value,
-    link : inputLink.value,
-    memeIndex : memeObjects.length
-  }
+    name: inputName.value,
+    imgSrc: selector("#preview").src,
+    content: inputContent.value,
+    link: inputLink.value,
+    memeIndex: memeObjects.length,
+  };
   memeObjects.push(newMeme);
   // 입력창 초기화
   selector(".input-box1").style = "display: auto";
   selector(".input-box2").style = "display: none";
 
   // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨->더블클릭으로 구현됨
-  inputName.value = '';
-  inputContent.value = '';
-  inputLink.value = '';
-  inputImg.value = '';
-  selector("#preview").src = '';
+  inputName.value = "";
+  inputContent.value = "";
+  inputLink.value = "";
+  inputImg.value = "";
+  selector("#preview").src = "";
   selector(".input-origin").style = "display: auto";
   selector(".preview").style = "display: none";
 
   // 채팅창에 입력받은 내용 추가
   let inputChat = makeChatBox(newMeme, true, newMeme.memeIndex);
   // 파란메세지 인지 회색인지 결정?
-  inputChat.addEventListener('click', function() {
+  inputChat.addEventListener("click", function () {
     msg2card(inputChat);
   });
   chat.prepend(inputChat);
 });
 // 밈 입력, 업로드 후 사진을 다시 선택하면 새로고침이 표시되지 않는 문제를 위해 추가
-inputImg.addEventListener('change', function() {
+inputImg.addEventListener("change", function () {
   selector(".preview").style = "display: auto";
 });
 
