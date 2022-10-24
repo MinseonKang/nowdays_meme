@@ -1,0 +1,43 @@
+.timer-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.timer-bar {
+  background-color: lightgray;
+  border-radius: 15px;
+  width: 50vw;
+  height: 1rem;
+  position: relative;
+  margin: 20px;
+}
+.timer1 {
+  background: #066aff;
+  border-radius: 15px;
+  width: 50vw;
+  height: 100%;
+  position: absolute;
+  /* animation: timer-progress 10s linear alternate forwards; */
+}
+.timer2 {
+  animation: timer-progress 10s linear alternate forwards;
+}
+
+@keyframes timer-progress {
+  0% {
+    width: 100%;
+  }
+  25% {
+    width: 75%;
+  }
+  50% {
+    width: 50%;
+  }
+  75% {
+    width: 25%;
+  }
+  100% {
+    width: 0%;
+  }
+}
