@@ -26,6 +26,10 @@ app.get("/today", function (req, res) {
   res.render("today");
 });
 
+app.get("/quiz-timer", function (req, res) {
+  res.render("quiz-timer");
+});
+
 // 3. 로컬 서버 동작
 app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
