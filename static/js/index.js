@@ -69,11 +69,10 @@ const makeChatBox = function (data, isMine, memeIndex = 0) {
   let heartIcon = create('span');
   addClass(heartIcon, "material-symbols-outlined");
   addClass(heartIcon, "heart");
+  Boolean(data.like) ? addClass(heartIcon, 'like') : null;
   heartIcon.innerText = "favorite"
   heartIcon.addEventListener('click', function() {
-    // print(selector('.is_like', this.parentNode));
-    // print(typeof(selector('.is_like', this.parentNode).innerText));
-    print(this.parentNode);
+    heartToggle(this);
   });
 
   let heartContainer = create('div');
@@ -87,17 +86,27 @@ const makeChatBox = function (data, isMine, memeIndex = 0) {
   memeIdNum.innerText = memeIndex;
   messagesWrap.append(memeIdNum);
 
-  let isLike = create('span');
-  addClass(isLike, 'is_like');
-  addClass(isLike, 'hide');
-  isLike.innerText = data.like;
-  messagesWrap.append(isLike);
+  let isLikeSpan = create('span');
+  addClass(isLikeSpan, 'is_like');
+  addClass(isLikeSpan, 'hide');
+  isLikeSpan.innerText = data.like;
+  messagesWrap.append(isLikeSpan);
 
   //animation을위해 추가됨
   addClass(messagesWrap, "chat_animation");
 
   return messagesWrap;
 };
+// =====================heart switch ==================
+const heartToggle = function(heart) {
+  // heart : .chat>.messages>.heart_container>.heart
+  let isLike = Number(selector('.is_like', heart.parentNode.parentNode).innerText);
+  Boolean(isLike) ? removeClass(heart, 'like') : addClass(heart, 'like');
+  selector('.is_like', heart.parentNode.parentNode).innerText = (++isLike)%2;
+  let memeIndex = Number(selector('span.hide', heart.parentNode.parentNode).innerText);
+  memeObjects[memeIndex].like = (isLike)%2;
+}
+
 //=======================카드 =========================
 const makeCard = function (data, memeIndex = -1) {
   //data: memeObjectf -> {'name':, 'imgSrc':, 'content':,'link':}
@@ -154,6 +163,9 @@ const msg2card = function (msg) {
       card2msg(unListener);
     }
   });
+  selector('.heart', unListener).addEventListener('click', function() {
+    heartToggle(this);
+  });
 
 }
 
@@ -181,6 +193,9 @@ const card2msg = function (card) {
       readyToggle = false;
       msg2card(unListener);
     }
+  });
+  selector('.heart', unListener).addEventListener('click', function() {
+    heartToggle(this);
   });
 };
 
@@ -399,7 +414,7 @@ const printChat = function() {
     clearInterval(intervalID);
     return 1;
   }
-  memeObjects[memeIndex].like = false;
+  memeObjects[memeIndex].like = 0;
   let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
   let inContent = tag.querySelector('img');
   inContent.addEventListener('click', function() {
@@ -499,8 +514,11 @@ postButton.addEventListener('click', function() {
   }
   memeObjects.push(newMeme);
   // 입력창 초기화
-  selector(".input-box1").style = "display: auto";
-  selector(".input-box2").style = "display: none";
+  removeClass(selector('.input-box2'), 'slidein');
+  addClass(selector('.input-box2'), 'slideout');
+  removeClass(selector('.input-box1'), 'slideout');
+  addClass(selector('.input-box1'), 'slidein');
+  // selector(".input-box2").style = "display: none";
 
   // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨->더블클릭으로 구현됨
   inputName.value = '';
