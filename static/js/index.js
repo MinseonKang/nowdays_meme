@@ -3,8 +3,8 @@ const d = document;
 const create = function (tagStr) {
   return d.createElement(tagStr);
 };
-const selector = function (selector) {
-  return d.querySelector(selector);
+const selector = function (selector, target = document) {
+  return target.querySelector(selector);
 };
 const selectorAll = function (selector) {
   return d.querySelectorAll(selector);
@@ -17,6 +17,9 @@ const removeClass = function (element, classStr) {
 };
 const toggleClass = function (element, classStr) {
   element.classList.toggle(classStr);
+};
+const hasClass = function (element, className) {
+  return element.classList.contains(className);
 };
 const print = function (content, dir = false) {
   dir ? console.dir(content) : console.log(content);
@@ -39,7 +42,7 @@ function sleep(sec) {
   print("start" + start);
 }
 // ===========================채팅박스================
-const makeChatBox = function (data, isMine, memeIndex = -1) {
+const makeChatBox = function (data, isMine, memeIndex = 0) {
   //data: memeObjectf -> {'name':, 'imgSrc':, 'content':,'link':}
   //  -> 이미지가 없다면?
   //isMine: true, false
@@ -50,16 +53,9 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   let image = create("img");
   image.src = data.imgSrc;
   addClass(image, "chat_img");
-  // image.addEventListener('click', function() {
-  //   image.classList.toggle('chat_big');
-  // })
   imageWrap.append(image);
-  // answer.push(imageWrap);
   let messagesWrap = create("div");
   messagesWrap.append(imageWrap);
-
-  // image 사이즈 에 관해 rescale 필요하다
-  // css 에서 @media로 설정하기
 
   addClass(messagesWrap, isMine ? "mine" : "yours");
   addClass(messagesWrap, "messages");
@@ -68,26 +64,53 @@ const makeChatBox = function (data, isMine, memeIndex = -1) {
   messageText.innerText = data.name;
   addClass(messageText, "message");
   addClass(messageText, "last");
-  messagesWrap.append(messageText);
+  // messagesWrap.append(messageText);
 
-  messagesWrap.addEventListener("click", function () {
-    toggleClass(messageText, "msg_big");
-    toggleClass(image, "chat_big");
+  let heartIcon = create("span");
+  addClass(heartIcon, "material-symbols-outlined");
+  addClass(heartIcon, "heart");
+  Boolean(data.like) ? addClass(heartIcon, "like") : null;
+  heartIcon.innerText = "favorite";
+  heartIcon.addEventListener("click", function () {
+    heartToggle(this);
   });
-  // answer.push(messagesWrap);
-  if (memeIndex > -1) {
-    let memeIdNum = create("span");
-    addClass(memeIdNum, "hide");
-    memeIdNum.innerText = memeIndex;
-    messagesWrap.append(memeIdNum);
-  }
+
+  let heartContainer = create("div");
+  addClass(heartContainer, "heart_container");
+  heartContainer.append(messageText);
+  isMine ? heartContainer.prepend(heartIcon) : heartContainer.append(heartIcon);
+  messagesWrap.append(heartContainer);
+
+  let memeIdNum = create("span");
+  addClass(memeIdNum, "hide");
+  memeIdNum.innerText = memeIndex;
+  messagesWrap.append(memeIdNum);
+
+  let isLikeSpan = create("span");
+  addClass(isLikeSpan, "is_like");
+  addClass(isLikeSpan, "hide");
+  isLikeSpan.innerText = data.like;
+  messagesWrap.append(isLikeSpan);
 
   //animation을위해 추가됨
-
   addClass(messagesWrap, "chat_animation");
 
   return messagesWrap;
 };
+// =====================heart switch ==================
+const heartToggle = function (heart) {
+  // heart : .chat>.messages>.heart_container>.heart
+  let isLike = Number(
+    selector(".is_like", heart.parentNode.parentNode).innerText
+  );
+  Boolean(isLike) ? removeClass(heart, "like") : addClass(heart, "like");
+  selector(".is_like", heart.parentNode.parentNode).innerText = ++isLike % 2;
+  let memeIndex = Number(
+    selector("span.hide", heart.parentNode.parentNode).innerText
+  );
+  memeObjects[memeIndex].like = isLike % 2;
+};
+
 //=======================카드 =========================
 const makeCard = function (data, memeIndex = -1) {
   //data: memeObjectf -> {'name':, 'imgSrc':, 'content':,'link':}
@@ -121,36 +144,41 @@ const makeCard = function (data, memeIndex = -1) {
   }
   return card;
 };
+
 // =====================메세지 -> 카드 =======================
 
 const msg2card = function (msg) {
-  // console.log(msg2card);
-  // isMine = msg.classList.contains("mine");
-  let memeIndex = msg.querySelector("span.hide");
-  memeIndex = Number(memeIndex.innerText);
+  isMine = hasClass(msg, "mine");
+  let memeIndex = Number(selector("span.hide", msg).innerText);
   let replaceCard = makeCard(memeObjects[memeIndex], memeIndex);
-  msg.querySelector(".message").innerHTML = "";
-  msg.querySelector(".message").append(replaceCard);
-  msg.querySelector(".messages .messages").innerHTML = "";
-  addClass(msg.querySelector(".message"), "card_message");
+  selector(".message", msg).innerHTML = "";
+  selector(".message", msg).append(replaceCard);
+  selector(".messages .messages", msg).innerHTML = "";
+  addClass(selector(".message", msg), "card_message");
   removeClass(msg, "chat_animation");
   let readyToggle = true;
-  //무한루프 방지코드
-  msg.addEventListener("click", function () {
+  // readyToggle -> 무한루프 방지
+  let unListener = msg.cloneNode(true);
+  msg.parentNode.replaceChild(unListener, msg);
+  let inContent = selector(".memeCard", unListener);
+  inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
-      card2msg(msg);
+      card2msg(unListener);
     }
+  });
+  selector(".heart", unListener).addEventListener("click", function () {
+    heartToggle(this);
   });
 };
 
 // =====================카드 -> 메세지 ======================
+
 const card2msg = function (card) {
-  // let memeIndex = card.querySelector();
   // 처음에 메세지를 어떻게 만들었는지 생각 하자
   // card2msg()는 msg2card()의 msg태그를 입력받는다.
-  let isMine = card.classList.contains("mine");
-  let memeIndex = Number(card.querySelector("span.hide").innerText);
+  let isMine = hasClass(card, "mine");
+  let memeIndex = Number(selector("span.hide", card).innerText);
   let chat = selector(".chat");
   let chatTag = makeChatBox(memeObjects[memeIndex], isMine, memeIndex);
   let chatTagTemp = chatTag.classList;
@@ -159,12 +187,18 @@ const card2msg = function (card) {
   // 여기서부터 card는 그전과 같은 채팅
   addClass(card, "chat_animation");
   let readyToggle = true;
-  // 무한루프 방지코드
-  card.addEventListener("click", function () {
+  // readyToggle -> 무한루프 방지코드
+  let unListener = card.cloneNode(true);
+  card.parentNode.replaceChild(unListener, card);
+  let inContent = selector("img", unListener);
+  inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
-      msg2card(card);
+      msg2card(unListener);
     }
+  });
+  selector(".heart", unListener).addEventListener("click", function () {
+    heartToggle(this);
   });
 };
 
@@ -305,7 +339,7 @@ let memeObjects = [
     name: "당연이 줄 수 있지, 문자 한번 다시 다오~^^",
     imgSrc: "https://gogumafarm.kr/article/99/article_5.png",
     content:
-      "커뮤니티에 게시된지는 오래되었지만 최근에 밈으로 많이 사용하고 있어요. 알바생에게 화끈하게 대답해주는 사장님의 쾌남 같은 말투에 '당연히 할 수 있다'를 특히나 강조할 때 많이 쓰는 밈이에요. 얼마 전 모트모트의 페이스북 게시물에 이 밈을 사용하여 글을 작성했는데요. 많은 유저들이 알아보며 재밌다는 반응을 보였어요. '당연이'라고 맞춤법을 틀린 것이 하나의 포인트기 때문에 큰 이슈가 없다면 틀린 맞춤법으로 만들어 보는 것도 추천 드릴게요.",
+      "커뮤니티에 게시된지는 오래되었지만 최근에 밈으로 많이 사용하고 있어요. 알바생에게 화끈하게 대답해주는 사장님의 쾌남 같은 말투에 ‘당연히 할 수 있다’를 특히나 강조할 때 많이 쓰는 밈이에요. 얼마 전 모트모트의 페이스북 게시물에 이 밈을 사용하여 글을 작성했는데요. 많은 유저들이 알아보며 재밌다는 반응을 보였어요. '당연이'라고 맞춤법을 틀린 것이 하나의 포인트기 때문에 큰 이슈가 없다면 틀린 맞춤법으로 만들어 보는 것도 추천 드릴게요.",
     link: "https://theqoo.net/square/1551333655",
   },
   {
@@ -319,14 +353,14 @@ let memeObjects = [
     name: "상남자특) 하남자특)",
     imgSrc: "https://cdn.maily.so/7vkl5p5lhgdglmabbmbqr89576uv",
     content:
-      "유튜브 침착맨 영상 중 '상남자특) 순댓국 특 먹음' 콘텐츠에서 상남자 특징과 그와 반대되는 하남자 특징을 이야기 하는 클립이 트위터로 퍼져나가면서 유행하게 되었어요. '상남자특'에서 남자 부분은 마음대로 바꿔서 쓰면 돼요. 어떤 명사를 집어 넣어도 되니 활용도 편하고, 특히 어떤 행동을 유도할 때 사용하면 좋겠죠? 실제로 트위터를 운영 중인 채널에서는 트렌드를 빠르게 캐치하여 이렇게 사용하기도 했어요.",
+      "유튜브 침착맨 영상 중 ‘상남자특) 순댓국 특 먹음’ 콘텐츠에서 상남자 특징과 그와 반대되는 하남자 특징을 이야기 하는 클립이 트위터로 퍼져나가면서 유행하게 되었어요. ‘상남자특’에서 남자 부분은 마음대로 바꿔서 쓰면 돼요. 어떤 명사를 집어 넣어도 되니 활용도 편하고, 특히 어떤 행동을 유도할 때 사용하면 좋겠죠? 실제로 트위터를 운영 중인 채널에서는 트렌드를 빠르게 캐치하여 이렇게 사용하기도 했어요.",
     link: "https://www.youtube.com/watch?v=31FwmCAEJww",
   },
   {
     name: "스껄",
     imgSrc: "https://pbs.twimg.com/media/FN3-eQkaAAczl6P.jpg",
     content:
-      "'skrr'은 의성어기 때문에 별 의미 없이 기분이 좋거나 감탄을 표현할 때 쓰이는데 이것을 아무 문장 뒤에 붙여주면 돼요! 하지만 이 밈은 아직 쓰는 사람이 적기 때문에 약간 고민해보고 써도 좋을 것 같아요. 밈을 썼는데 아무도 모르면 민망하잖아요?",
+      "‘skrr’은 의성어기 때문에 별 의미 없이 기분이 좋거나 감탄을 표현할 때 쓰이는데 이것을 아무 문장 뒤에 붙여주면 돼요! 하지만 이 밈은 아직 쓰는 사람이 적기 때문에 약간 고민해보고 써도 좋을 것 같아요. 밈을 썼는데 아무도 모르면 민망하잖아요?",
     link: "https://twitter.com/mssssnnn/status/1503370577893277700?s=20&t=UzkUxTKBTBukKWrlW14ymw",
   },
   {
@@ -365,7 +399,7 @@ let memeObjects = [
     imgSrc:
       "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbTk8S7%2FbtrBbdw7nSl%2FEBzEkPT4SepgnLSU2KbZNk%2Fimg.png",
     content:
-      "'ㅠㅠ'를 쓰는 시대는 갔다. 요즘 요즘 SNS에서 웃픈 상황일 때에  '힝구리퐁퐁'이라는 단어를 많이 사용한다고 합니다.'힝구리퐁퐁'은 BTS 정국의 인스타 스토리 무물에 등장하며 밈이 되었습니다.",
+      "'ㅠㅠ'를 쓰는 시대는 갔다. 요즘 요즘 SNS에서 웃픈 상황일 때에  '힝구리퐁퐁'이라는 단어를 많이 사용한다고 합니다.'힝구리퐁퐁'은 BTS 정국의 인스타 스토리 무물에 등장하며 밈이 되었습니다.",
     link: "https://www.youtube.com/shorts/gHxey6Rr1Sw",
   },
   {
@@ -380,23 +414,8 @@ let memeObjects = [
 // =====================================================
 // 하나씩 파란색, 회색 번갈아가며 메세지를 .chat에서 출력
 // for, while, 단순 반복 복붙, 이벤트리스너 실패
+// 이곳에서 객체에 like정보 추가-> 함수를 수정하기엔 일이 너무 크다
 let isMineBool = true;
-// for (let i = 0; i < memeObjects.length; i++) {
-//   // sleep(1);
-//   let tag = makeChatBox(memeObjects[i], isMineBool, i);
-//   chat.append(tag);
-//   tag.addEventListener("click", function () {
-//     msg2card(tag);
-//     // console.log('eventlistner');
-//   });
-//   isMineBool = !isMineBool;
-// }
-// let messages = selectorAll('.chat>.messages');
-// for(let msg of messages) {
-//   msg.style = "display: none";
-
-// }
-
 let memeIndex = 0;
 let intervalID;
 let chatContainer = selector(".chat_container");
@@ -405,8 +424,10 @@ const printChat = function () {
     clearInterval(intervalID);
     return 1;
   }
+  memeObjects[memeIndex].like = 0;
   let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
-  tag.addEventListener("click", function () {
+  let inContent = tag.querySelector("img");
+  inContent.addEventListener("click", function () {
     msg2card(tag);
   });
   chat.prepend(tag);
@@ -414,25 +435,7 @@ const printChat = function () {
   memeIndex++;
   isMineBool = !isMineBool;
 };
-
 intervalID = setInterval(printChat, 2000);
-
-// let isPrintEnd = false;
-// let isReadyNext = true;
-// let tag;
-// while(memeIndex < memeObjects.length) {
-//   sleep(1);
-//   tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
-//   chat.append(tag);
-//   tag.addEventListener('click', function() {
-//     msg2card(tag);
-//   });
-//   isMineBool = !isMineBool;
-//   memeIndex++;
-// }
-
-// ========================================================
-
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
   // data 값을 하나하나 꺼내와서
@@ -555,3 +558,31 @@ inputImg.addEventListener("change", function () {
 selector(".scroll_text").addEventListener("click", function (event) {
   chat.scrollTo(0, 0);
 });
+
+// 마우스 클릭 이벤트
+let removeTimeOut;
+
+function clickPosition(e) {
+  const target = document.getElementById("clickEffect"),
+    a = 40; // #clickEffect의 너비 & 높이 값 / 2
+
+  e.button === 0 &&
+    ((target.style.transform = `translate(${e.clientX - a}px, ${
+      e.clientY - a
+    }px)`),
+    target.classList.contains("effect")
+      ? (clearTimeout(removeTimeOut),
+        target.classList.remove("effect"),
+        void target.offsetWidth,
+        target.classList.add("effect"),
+        removeEffect())
+      : (target.classList.add("effect"), removeEffect()));
+}
+
+function removeEffect() {
+  removeTimeOut = setTimeout(function () {
+    document.getElementById("clickEffect").classList.remove("effect");
+  }, 500); // #clickEffect.effect::after의 시간 (.5s) * 1000
+}
+
+document.addEventListener("mousedown", clickPosition);
