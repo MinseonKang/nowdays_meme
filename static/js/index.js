@@ -201,7 +201,90 @@ const card2msg = function (card) {
     heartToggle(this);
   });
 };
+// ================= element sort =========================
 
+const tag2value = function(element) {
+  //일부tag 값의 예외를 다루기위한 함수
+  let answer;
+  if(element.tagName == "INPUT") {
+      if(element.type == "checkbox") {
+          answer = Number(element.checked);
+      } else {
+          answer = element.value;
+      }
+  } else {
+      answer = element.innerText;
+  }    
+  // return answer;
+  // 문자열 판별을 위해 수정됨
+  if(Number(answer) == answer) {
+      return Number(answer);
+  } else {
+      return answer;
+  }
+}
+const arrayInsert = function(array, index, value) {
+  // 배열의 특정index에 샵입
+  let answer = [];
+  for(let i=0; i<array.length; i++) {
+      if(i == index) {
+          answer.push(value);            
+      }
+      answer.push(array[i]);
+  }
+  return answer;
+}
+const sortElementBySelector = function(selector, oprandSelector) {
+  // selector : 정렬대상의 공통 querySelector
+  // oprandSelector : 정렬할 기준의 공통 querySelector
+  let targetTags = document.querySelectorAll(selector);
+  let oprandTags = document.querySelectorAll(oprandSelector); 
+  let size = targetTags.length;
+  let map = [0];
+  let index;
+  for(let index=1; index<size; index++) {
+      for(let mapIndex=0; mapIndex<=map.length; mapIndex++) {
+          if(mapIndex == map.length) {
+              map.push(index);
+              break;
+          }
+          if(tag2value(oprandTags[index]) < tag2value(oprandTags[map[mapIndex]])) {
+              map = arrayInsert(map, mapIndex, index);
+              break;
+          }
+      }
+  }
+  let targetTagsHTML = [];
+  for (let i=0; i<map.length; i++) {
+      targetTagsHTML.push(targetTags[i].innerHTML);
+  }
+  for (let i=0; i<map.length; i++) {
+      targetTags[i].innerHTML = targetTagsHTML[map[i]];
+  }
+}
+const elementsReverseBySelector = function (selector) {
+  let targetTags = document.querySelectorAll(selector);
+  let reversedTagsHTML = [];
+  for (let i = targetTags.length - 1; i >= 0; i--) {
+    reversedTagsHTML.push(targetTags[i].innerHTML);
+  }
+  for (let i = 0; i < targetTags.length; i++) {
+    targetTags[i].innerHTML = reversedTagsHTML[i];
+  }
+  //체크박스를 위해 원본에서 추가됨
+  let checkBtns = document.getElementsByClassName("check_box");
+  for (let btn of checkBtns) {
+    btn.addEventListener("click", function () {
+      btn.classList.toggle("checked");
+      if (btn.children[0].innerText == 0) {
+        btn.children[0].innerText = 1;
+      } else {
+        btn.children[0].innerText = 0;
+      }
+      sortIndex = -1;
+    });
+  }
+};
 // ================= 메인 코드:채팅========================
 let tags = makeChatBox(
   {
@@ -487,6 +570,8 @@ $(document).ready(function () {
     $(".panel").slideToggle("slow");
   });
 });
+// ===========heart로 정렬 ====================
+
 
 // ============배경화면 바꾸는 기능 ============
 function bgChange() {
@@ -516,11 +601,12 @@ postButton.addEventListener("click", function () {
   }
   //
   let newMeme = {
-    name: inputName.value,
-    imgSrc: selector("#preview").src,
-    content: inputContent.value,
-    link: inputLink.value,
-    memeIndex: memeObjects.length,
+    name : inputName.value,
+    imgSrc : selector('#preview').src,
+    content : inputContent.value,
+    link : inputLink.value,
+    memeIndex : memeObjects.length,
+    'like': 0
   };
   memeObjects.push(newMeme);
   // 입력창 초기화
