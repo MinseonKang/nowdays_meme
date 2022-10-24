@@ -150,6 +150,19 @@ body {
   background-color: #066aff;
   border-radius: 10px;
 }
+/* header 검색창 display none처리 */
+.search_box input {
+  display: none;
+}
+.search_btn {
+  display: none;
+}
+.search_box {
+  display: none;
+}
+form.search_box {
+  display: none;
+}
 
 .replay-icon:hover {
   color: white;
@@ -165,11 +178,6 @@ body {
   align-content: center;
   justify-content: center;
 }
-/* 
-.nav-buttons {
-  margin-bottom: 3%;
-  font-size: 5vw;
-} */
 
 .nav-btn {
   justify-content: center;
