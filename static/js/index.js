@@ -589,6 +589,11 @@ const printChat = function () {
 
 intervalID = setInterval(printChat, 2000);
 
+chat.addEventListener("dblclick", function() {
+  clearInterval(intervalID);
+  intervalID = setInterval(printChat, 200);
+});
+
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
   // data 값을 하나하나 꺼내와서
