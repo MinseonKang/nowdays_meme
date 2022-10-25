@@ -622,6 +622,7 @@ let inputLink = selector(".input-link");
 let inputImg = selector("#choose-file");
 let postButton = selector(".post-button");
 postButton.addEventListener("click", function () {
+
   // 만약 입력이 비었다면 작동하지 않음
   if (Boolean(!inputName.value.trim()) || !Boolean(inputContent.value.trim())) {
     return 1;
@@ -671,6 +672,36 @@ inputImg.addEventListener("change", function () {
 selector(".scroll_text").addEventListener("click", function (event) {
   chat.scrollTo(0, 0);
 });
+
+// 다크모드 기능
+let Mode = document.querySelector('body')
+let ModeChat = document.querySelector('.chat')
+let mg = document.querySelector('.message.last')
+
+let darkSp = document.querySelector('.dark')
+let lightSp = document.querySelector('.light')
+
+darkSp.addEventListener('click', function () {
+  Mode.classList.toggle('dark-mode-body');
+  ModeChat.classList.toggle('dark-mode-chat');
+
+  document.querySelector('.dark').classList.remove('small-around');
+  document.querySelector('.dark').classList.toggle('big-around');
+
+  document.querySelector('.light').classList.remove('big-around');
+  document.querySelector('.light').classList.toggle('small-around');
+})
+
+lightSp.addEventListener('click', function () {
+  Mode.classList.toggle('dark-mode-body');
+  ModeChat.classList.toggle('dark-mode-chat');
+
+  document.querySelector('.dark').classList.toggle('big-around');
+  document.querySelector('.dark').classList.add('small-around');
+
+  document.querySelector('.light').classList.toggle('small-around');
+  document.querySelector('.light').classList.add('big-around');
+})
 
 // 마우스 클릭 이벤트
 let removeTimeOut;
