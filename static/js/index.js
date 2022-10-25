@@ -3,7 +3,7 @@ const d = document;
 const create = function (tagStr) {
   return d.createElement(tagStr);
 };
-const selector = function (selector, target=document) {
+const selector = function (selector, target = document) {
   return target.querySelector(selector);
 };
 const selectorAll = function (selector) {
@@ -18,10 +18,15 @@ const removeClass = function (element, classStr) {
 const toggleClass = function (element, classStr) {
   element.classList.toggle(classStr);
 };
-const hasClass = function(element, className) {
+const hasClass = function (element, className) {
   return element.classList.contains(className);
+};
+const clearClass = function(element) {
+  while (element.classList.length > 0) {
+    removeClass(element, element.classList.item(0));
+  }
 }
-const print = function (content, dir=false) {
+const print = function (content, dir = false) {
   dir ? console.dir(content) : console.log(content);
 };
 
@@ -38,8 +43,8 @@ function sleep(sec) {
   while (now - start < sec * 1000) {
     now = Date.now();
   }
-  print('now' + now);
-  print('start' + start);
+  print("now" + now);
+  print("start" + start);
 }
 // ===========================채팅박스================
 const makeChatBox = function (data, isMine, memeIndex = 0) {
@@ -66,17 +71,17 @@ const makeChatBox = function (data, isMine, memeIndex = 0) {
   addClass(messageText, "last");
   // messagesWrap.append(messageText);
 
-  let heartIcon = create('span');
+  let heartIcon = create("span");
   addClass(heartIcon, "material-symbols-outlined");
   addClass(heartIcon, "heart");
-  Boolean(data.like) ? addClass(heartIcon, 'like') : null;
-  heartIcon.innerText = "favorite"
-  heartIcon.addEventListener('click', function() {
+  Boolean(data.like) ? addClass(heartIcon, "like") : null;
+  heartIcon.innerText = "favorite";
+  heartIcon.addEventListener("click", function () {
     heartToggle(this);
   });
 
-  let heartContainer = create('div');
-  addClass(heartContainer, 'heart_container');
+  let heartContainer = create("div");
+  addClass(heartContainer, "heart_container");
   heartContainer.append(messageText);
   isMine ? heartContainer.prepend(heartIcon) : heartContainer.append(heartIcon);
   messagesWrap.append(heartContainer);
@@ -86,9 +91,9 @@ const makeChatBox = function (data, isMine, memeIndex = 0) {
   memeIdNum.innerText = memeIndex;
   messagesWrap.append(memeIdNum);
 
-  let isLikeSpan = create('span');
-  addClass(isLikeSpan, 'is_like');
-  addClass(isLikeSpan, 'hide');
+  let isLikeSpan = create("span");
+  addClass(isLikeSpan, "is_like");
+  addClass(isLikeSpan, "hide");
   isLikeSpan.innerText = data.like;
   messagesWrap.append(isLikeSpan);
 
@@ -98,14 +103,18 @@ const makeChatBox = function (data, isMine, memeIndex = 0) {
   return messagesWrap;
 };
 // =====================heart switch ==================
-const heartToggle = function(heart) {
+const heartToggle = function (heart) {
   // heart : .chat>.messages>.heart_container>.heart
-  let isLike = Number(selector('.is_like', heart.parentNode.parentNode).innerText);
-  Boolean(isLike) ? removeClass(heart, 'like') : addClass(heart, 'like');
-  selector('.is_like', heart.parentNode.parentNode).innerText = (++isLike)%2;
-  let memeIndex = Number(selector('span.hide', heart.parentNode.parentNode).innerText);
-  memeObjects[memeIndex].like = (isLike)%2;
-}
+  let isLike = Number(
+    selector(".is_like", heart.parentNode.parentNode).innerText
+  );
+  Boolean(isLike) ? removeClass(heart, "like") : addClass(heart, "like");
+  selector(".is_like", heart.parentNode.parentNode).innerText = ++isLike % 2;
+  let memeIndex = Number(
+    selector("span.hide", heart.parentNode.parentNode).innerText
+  );
+  memeObjects[memeIndex].like = isLike % 2;
+};
 
 //=======================카드 =========================
 const makeCard = function (data, memeIndex = -1) {
@@ -145,29 +154,28 @@ const makeCard = function (data, memeIndex = -1) {
 
 const msg2card = function (msg) {
   isMine = hasClass(msg, "mine");
-  let memeIndex = Number(selector('span.hide', msg).innerText);
-  let replaceCard= makeCard(memeObjects[memeIndex], memeIndex);
-  selector('.message', msg).innerHTML = '';
-  selector('.message', msg).append(replaceCard);
-  selector('.messages .messages', msg).innerHTML = '';
-  addClass(selector('.message', msg), 'card_message');
-  removeClass(msg, 'chat_animation');
+  let memeIndex = Number(selector("span.hide", msg).innerText);
+  let replaceCard = makeCard(memeObjects[memeIndex], memeIndex);
+  selector(".message", msg).innerHTML = "";
+  selector(".message", msg).append(replaceCard);
+  selector(".messages .messages", msg).innerHTML = "";
+  addClass(selector(".message", msg), "card_message");
+  removeClass(msg, "chat_animation");
   let readyToggle = true;
   // readyToggle -> 무한루프 방지
   let unListener = msg.cloneNode(true);
   msg.parentNode.replaceChild(unListener, msg);
-  let inContent = selector('.memeCard', unListener);
+  let inContent = selector(".memeCard", unListener);
   inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
       card2msg(unListener);
     }
   });
-  selector('.heart', unListener).addEventListener('click', function() {
+  selector(".heart", unListener).addEventListener("click", function () {
     heartToggle(this);
   });
-
-}
+};
 
 // =====================카드 -> 메세지 ======================
 
@@ -175,7 +183,7 @@ const card2msg = function (card) {
   // 처음에 메세지를 어떻게 만들었는지 생각 하자
   // card2msg()는 msg2card()의 msg태그를 입력받는다.
   let isMine = hasClass(card, "mine");
-  let memeIndex = Number(selector('span.hide', card).innerText);
+  let memeIndex = Number(selector("span.hide", card).innerText);
   let chat = selector(".chat");
   let chatTag = makeChatBox(memeObjects[memeIndex], isMine, memeIndex);
   let chatTagTemp = chatTag.classList;
@@ -187,34 +195,116 @@ const card2msg = function (card) {
   // readyToggle -> 무한루프 방지코드
   let unListener = card.cloneNode(true);
   card.parentNode.replaceChild(unListener, card);
-  let inContent = selector('img', unListener);
+  let inContent = selector("img", unListener);
   inContent.addEventListener("click", function () {
     if (readyToggle) {
       readyToggle = false;
       msg2card(unListener);
     }
   });
-  selector('.heart', unListener).addEventListener('click', function() {
+  selector(".heart", unListener).addEventListener("click", function () {
     heartToggle(this);
   });
 };
+// ================= element sort =========================
 
+const tag2value = function(element) {
+  //일부tag 값의 예외를 다루기위한 함수
+  let answer;
+  if(element.tagName == "INPUT") {
+      if(element.type == "checkbox") {
+          answer = Number(element.checked);
+      } else {
+          answer = element.value;
+      }
+  } else {
+      answer = element.innerText;
+  }    
+  // return answer;
+  // 문자열 판별을 위해 수정됨
+  if(Number(answer) == answer) {
+      return Number(answer);
+  } else {
+      return answer;
+  }
+}
+const arrayInsert = function(array, index, value) {
+  // 배열의 특정index에 샵입
+  let answer = [];
+  for(let i=0; i<array.length; i++) {
+      if(i == index) {
+          answer.push(value);            
+      }
+      answer.push(array[i]);
+  }
+  return answer;
+}
+const sortElementBySelector = function(selector, oprandSelector) {
+  // selector : 정렬대상의 공통 querySelector
+  // oprandSelector : 정렬할 기준의 공통 querySelector
+  let targetTags = document.querySelectorAll(selector);
+  let oprandTags = document.querySelectorAll(oprandSelector); 
+  let size = targetTags.length;
+  let map = [0];
+  for(let index=1; index<size; index++) {
+      for(let mapIndex=0; mapIndex<=map.length; mapIndex++) {
+          if(mapIndex == map.length) {
+              map.push(index);
+              break;
+          }
+          if(tag2value(oprandTags[index]) < tag2value(oprandTags[map[mapIndex]])) {
+              map = arrayInsert(map, mapIndex, index);
+              break;
+          }
+      }
+  }
+  let targetTagsHTML = [];
+  let targetTagsClassList =[];
+  for (let i=0; i<map.length; i++) {
+      targetTagsHTML.push(targetTags[i].innerHTML);
+      targetTagsClassList.push(Array.from(targetTags[i].classList));
+  }
+  for (let i=0; i<map.length; i++) {
+      targetTags[i].innerHTML = targetTagsHTML[map[i]];
+      clearClass(targetTags[i]);
+      print(targetTags[i].classList);
+      for(let c of targetTagsClassList[map[i]]) {
+        addClass(targetTags[i], c);
+      }
+  }
+  print(map);
+}
+const elementsReverseBySelector = function (selector) {
+  let targetTags = document.querySelectorAll(selector);
+  let reversedTagsHTML = [];
+  let reversedTagsClassList =[];
+  for (let i = targetTags.length - 1; i >= 0; i--) {
+    reversedTagsHTML.push(targetTags[i].innerHTML);
+    reversedTagsClassList.push(Array.from(targetTags[i].classList));
+  }
+  for (let i = 0; i < targetTags.length; i++) {
+    targetTags[i].innerHTML = reversedTagsHTML[i];
+    clearClass(targetTags[i]);
+    for(let c of reversedTagsClassList[i]) {
+      addClass(targetTags[i], c);
+    }
+  }
+};
 // ================= 메인 코드:채팅========================
-let tags = makeChatBox(
-  {
-    name: "채팅함수 테스트로 index.js에서 만들어진 채팅으로 카드기능이 없어요",
-    imgSrc:
-      "data:image/jpeg;base64,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",
-    // kakao서버 문제로 로드되지 않음
-    // 'imgSrc': 'https://blog.kakaocdn.net/dn/cndgTT/btrpJSi0TEo/9SDMGVMGqXVJBEKQkFx97K/img.jpg',
-    content:
-      "아이돌 그룹 NCT 천러가 팬들과 소통하는 앱 '버블'에서 한 말에서 시작됐어요. 천러가 버블로 팬들에게 우리 이제 화날 때 구워버릴까를 사용하자'라고 말했어요. 구워버린다는 화가 나는 상황에서 귀엽게 쓸 수 있어요.",
-    link: "https://theqoo.net/nctdream/2301141145",
-  },
-  false
-);
+// let tags = makeChatBox(
+//   {
+//     name: "채팅함수 테스트로 index.js에서 만들어진 채팅으로 카드기능이 없어요",
+//     imgSrc: "data:image/jpeg;base64,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",
+//     // kakao서버 문제로 로드되지 않음
+//     // 'imgSrc': 'https://blog.kakaocdn.net/dn/cndgTT/btrpJSi0TEo/9SDMGVMGqXVJBEKQkFx97K/img.jpg',
+//     content:
+//       "아이돌 그룹 NCT 천러가 팬들과 소통하는 앱 '버블'에서 한 말에서 시작됐어요. 천러가 버블로 팬들에게 우리 이제 화날 때 구워버릴까를 사용하자'라고 말했어요. 구워버린다는 화가 나는 상황에서 귀엽게 쓸 수 있어요.",
+//     link: "https://theqoo.net/nctdream/2301141145",
+//   },
+//   false
+// );
 let chat = selector(".chat");
-chat.append(tags);
+// chat.append(tags);
 
 let memeObjects = [
   {
@@ -280,7 +370,8 @@ let memeObjects = [
   },
   {
     name: "북극곰은 사람을 찢어",
-    imgSrc: "https://blog.kakaocdn.net/dn/b9Ah09/btrl5vGjghY/emwBIAHmPT4qdPEA9HfdBk/img.png",
+    imgSrc:
+      "https://blog.kakaocdn.net/dn/b9Ah09/btrl5vGjghY/emwBIAHmPT4qdPEA9HfdBk/img.png",
     content:
       "무한도전 해외극한알바 특집에서 정준하가 자신을 북극으로 보내려고 하자 한 말이 유행이 되었어요.",
     link: "https://www.youtube.com/watch?v=cV8srEt0-ms&feature=youtu.be",
@@ -384,20 +475,26 @@ let memeObjects = [
   },
   {
     name: "내봬누",
-    imgSrc: "data:image/jpeg;base64,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",
-    content: "'내일 봬요 누나'의 줄임말로 티빙 오리지날 시리즈 <환승연애2>에 등장해 유행하기 시작했어요. '현규'가 '해은'에게 데이트를 신청하면서 던진 직진 멘트에서 유래했어요.",
+    imgSrc:
+      "data:image/jpeg;base64,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",
+    content:
+      "'내일 봬요 누나'의 줄임말로 티빙 오리지날 시리즈 <환승연애2>에 등장해 유행하기 시작했어요. '현규'가 '해은'에게 데이트를 신청하면서 던진 직진 멘트에서 유래했어요.",
     link: "https://youtu.be/v-U5Sr0pQ-g",
   },
   {
     name: "힝구리퐁퐁",
-    imgSrc: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbTk8S7%2FbtrBbdw7nSl%2FEBzEkPT4SepgnLSU2KbZNk%2Fimg.png",
-    content: "'ㅠㅠ'를 쓰는 시대는 갔다. 요즘 요즘 SNS에서 웃픈 상황일 때에  '힝구리퐁퐁'이라는 단어를 많이 사용한다고 합니다.'힝구리퐁퐁'은 BTS 정국의 인스타 스토리 무물에 등장하며 밈이 되었습니다.",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbTk8S7%2FbtrBbdw7nSl%2FEBzEkPT4SepgnLSU2KbZNk%2Fimg.png",
+    content:
+      "'ㅠㅠ'를 쓰는 시대는 갔다. 요즘 요즘 SNS에서 웃픈 상황일 때에  '힝구리퐁퐁'이라는 단어를 많이 사용한다고 합니다.'힝구리퐁퐁'은 BTS 정국의 인스타 스토리 무물에 등장하며 밈이 되었습니다.",
     link: "https://www.youtube.com/shorts/gHxey6Rr1Sw",
   },
   {
     name: "감동이 심해",
-    imgSrc: "https://img.insight.co.kr/static/2022/04/12/700/img_20220412095454_e2pna5xp.webp",
-    content: "일상생활에서 감동을 받는 상황에서 요즘은 '감동 심해~'라고 표현합니다. '감동 심해'란? '감동이 심하다 심해'의 줄임말인데요, 상대방에게 감동받은 이 순간 고마움을 표현함과 동시에 귀염귀염 한 이미지를 보여줄 수 있어요.",
+    imgSrc:
+      "https://img.insight.co.kr/static/2022/04/12/700/img_20220412095454_e2pna5xp.webp",
+    content:
+      "일상생활에서 감동을 받는 상황에서 요즘은 '감동 심해~'라고 표현합니다. '감동 심해'란? '감동이 심하다 심해'의 줄임말인데요, 상대방에게 감동받은 이 순간 고마움을 표현함과 동시에 귀염귀염 한 이미지를 보여줄 수 있어요.",
     link: "https://www.youtube.com/watch?v=P6jTpkw1bu0",
   },
 ];
@@ -408,24 +505,24 @@ let memeObjects = [
 let isMineBool = true;
 let memeIndex = 0;
 let intervalID;
-let chatContainer = selector('.chat_container');
-const printChat = function() {
-  if(memeIndex >= memeObjects.length) {
+let chatContainer = selector(".chat_container");
+const printChat = function () {
+  if (memeIndex >= memeObjects.length) {
     clearInterval(intervalID);
     return 1;
   }
   memeObjects[memeIndex].like = 0;
   let tag = makeChatBox(memeObjects[memeIndex], isMineBool, memeIndex);
-  let inContent = tag.querySelector('img');
-  inContent.addEventListener('click', function() {
+  let inContent = tag.querySelector("img");
+  inContent.addEventListener("click", function () {
     msg2card(tag);
-  })
+  });
   chat.prepend(tag);
   // chat.scrollTo(0, chatContainer.scrollHeight);
   memeIndex++;
   isMineBool = !isMineBool;
-}
-intervalID = setInterval(printChat, 2000);
+};
+intervalID = setInterval(printChat, 500);
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
   // data 값을 하나하나 꺼내와서
@@ -477,15 +574,57 @@ $(document).ready(function () {
     $(".panel").slideToggle("slow");
   });
 });
+// ===========heart로 정렬 ====================
+let heartSort = selector(".heart_sort");
+heartSort.addEventListener('click', function() {
+  sortElementBySelector(".chat>.messages", ".chat>.messages .is_like");
+  elementsReverseBySelector(".chat>.messages");
+  chat.scrollTo(0, 0);
+  let chats = selectorAll(".chat .chat_animation");
+  let cards = selectorAll(".chat>.messages:not(.chat_animation)");
+  let hearts = selectorAll(".heart");
+  for(let chat of chats) {
+    selector("img", chat).addEventListener("click", function() {
+      msg2card(chat);
+    });
+  }
+  for(let card of cards) {
+    card.addEventListener("click", function() {
+      card2msg(card);
+    });
+  }
+  for(let heart of hearts) {
+    heart.addEventListener("click", function() {
+      heartToggle(heart);
+    });
+  }
+});
 
-let inputName = selector('.input-name');
-let inputContent = selector('.input-content');
-let inputLink = selector('.input-link');
-let inputImg = selector('#choose-file');
-let postButton = selector('.post-button');
-postButton.addEventListener('click', function() {
+// ============배경화면 바꾸는 기능 ============
+function bgChange() {
+  let bgUrl = [
+    "/static/image/indexbg1.jpg",
+    "/static/image/indexbg2.jpg",
+    "/static/image/indexbg3.jpg",
+    "/static/image/indexbg4.jpg",
+  ];
+
+  var num = Math.floor(Math.random() * bgUrl.length);
+  console.log(`'url("${bgUrl[num]}")'`);
+  // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
+  document.body.style.background = `url("${bgUrl[num]}")`;
+  document.body.style.backgroundSize = "cover";
+}
+
+let inputName = selector(".input-name");
+let inputContent = selector(".input-content");
+let inputLink = selector(".input-link");
+let inputImg = selector("#choose-file");
+let postButton = selector(".post-button");
+postButton.addEventListener("click", function () {
+
   // 만약 입력이 비었다면 작동하지 않음
-  if(Boolean(! inputName.value.trim()) || ! Boolean(inputContent.value.trim())) {
+  if (Boolean(!inputName.value.trim()) || !Boolean(inputContent.value.trim())) {
     return 1;
   }
   //
@@ -494,42 +633,43 @@ postButton.addEventListener('click', function() {
     imgSrc : selector('#preview').src,
     content : inputContent.value,
     link : inputLink.value,
-    memeIndex : memeObjects.length
-  }
+    memeIndex : memeObjects.length,
+    'like': 0
+  };
   memeObjects.push(newMeme);
   // 입력창 초기화
-  removeClass(selector('.input-box2'), 'slidein');
-  addClass(selector('.input-box2'), 'slideout');
-  removeClass(selector('.input-box1'), 'slideout');
-  addClass(selector('.input-box1'), 'slidein');
+  removeClass(selector(".input-box2"), "slidein");
+  addClass(selector(".input-box2"), "slideout");
+  removeClass(selector(".input-box1"), "slideout");
+  addClass(selector(".input-box1"), "slidein");
   // selector(".input-box2").style = "display: none";
 
   // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨->더블클릭으로 구현됨
-  inputName.value = '';
-  inputContent.value = '';
-  inputLink.value = '';
-  inputImg.value = '';
-  selector("#preview").src = '';
+  inputName.value = "";
+  inputContent.value = "";
+  inputLink.value = "";
+  inputImg.value = "";
+  selector("#preview").src = "";
   selector(".input-origin").style = "display: auto";
   selector(".preview").style = "display: none";
 
   // 채팅창에 입력받은 내용 추가
   let inputChat = makeChatBox(newMeme, true, newMeme.memeIndex);
   // 파란메세지 인지 회색인지 결정?
-  inputChat.addEventListener('click', function() {
+  inputChat.addEventListener("click", function () {
     msg2card(inputChat);
   });
   chat.prepend(inputChat);
 });
 // 밈 입력, 업로드 후 사진을 다시 선택하면 새로고침이 표시되지 않는 문제를 위해 추가
-inputImg.addEventListener('change', function() {
+inputImg.addEventListener("change", function () {
   selector(".preview").style = "display: auto";
 });
 
 // 자동스크롤기능->페이지 로드후 채팅이 하나하나 .chat에서 출력되는 걸로 사용
 
 // 위로가기 기능
-selector('.scroll_text').addEventListener('click', function(event) {
+selector(".scroll_text").addEventListener("click", function (event) {
   chat.scrollTo(0, 0);
 });
 
@@ -562,3 +702,31 @@ lightSp.addEventListener('click', function () {
   document.querySelector('.light').classList.toggle('small-around');
   document.querySelector('.light').classList.add('big-around');
 })
+
+// 마우스 클릭 이벤트
+let removeTimeOut;
+
+function clickPosition(e) {
+  const target = document.getElementById("clickEffect"),
+    a = 40; // #clickEffect의 너비 & 높이 값 / 2
+
+  e.button === 0 &&
+    ((target.style.transform = `translate(${e.clientX - a}px, ${
+      e.clientY - a
+    }px)`),
+    target.classList.contains("effect")
+      ? (clearTimeout(removeTimeOut),
+        target.classList.remove("effect"),
+        void target.offsetWidth,
+        target.classList.add("effect"),
+        removeEffect())
+      : (target.classList.add("effect"), removeEffect()));
+}
+
+function removeEffect() {
+  removeTimeOut = setTimeout(function () {
+    document.getElementById("clickEffect").classList.remove("effect");
+  }, 500); // #clickEffect.effect::after의 시간 (.5s) * 1000
+}
+
+document.addEventListener("mousedown", clickPosition);
