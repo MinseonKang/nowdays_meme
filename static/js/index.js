@@ -478,22 +478,6 @@ $(document).ready(function () {
   });
 });
 
-// ============배경화면 바꾸는 기능 ============
-function bgChange() {
-  let bgUrl = [
-    "/static/image/indexbg1.jpg",
-    "/static/image/indexbg2.jpg",
-    "/static/image/indexbg3.jpg",
-    "/static/image/indexbg4.jpg",
-  ];
-
-  var num = Math.floor(Math.random() * bgUrl.length);
-  console.log(`'url("${bgUrl[num]}")'`)
-  // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
-  document.body.style.background = `url("${bgUrl[num]}")`;
-  document.body.style.backgroundSize = 'cover';
-}
-
 let inputName = selector('.input-name');
 let inputContent = selector('.input-content');
 let inputLink = selector('.input-link');
@@ -548,3 +532,33 @@ inputImg.addEventListener('change', function() {
 selector('.scroll_text').addEventListener('click', function(event) {
   chat.scrollTo(0, 0);
 });
+
+// 다크모드 기능
+let Mode = document.querySelector('body')
+let ModeChat = document.querySelector('.chat')
+let mg = document.querySelector('.message.last')
+
+let darkSp = document.querySelector('.dark')
+let lightSp = document.querySelector('.light')
+
+darkSp.addEventListener('click', function () {
+  Mode.classList.toggle('dark-mode-body');
+  ModeChat.classList.toggle('dark-mode-chat');
+
+  document.querySelector('.dark').classList.remove('small-around');
+  document.querySelector('.dark').classList.toggle('big-around');
+
+  document.querySelector('.light').classList.remove('big-around');
+  document.querySelector('.light').classList.toggle('small-around');
+})
+
+lightSp.addEventListener('click', function () {
+  Mode.classList.toggle('dark-mode-body');
+  ModeChat.classList.toggle('dark-mode-chat');
+
+  document.querySelector('.dark').classList.toggle('big-around');
+  document.querySelector('.dark').classList.add('small-around');
+
+  document.querySelector('.light').classList.toggle('small-around');
+  document.querySelector('.light').classList.add('big-around');
+})
