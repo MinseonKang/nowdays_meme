@@ -43,11 +43,11 @@ function readURL(input) {
 // input.div1 클릭하면 input.div2로 바뀜
 let inputBox1 = document.querySelector(".input-box1");
 let inputBox2 = document.querySelector(".input-box2");
-let inputDiv1 = document.querySelector(".input-div1");
-let inputDiv2 = document.querySelector(".input-div2");
 
 inputBox1.addEventListener("click", function () {
+  inputBox1.classList.remove('slidein');
   inputBox1.classList.add('slideout');
+  inputBox2.classList.remove('slideout');
   inputBox2.classList.add('slidein');
 });
 

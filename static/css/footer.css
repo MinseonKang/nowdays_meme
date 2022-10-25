@@ -54,7 +54,7 @@ footer {
 }
 
 .input-box2 {
-  position: absolute;
+  position: fixed;
   bottom: -200px;
   opacity: 1;
 }

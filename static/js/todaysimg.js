@@ -46,15 +46,6 @@ let todayObjects = [
     imgSrc2: "/static/image/bg05.png",
   },
   {
-    name: "신기방기 뿡뿡방기",
-    imgSrc:
-      "세븐틴 정한이 만든 유행어로 이를 유행시켜 달라는 정한의 말에 팬들에게 유행처럼 번지게 되었어요.",
-    content:
-      "https://post-phinf.pstatic.net/MjAyMjAyMjVfMjU4/MDAxNjQ1NzIzNTYxODQx.B6KzGtl7a97op8YADphJ_m7S2zlj0mf65jY_GP53SBog.DXKjutBd5sEhJ1woycn9mpLBslXMFdWCIj7xeDNytnog.JPEG/%EC%8B%A0%EA%B8%B0%EB%B0%A9%EA%B8%B0%EB%BF%A1%EB%BF%A1%EB%B0%A9%EA%B8%B0.jpg?type=w1200",
-    link: "https://www.youtube.com/watch?v=_pf-RHEGrsc",
-    imgSrc2: "/static/image/bg06.png",
-  },
-  {
     name: "가족이 돼주라",
     imgSrc:
       "https://s3.ap-northeast-2.amazonaws.com/univ-careet/FileData/Article/573/bdf0d953-3ddf-4412-a80b-1eb8be7d61c7.jpg",
@@ -62,14 +53,6 @@ let todayObjects = [
       '가수 디핵의 "OHAYO MY NIGHT"이란 노래의 가사인데요. Z세대들이 최근 이 가사를 최애 아이돌이나 좋아하는 사람들에게 주접 멘트로 활용해요.',
     link: "https://www.youtube.com/watch?v=w-nD4fapL8w",
     imgSrc2: "/static/image/bg07.png",
-  },
-  {
-    name: "아 진짜요?",
-    imgSrc: "https://img.koreapas.com/i/f1a06a2/resize",
-    content:
-      "한 아이돌 팬이 엄청난 거금을 들여 최애 팬 사인회에 갔다가 탈덕하게 된 계기에 대해 쓴 글이 화제가 되었어요. 이에 무엇인가에 관심이 없다는 것을 표현할 때 사용해요.",
-    link: "https://www.youtube.com/watch?v=byHbe9g1tLE&feature=youtu.be",
-    imgSrc2: "/static/image/bg08.png",
   },
   {
     name: "북극곰은 사람을 찢어",
@@ -115,7 +98,7 @@ let todayObjects = [
     imgSrc2: "/static/image/bg13.png",
   },
   {
-    name: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest어머니...",
+    name: "어머니...",
     imgSrc:
       "data:image/jpeg;base64,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",
     content:
@@ -131,6 +114,22 @@ let todayObjects = [
       "어깨 위에 눈 쌓인 모습이 상당히 인상적이다. 영상을 보면 그 처절함에 몸서리를 칠 정도였다. 시간대가 넘어갈수록 머리와 어깨에 눈이 쌓이는 양이 늘어나는 모습이 보이고 목소리가 떨린다. 뉴스광장 이후 편성된 7시 50분 기상특보 중 8시에 현장을 연결했을 때는 카메라가 넘어온 줄 모르고 자기가 할 멘션을 작게 중얼거리면서 연습하는 장면이 방송에 그대로 나가 버린 것이다.",
     link: "https://mn.kbs.co.kr/mobile/news/view.do?ncd=2021544",
     imgSrc2: "/static/image/bg15.png",
+  },
+  {
+    name: "(여기서부터 잔인함)",
+    imgSrc: "https://gogumafarm.kr/article/99/article_7.png",
+    content:
+      "이건 특이하게 틱톡에서 시작된 밈인데요. 틱톡의 유저가 한 콘텐츠에 남긴 댓글이 트위터로 퍼지면서 밈이 된 경우예요. 이야기를 쓰다가 중요한 부분이나 반전, 충격적인 이야기를 할 때 이 문장을 사용하여 집중도를 높이는 거죠!",
+    link: "#",
+    imgSrc2: "/static/image/bg17.png",
+  },
+  {
+    name: "상남자특) 하남자특)",
+    imgSrc: "https://cdn.maily.so/7vkl5p5lhgdglmabbmbqr89576uv",
+    content:
+      "유튜브 침착맨 영상 중 ‘상남자특) 순댓국 특 먹음’ 콘텐츠에서 상남자 특징과 그와 반대되는 하남자 특징을 이야기 하는 클립이 트위터로 퍼져나가면서 유행하게 되었어요. ‘상남자특’에서 남자 부분은 마음대로 바꿔서 쓰면 돼요. 어떤 명사를 집어 넣어도 되니 활용도 편하고, 특히 어떤 행동을 유도할 때 사용하면 좋겠죠? 실제로 트위터를 운영 중인 채널에서는 트렌드를 빠르게 캐치하여 이렇게 사용하기도 했어요.",
+    link: "https://www.youtube.com/watch?v=31FwmCAEJww",
+    imgSrc2: "/static/image/bg18.png",
   },
 ];
 
