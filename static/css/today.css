@@ -1,5 +1,7 @@
+@import url("https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css");
+
 body {
-  font-family: "HBIOS-SYS" !important;
+  font-family: "Galmuri9" !important;
   background-color: white;
   margin: 0;
   height: inherit;
@@ -29,6 +31,7 @@ body {
   width: 70vh;
   height: 70vw;
   z-index: 2;
+  padding: 2vw;
 }
 
 .container {
@@ -114,7 +117,7 @@ body {
 .containerOpp {
   background-color: #066aff;
   border-radius: 50px;
-  width: 50%;
+  width: 65%;
   height: 80%;
   display: flex;
   justify-content: center;
@@ -173,7 +176,7 @@ form.search_box {
 }
 
 .shareButtons {
-  margin-bottom: 2%;
+  margin: 1vw;
   display: flex;
   align-content: center;
   justify-content: center;

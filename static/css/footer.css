@@ -72,6 +72,7 @@ footer {
 
 .bi-arrow-up-circle-fill {
   color: #066aff;
+  margin: 2vw;
 }
 
 .input-box:hover {
@@ -137,12 +138,12 @@ footer i {
 
 @keyframes slide-out {
   from {
-    position:absolute;
+    position: absolute;
     bottom: 0;
   }
   to {
     position: absolute;
-    bottom:-200px;
+    bottom: -200px;
   }
 }
 
@@ -151,7 +152,7 @@ footer i {
 }
 @keyframes slide-in {
   from {
-    position:absolute;
+    position: absolute;
     bottom: -200px;
   }
   to {

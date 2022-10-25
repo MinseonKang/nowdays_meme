@@ -1,58 +1,13 @@
 /* 메인폰트 */
-@font-face {
-  font-family: "HBIOS-SYS";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url("https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css");
+
 html {
   scroll-behavior: smooth;
 }
 
-/* 마우스 클릭 이벤트 */
-@keyframes clicked {
-  from {
-    transform: scale(0);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-#clickEffect {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 80px;
-  height: 80px;
-  pointer-events: none;
-}
-
-#clickEffect::after {
-  content: "";
-  display: block;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
-}
-
-#clickEffect.effect {
-  display: block;
-}
-
-#clickEffect.effect::after {
-  animation: clicked 0.5s cubic-bezier(0.29, 0, 0.15, 1);
-}
-
 /* imessage */
 body {
-  /* font-family: helvetica; */
-  font-family: "HBIOS-SYS" !important;
+  font-family: "Galmuri9" !important; /* 폰트: 갈무리9 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,7 +133,7 @@ a {
   color: white;
   /* margin-left: 25%; */
   /* background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); */
-  background-color: #00aadd;
+  background-color: #066aff;
   background-attachment: fixed;
   position: relative;
   /* margin-right: 8px; */
@@ -193,7 +148,7 @@ a {
   height: 20px;
   width: 20px;
   /* background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); */
-  background-color: #00aadd;
+  background-color: #066aff;
   background-attachment: fixed;
   border-bottom-left-radius: 15px;
 }
@@ -214,6 +169,7 @@ a {
   width: 40vw;
   border-radius: 10px;
   margin: 0 8px;
+  cursor: pointer;
 }
 
 .chat_img :not(.last) {
@@ -504,4 +460,43 @@ a {
 }
 .nav {
   font-size: 1vw;
+}
+
+/* 마우스 이벤트 */
+@keyframes clicked {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#clickEffect {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+}
+
+#clickEffect::after {
+  content: "";
+  display: block;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
+#clickEffect.effect {
+  display: block;
+}
+
+#clickEffect.effect::after {
+  animation: clicked 0.5s cubic-bezier(0.29, 0, 0.15, 1);
 }

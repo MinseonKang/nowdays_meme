@@ -328,14 +328,6 @@ let memeObjects = [
     link: "https://www.youtube.com/watch?v=Ys8Svp0wJPw",
   },
   {
-    name: "박대기 기자",
-    imgSrc:
-      "data:image/jpeg;base64,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",
-    content:
-      "어깨 위에 눈 쌓인 모습이 상당히 인상적입니다. 영상을 보면 그 처절함에 몸서리를 칠 정도예요. 시간대가 넘어갈수록 머리와 어깨에 눈이 쌓이는 양이 늘어나는 모습이 보이고 목소리가 떨립니다. 뉴스광장 이후 편성된 7시 50분 기상특보 중 8시에 현장을 연결했을 때는 카메라가 넘어온 줄 모르고 자기가 할 멘션을 작게 중얼거리면서 연습하는 장면이 방송에 그대로 나가 버린 거죠!",
-    link: "https://mn.kbs.co.kr/mobile/news/view.do?ncd=2021544",
-  },
-  {
     name: "당연이 줄 수 있지, 문자 한번 다시 다오~^^",
     imgSrc: "https://gogumafarm.kr/article/99/article_5.png",
     content:
@@ -410,6 +402,78 @@ let memeObjects = [
       "일상생활에서 감동을 받는 상황에서 요즘은 '감동 심해~'라고 표현합니다. '감동 심해'란? '감동이 심하다 심해'의 줄임말인데요, 상대방에게 감동받은 이 순간 고마움을 표현함과 동시에 귀염귀염 한 이미지를 보여줄 수 있어요.",
     link: "https://www.youtube.com/watch?v=P6jTpkw1bu0",
   },
+  {
+    name: "OO 아티스트",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbziXEw%2FbtrLu9DoZfG%2FvSAaeONuAtFaAzAxRQS45K%2Fimg.png",
+    content:
+      "'아티스트'란 자신이 잘하는 일을 표현하는 말 뒤에 사용하는 단어입니다. 잘하는 일이라면 뭐든지 OK👌 최근 그룹 드리핀의 멤버 '차준호'가 버블을 통해 '아티스트'를 재미있는 방법으로 사용하며 한 번 더 크게 인기를 끌었답니다.",
+    link: "",
+  },
+  {
+    name: "O떤",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FlqoDy%2FbtrLuBOhI74%2FlXtT0KPuzMQR8mMAR8jTCK%2Fimg.png",
+    content:
+      "O떤 이라는 표현을 아시나요? 관심 대상의 성이나 애칭 등을 O 자리에 넣어 사용하며 관심 대상을 강조하는 표현이에요.",
+    link: "",
+  },
+  {
+    name: "ㄴ겠냐?",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FrCaQ1%2FbtrLqXZcFH3%2FVWvtOKmXYGHwnEkU0wQC70%2Fimg.png",
+    content:
+      "ㄴ겠냐? 는 자문자답형 밈이에요. 'ㄴ'은 '↳'처럼 댓글을 달 때 쓰는 기호처럼 사용되고, '~겠냐'는 '되겠냐', '하겠냐' 등을 의미합니다!",
+    link: "",
+  },
+  {
+    name: "갓생",
+    imgSrc:
+      "https://cdn.poomang.com/img/test_asset/collaboration/peripera/og/04.png",
+    content:
+      "GOD(신)를 뜻하는 '갓'과 인생을 합친말로 부지런하고 남의 모범이 되는 삶을 사는 것을 말해요. 어려운 것부터 쉬운 것까지 매일매일 규칙적으로 무언가를 하는 것이 중요하죠? 예를들어 매일 새벽 5시에 일어나 스트레칭을 하고 책을 한시간 읽고 출근을 한다. 퇴근 후에는 영어 공부를 하루에 1시간씩 한다. 이런 식으로 성취감을 느낄 수 있는 스케쥴을 짜고 그것을 지켜가는 생활을 말합니다. 나 오늘부터 갓생 산다!",
+    link: "",
+  },
+  {
+    name: "쿠쿠루삥뽕",
+    imgSrc:
+      "https://ogq-sticker-global-cdn-z01.afreecatv.com/sticker/17fd154122d13b4/main.png",
+    content:
+      "웃긴상황에서 쓰는 표현이라고 합니다. 온라인에서 웃기거나 상대를 비꼴때, 약올릴때 쓴다고 합니다. 쿠쿠루삥뽕!",
+    link: "",
+  },
+  {
+    name: "왜요?제가 OO한사람처럼 생겼나요?",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FGkltO%2FbtrqMcgdi6H%2Fi0yxauDJnREqG2ryZ7rGuK%2Fimg.jpg",
+    content:
+      "김옥정님(연예인 하하의 어머니)이 유행시킨 문장이라고 합니다. 왜요? 제가 밈 모르는 사람처럼 생겼나요?",
+    link: "",
+  },
+  {
+    name: "가보자고",
+    imgSrc:
+      "https://pbs.twimg.com/profile_images/1442619537220792326/ibAEc6bH_400x400.jpg",
+    content:
+      "트위터에서 시작된 밈이에요. 해보자, 가자, 이런 식으로 의욕적인 느낌으로 하는 말이라고 해요!",
+    link: "",
+  },
+  {
+    name: "비상이다",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FTbTAm%2FbtrqMvGGTeX%2FGlYwr1LgtJTRuPORJu2zk0%2Fimg.jpg",
+    content:
+      "감동적인 글, 사진 등을 보고 눈물이 날 것 같을 때 (눈물이날것 같아)비상이다 라는 식으로 쓴다고 해요. 비상이다...ㅠㅠ",
+    link: "",
+  },
+  {
+    name: "킹받네",
+    imgSrc:
+      "https://s3.ap-northeast-2.amazonaws.com/univ-careet/FileData/Article/526/b1d87ce8-1116-4ccd-adb3-2937ee25183b.JPG",
+    content:
+      "이제 ‘킹받네’라는 단어는 도저히 ‘열 받네’ ‘빡치네’ 정도의 단어로 대체할 수 없는 고유어(?)가 되었어요. 그도 그럴 것이 Z세대는 정말 다양한 상황에서 여러 용도로 ‘킹받네’라는 말을 사용하고 있거든요. 신기한 점은 이 신조어가 어떤 상황에선 부정적인 의미로도 쓰이지만, 어떤 상황에선 긍정적인 의미로도 쓰여요.",
+    link: "",
+  },
 ];
 // =====================================================
 // 하나씩 파란색, 회색 번갈아가며 메세지를 .chat에서 출력
@@ -436,6 +500,7 @@ const printChat = function () {
   isMineBool = !isMineBool;
 };
 intervalID = setInterval(printChat, 2000);
+
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
   // data 값을 하나하나 꺼내와서
@@ -456,7 +521,7 @@ function searchMeme(e) {
   e.preventDefault();
   // 폼에 입력된 값
   let keyword = document.getElementById("search_text").value;
-  // result [undefined, {id:, name: favorites:}, undefined] 이런식으로 리턴
+  // result [undefined, {name: }, undefined] 이런식으로 리턴
   // 따라서 undefined 값을 제거해줘야하기 때문에 filter 메소드 적용
   let result = searchFilter(
     memeObjects,
@@ -470,7 +535,6 @@ function searchMeme(e) {
   // 결과 값 화면 출력
   document.getElementById("result_name").innerHTML = result.map((d) => d.name);
   document.getElementById("result_img").src = result.map((d) => {
-    console.log(d.imgSrc);
     return d.imgSrc;
   });
   document.getElementById("result_content").innerHTML = result.map(
@@ -479,9 +543,10 @@ function searchMeme(e) {
   document.getElementById("result_link").href = result.map((d) => d.link);
 }
 
-// // 클릭 시 search 함수 호출
+// 클릭 시 searchMeme 함수 호출
 document.querySelector(".search_box").addEventListener("submit", searchMeme);
 
+// slide jQuery
 $(document).ready(function () {
   $(".search_btn").click(function () {
     $(".panel").slideToggle("slow");

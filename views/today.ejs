@@ -38,12 +38,6 @@
     <link rel="stylesheet" href="/static/css/header.css" />
   </head>
   <body onload="showImage()">
-    <!-- nav추가  -->
-    <nav class="nav">
-      <a class="nav-link active" aria-current="page" href="/index">Main</a>
-      <a class="nav-link" href="/today">오늘의 밈</a>
-      <a class="nav-link" href="#">QUIZ</a>
-    </nav>
     <!-- header include -->
     <%- include('./header.ejs') %>
 
@@ -62,14 +56,14 @@
           <i class="replay-icon bi bi-pause-circle fa-fade"></i>
         </div>
         <div class="shareButtons">
-          <div class="nav-btn">
+          <!-- <div class="nav-btn">
             <button type="button" class="btn btn-light btn-nav">
               <p><a href="/index">돌아가기</a></p>
             </button>
             <button type="button" class="btn btn-light btn-nav">
               <p>QUIZ</p>
             </button>
-          </div>
+          </div> -->
           <!-- 공유 링크버튼 -->
           <a
             id="btnTwitter"

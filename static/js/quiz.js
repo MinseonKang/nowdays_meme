@@ -121,11 +121,11 @@ function result() {
 
   if (per < 60) {
     txt += `<img src="https://cdn.banggooso.com/assets/images/game1021/result/level2.jpg" style="width: 40vw"; <br>
-    <button onclick="location.href='/index'" style="padding: 1vw; margin: 3vw;">괜찮아요!<br>요.밈.알로 진정한 밈잘알이 됩시다!</button>`;
+    <button onclick="location.href='/index'" style="padding: 1vw; margin: 3vw;">요.밈.알로<br> 진정한 밈잘알이 됩시다!</button>`;
     quizDiv.innerHTML = txt;
   } else if (per >= 60 && per < 80) {
     txt += `<img src="https://cdn.banggooso.com/assets/images/game1021/result/level1.jpg" style="width: 40vw"; <br>
-    <button onclick="location.href='/index'" style="padding: 1vw; margin: 3vw;">조금 아쉬운데요!<br>요.밈.알을 통해 진정한 밈잘알로 성장!</button>`;
+    <button onclick="location.href='/index'" style="padding: 1vw; margin: 3vw;">요.밈.알을 통해<br> 진정한 밈잘알로 성장!</button>`;
     quizDiv.innerHTML = txt;
   } else if (per >= 80) {
     txt += `<img src="https://djpms9a1go7nf.cloudfront.net/prod/uploads/10035305/images/164008155888957.jpg" style="width: 40vw"; <br>
