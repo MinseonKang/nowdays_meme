@@ -123,7 +123,6 @@ a {
   background-color: rgb(60, 60, 60);
 }
 
-
 .yours .memeCard,
 .yours .memeCard a {
   color: black;
@@ -239,18 +238,18 @@ a {
   }
 }
 .heart_sort {
-  position:absolute;
+  position: absolute;
   right: 10vw;
   display: flex;
   cursor: pointer;
 }
-.heart_sort:hover>.scrap {
+.heart_sort:hover > .scrap {
   width: 4.5rem;
   height: 2rem;
   /* width: (글자수*1.5rem) */
   transition: 0.5s linear;
 }
-.heart_sort:not(:hover)>.scrap {
+.heart_sort:not(:hover) > .scrap {
   transition: 0.5s linear;
 }
 .scrap {
@@ -259,9 +258,8 @@ a {
   width: 0;
   height: 0;
   font-size: 1.5rem;
-  color: #FF9999;
+  color: #ff9999;
 }
-
 
 /* popup function */
 #hide_back {
@@ -429,8 +427,9 @@ a {
   padding: 50px;
   margin: 10px;
   text-align: center;
-  color: white;
-  background-color: #066aff;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  /* border: 1px solid white; */
   border-radius: 10px;
 }
 
@@ -471,8 +470,9 @@ a {
 .result_link_btn {
   margin: 2vw;
   width: 18vw;
-  height: 3vw;
-  background-color: white;
+  height: 4vw;
+  background-color: #066aff;
+  color: white;
   border: none;
   border-radius: 10px;
   margin-left: 4vw;
@@ -484,15 +484,13 @@ a {
 }
 .material-symbols-outlined:not(.like) {
   transition: 1s;
-  font-variation-settings:
-  'FILL' 0
+  font-variation-settings: "FILL" 0;
 }
 .material-symbols-outlined.like {
   transition: 0.5s;
   font-size: 2rem;
   animation: heartBounce 0.5s linear;
-  font-variation-settings:
-  'FILL' 1
+  font-variation-settings: "FILL" 1;
 }
 @keyframes heartBounce {
   0% {
@@ -507,7 +505,7 @@ a {
     padding: 0.5rem;
     margin: -0.5rem;
     border-radius: 2.5rem;
-    border:2px solid rgba(255, 153, 153, 0.5);
+    border: 2px solid rgba(255, 153, 153, 0.5);
   }
   100% {
     font-size: 2rem;
@@ -517,7 +515,6 @@ a {
     border: 2px solid rgba(255, 153, 153, 0);
   }
 }
-
 
 .nav-link {
   font-size: 1vw;
@@ -545,6 +542,7 @@ a {
   width: 80px;
   height: 80px;
   pointer-events: none;
+  z-index: 5;
 }
 
 #clickEffect::after {
@@ -562,7 +560,7 @@ a {
 #clickEffect.effect::after {
   animation: clicked 0.5s cubic-bezier(0.29, 0, 0.15, 1);
 }
- 
+
 /* 다크 모드 기능 */
 body {
   background-color: #066aff;
@@ -599,14 +597,14 @@ body {
     z-index: 1;
   }
 
-  50%{
+  50% {
     font-size: 4vw;
     transform: rotate(0.5turn);
     visibility: hidden;
     z-index: 1;
   }
 
-  100%{
+  100% {
     transform: rotate(1turn);
     visibility: hidden;
     z-index: 1;
@@ -617,14 +615,14 @@ body {
   0% {
   }
 
-  50%{
+  50% {
     font-size: 4vw;
     transform: rotate(0.5turn);
     visibility: visible;
   }
 
-  100%{
+  100% {
     transform: rotate(1turn);
-    visibility : visible;
+    visibility: visible;
   }
 }
