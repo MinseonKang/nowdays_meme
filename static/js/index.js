@@ -588,7 +588,6 @@ const printChat = function () {
 };
 
 intervalID = setInterval(printChat, 2000);
-intervalID = setInterval(printChat, 500);
 
 // ================검색 기능================
 function searchFilter(data, name, imgSrc, content, link, search) {
