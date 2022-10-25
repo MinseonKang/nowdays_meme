@@ -1,15 +1,19 @@
-@font-face {
-  font-family: "HBIOS-SYS";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url("https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css");
 
 body {
-  font-family: "HBIOS-SYS" !important;
+  font-family: "Galmuri9" !important;
 }
 
+.header_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header_box > img {
+  width: 50vw;
+  height: 10vw;
+}
 .title {
   margin-top: 3vw;
   margin-bottom: 2vw;
@@ -35,8 +39,8 @@ p {
 #quiz_text {
   color: white;
   font-size: 2vw;
-  /* margin-top: 5vw; */
-  /* padding: 3vw; */
+  margin-top: 5vw;
+  padding: 1vw;
 }
 
 #question {
