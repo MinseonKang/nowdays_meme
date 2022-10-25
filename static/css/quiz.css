@@ -1,0 +1,100 @@
+@font-face {
+  font-family: "HBIOS-SYS";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "HBIOS-SYS" !important;
+}
+
+.title {
+  margin-top: 3vw;
+  margin-bottom: 2vw;
+}
+
+p {
+  text-align: center;
+}
+
+.container_box {
+  margin: 0 auto;
+  background-color: #066aff;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#quiz_text {
+  color: white;
+  font-size: 2vw;
+  /* margin-top: 5vw; */
+  /* padding: 3vw; */
+}
+
+#question {
+  padding: 1vw;
+  margin: 1vw;
+  width: 50vw;
+  height: 30vw;
+}
+
+/* #quiz {
+  width: 10px;
+  height: 10px;
+} */
+
+#progress {
+  font-size: 20px;
+  color: black;
+}
+
+.buttons {
+  padding: 1vw;
+  margin: 1vw;
+  border-radius: 20px;
+}
+
+.btn {
+  margin: 10px 40px 20px 0 !important;
+  padding: 10px !important;
+  width: 20vw !important;
+  font-size: 16px !important;
+  color: black !important;
+  background: white !important;
+  border: none !important;
+  border-radius: 15px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+.btn:nth-child(2n) {
+  margin-right: 0 !important;
+}
+
+.btn:hover {
+  background: #066aff !important;
+  color: #fff !important;
+  border: 1px solid white !important;
+}
+
+button {
+  width: 30vw;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  margin: 2vw;
+}
+
+button:hover {
+  background: #066aff !important;
+  color: #fff !important;
+  border: 1px solid white;
+}

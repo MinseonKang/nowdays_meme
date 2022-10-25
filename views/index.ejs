@@ -27,7 +27,22 @@
     <link rel="stylesheet" href="/static/css/footer.css" />
   </head>
   <body>
+    <!-- 마우스 클릭 이벤트 -->
+    <div id="clickEffect"></div>
+
     <button class="bg-change" onclick="bgChange()">배경 변경</button>
+
+
+    <nav class="nav">
+      <a class="nav-link" href="/">처음으로</a>
+      <a
+        class="nav-link"
+        href="#"
+        onclick="window.open('/today', '_blank', 'width=600 height=600')"
+        >오늘의 밈</a
+      >
+      <a class="nav-link" href="/quiz">2022 밈 테스트</a>
+    </nav>
 
 
     <!-- header include -->
@@ -80,7 +95,6 @@
     <!-- javascript 연결 -->
 
     <script src="static/js/index.js"></script>
-    <!-- <script src="static/js/search.js"></script> -->
     <script src="/static/js/footer.js"></script>
   </body>
 </html>
