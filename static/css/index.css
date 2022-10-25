@@ -519,8 +519,9 @@ a {
 }
 
 
-.nav {
+.nav-link {
   font-size: 1vw;
+  color: white !important;
 }
 
 /* 마우스 이벤트 */
@@ -560,7 +561,7 @@ a {
 
 #clickEffect.effect::after {
   animation: clicked 0.5s cubic-bezier(0.29, 0, 0.15, 1);
-
+}
  
 /* 다크 모드 기능 */
 body {
