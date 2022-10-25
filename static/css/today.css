@@ -122,6 +122,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 15%;
+  margin-right: 15%;
+  /* margin-bottom: 15%; */
 }
 
 /* 공유버튼  */
@@ -199,4 +202,11 @@ form.search_box {
 }
 .nav {
   font-size: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_box img {
+  width: 5vw;
 }
