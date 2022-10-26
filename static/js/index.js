@@ -21,11 +21,11 @@ const toggleClass = function (element, classStr) {
 const hasClass = function (element, className) {
   return element.classList.contains(className);
 };
-const clearClass = function(element) {
+const clearClass = function (element) {
   while (element.classList.length > 0) {
     removeClass(element, element.classList.item(0));
   }
-}
+};
 const print = function (content, dir = false) {
   dir ? console.dir(content) : console.log(content);
 };
@@ -208,76 +208,76 @@ const card2msg = function (card) {
 };
 // ================= element sort =========================
 
-const tag2value = function(element) {
+const tag2value = function (element) {
   //일부tag 값의 예외를 다루기위한 함수
   let answer;
-  if(element.tagName == "INPUT") {
-      if(element.type == "checkbox") {
-          answer = Number(element.checked);
-      } else {
-          answer = element.value;
-      }
+  if (element.tagName == "INPUT") {
+    if (element.type == "checkbox") {
+      answer = Number(element.checked);
+    } else {
+      answer = element.value;
+    }
   } else {
-      answer = element.innerText;
-  }    
+    answer = element.innerText;
+  }
   // return answer;
   // 문자열 판별을 위해 수정됨
-  if(Number(answer) == answer) {
-      return Number(answer);
+  if (Number(answer) == answer) {
+    return Number(answer);
   } else {
-      return answer;
+    return answer;
   }
-}
-const arrayInsert = function(array, index, value) {
+};
+const arrayInsert = function (array, index, value) {
   // 배열의 특정index에 샵입
   let answer = [];
-  for(let i=0; i<array.length; i++) {
-      if(i == index) {
-          answer.push(value);            
-      }
-      answer.push(array[i]);
+  for (let i = 0; i < array.length; i++) {
+    if (i == index) {
+      answer.push(value);
+    }
+    answer.push(array[i]);
   }
   return answer;
-}
-const sortElementBySelector = function(selector, oprandSelector) {
+};
+const sortElementBySelector = function (selector, oprandSelector) {
   // selector : 정렬대상의 공통 querySelector
   // oprandSelector : 정렬할 기준의 공통 querySelector
   let targetTags = document.querySelectorAll(selector);
-  let oprandTags = document.querySelectorAll(oprandSelector); 
+  let oprandTags = document.querySelectorAll(oprandSelector);
   let size = targetTags.length;
   let map = [0];
-  for(let index=1; index<size; index++) {
-      for(let mapIndex=0; mapIndex<=map.length; mapIndex++) {
-          if(mapIndex == map.length) {
-              map.push(index);
-              break;
-          }
-          if(tag2value(oprandTags[index]) < tag2value(oprandTags[map[mapIndex]])) {
-              map = arrayInsert(map, mapIndex, index);
-              break;
-          }
+  for (let index = 1; index < size; index++) {
+    for (let mapIndex = 0; mapIndex <= map.length; mapIndex++) {
+      if (mapIndex == map.length) {
+        map.push(index);
+        break;
       }
+      if (tag2value(oprandTags[index]) < tag2value(oprandTags[map[mapIndex]])) {
+        map = arrayInsert(map, mapIndex, index);
+        break;
+      }
+    }
   }
   let targetTagsHTML = [];
-  let targetTagsClassList =[];
-  for (let i=0; i<map.length; i++) {
-      targetTagsHTML.push(targetTags[i].innerHTML);
-      targetTagsClassList.push(Array.from(targetTags[i].classList));
+  let targetTagsClassList = [];
+  for (let i = 0; i < map.length; i++) {
+    targetTagsHTML.push(targetTags[i].innerHTML);
+    targetTagsClassList.push(Array.from(targetTags[i].classList));
   }
-  for (let i=0; i<map.length; i++) {
-      targetTags[i].innerHTML = targetTagsHTML[map[i]];
-      clearClass(targetTags[i]);
-      print(targetTags[i].classList);
-      for(let c of targetTagsClassList[map[i]]) {
-        addClass(targetTags[i], c);
-      }
+  for (let i = 0; i < map.length; i++) {
+    targetTags[i].innerHTML = targetTagsHTML[map[i]];
+    clearClass(targetTags[i]);
+    print(targetTags[i].classList);
+    for (let c of targetTagsClassList[map[i]]) {
+      addClass(targetTags[i], c);
+    }
   }
   print(map);
-}
+};
 const elementsReverseBySelector = function (selector) {
   let targetTags = document.querySelectorAll(selector);
   let reversedTagsHTML = [];
-  let reversedTagsClassList =[];
+  let reversedTagsClassList = [];
   for (let i = targetTags.length - 1; i >= 0; i--) {
     reversedTagsHTML.push(targetTags[i].innerHTML);
     reversedTagsClassList.push(Array.from(targetTags[i].classList));
@@ -285,7 +285,7 @@ const elementsReverseBySelector = function (selector) {
   for (let i = 0; i < targetTags.length; i++) {
     targetTags[i].innerHTML = reversedTagsHTML[i];
     clearClass(targetTags[i]);
-    for(let c of reversedTagsClassList[i]) {
+    for (let c of reversedTagsClassList[i]) {
       addClass(targetTags[i], c);
     }
   }
@@ -294,7 +294,7 @@ const elementsReverseBySelector = function (selector) {
 // let tags = makeChatBox(
 //   {
 //     name: "채팅함수 테스트로 index.js에서 만들어진 채팅으로 카드기능이 없어요",
-//     imgSrc: "data:image/jpeg;base64,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",
+// imgSrc: "data:image/jpeg;base64,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",
 //     // kakao서버 문제로 로드되지 않음
 //     // 'imgSrc': 'https://blog.kakaocdn.net/dn/cndgTT/btrpJSi0TEo/9SDMGVMGqXVJBEKQkFx97K/img.jpg',
 //     content:
@@ -561,6 +561,135 @@ let memeObjects = [
       "이제 ‘킹받네’라는 단어는 도저히 ‘열 받네’ ‘빡치네’ 정도의 단어로 대체할 수 없는 고유어(?)가 되었어요. 그도 그럴 것이 Z세대는 정말 다양한 상황에서 여러 용도로 ‘킹받네’라는 말을 사용하고 있거든요. 신기한 점은 이 신조어가 어떤 상황에선 부정적인 의미로도 쓰이지만, 어떤 상황에선 긍정적인 의미로도 쓰여요.",
     link: "",
   },
+  {
+    name: "이왜진",
+    imgSrc:
+      " https://i.ytimg.com/vi/S5qXJQS_0XU/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLBTJoK46sqpjIg8sOSBQ4Tx3DaHpA",
+    content:
+      "'이게 왜 진짜임?' 의 줄임말이에요. 누가 봐도 기존 상식을 한참 벗어나 있거나 가짜임이 확실한 정보의 오용, 주작, 혹은 이를 이용한 어그로일 것 같은 제목의 글이 막상 알고 보니 진짜이거나 실화인 경우에 '이왜진'이라고 해요.",
+    link: "#",
+  },
+  {
+    name: "큰거온다",
+    imgSrc: "https://i.ytimg.com/vi/5IIVvUkwubE/mqdefault.jpg",
+    content:
+      "주로 인터넷 방송에서 좋은 것이던, 나쁜 것이던간에 기대되는 무언가가 곧 시작되려고 할 때 시청자들이 '큰거온다'라고 채팅을 치는 식으로 사용됩니다. 시청자들의 기대심리가 포함된 말이죠!",
+    link: "#",
+  },
+  {
+    name: "미쳤습니까 휴먼",
+    imgSrc:
+      "https://i.ytimg.com/vi/8grIcN7_W0Y/hq720.jpg?sqp=-oaymwEjCOgCEMoBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAdF4XogyOqAvDWfKGNTUZj2gr3Ow",
+    content:
+      "이 드립은 빅데이터 드립의 파생형으로 굉장히 많은 밈이나 드립이 탄생되는 디시인사이드에서 나왔습니다. 2017년 겨울부터 널리 퍼진 '미쳤습니까, 휴먼?'은 일종의 낚시글입니다. 주로 사람들이 관심이 있을 것 같은 제목을 적어놓고 본문에는 위의 저 로봇 짤과 더불어 내용에 '미쳤습니까, 휴먼?', '인간은 이해할 수가 없어' 또는 '미쳤습니까, 인간?'을 적어 게시글을 보러 온 사람들을 놀리는 드립이죠!",
+    link: "#",
+  },
+  {
+    name: "나가지 말라면 나가지마",
+    imgSrc:
+      "https://img.insight.co.kr/static/2020/12/01/700/img_20201201103710_ph50r0i5.webp",
+    content:
+      "과거 이영지는 '나가지 말라면 나가지 마. 모이지 마. 밥먹지 마. 배달만 시켜. 떡볶이만 먹어'라는 영상을 공개한 바 있습니다. 이는 코로나19로 인해 사회적 거리두기 운동을 독려하는 취지 차 한 발언으로 많은 이들의 관심을 받았습니다. 이후 해당 영상이 '밈'처럼 퍼지며 소녀시대 태연, 엑소 카이, (여자)아이들 미연 등이 패러디 해 엄청난 파장을 불러모았어요!",
+    link: "https://www.youtube.com/watch?v=2h5BJnHntyY",
+  },
+  {
+    name: "OO에 미치는 이유",
+    imgSrc: "https://pbs.twimg.com/media/FECzEZyaQAM1_lV?format=jpg&name=small",
+    content:
+      "유튜버 승우 아빠가 동숲에 미치는 이유에 대해 말한 유튜브 영상에서부터 시작된 밈이에요. 구체적인 설명이 재미있어서 여러 패러디가 나오는데요! OO에 미치는 이유에 대해서 설명하고 싶을 때 인용하기 딱이죠!",
+    link: "https://www.youtube.com/watch?v=rtQj0dPmt_c",
+  },
+  {
+    name: "나는 하트를 하고 있는데 너는",
+    imgSrc: "https://pbs.twimg.com/media/FCRrQ_nVcAIgTLg?format=jpg&name=large",
+    content:
+      "오타쿠와 연예인으로 패러디가 많이 되는 사진이에요. 한 사람은 하트, 한 사람은 하트를 무시하고 엄지척을 하는 게 웃겨서 패러디가 자주 되는데요. 해당 사진은 2017년도 사진으로 세계적인 격투 게임 EVO에서 찍은 사진이라고 해요. 오른쪽은 세계에서 명성을 떨치는 프로게이머라고 하네요!",
+    link: "https://twitter.com/iamrosema/status/886650823677140992?s=20&t=PZ_vuZSDM7l0PoGX-1g7Yw",
+  },
+  {
+    name: "어제 내 세상이 무너졌어",
+    imgSrc:
+      "https://pbs.twimg.com/media/E8EfuR2VgAQ-MTy?format=jpg&name=medium",
+    content:
+      "새벽에 어느 한 익명 커뮤니티에서 올라온 글이에요. 새벽 감성이 충만한 글이 밈화가 되어버린 케이스... 제목의 '어제 내 세상이 무너졌어'를 서두로 패러디가 많이 되었죠!",
+    link: "#",
+  },
+  {
+    name: "더 나은세상으로, 맞지?",
+    imgSrc:
+      "https://pbs.twimg.com/media/E8EfuR2VgAQ-MTy?format=jpg&name=medium",
+    content:
+      "스타워즈 시리즈의 '클론의 역습'에서 시작된 밈이에요. 거친 생각과~ 불안한 눈빛과~에 어울리는 밈이죠? 외국에서 특히 많이 쓰이는 밈이에요.",
+    link: "#",
+  },
+  {
+    name: "남의 기쁨을 진심으로 축하해주지 못하고, 시샘하고, 시기하고, 질투하고, 미워하고, 분노하고, 분개하고, 절망하고, 아파하고...",
+    imgSrc: "https://pbs.twimg.com/media/E01dNKlUUAEm_f9?format=jpg&name=small",
+    content:
+      "트위터에서 시작된 밈이에요. 친구가 티켓팅에 성공하자 올라온 글인데요, 문장이 재미있어서 밈화가 되었어요. 밈잘알들을 시샘하고, 시기하고, 질투하고, 미워하고, 분노하고, 분개하고, 절망하고, 아파하고...",
+    link: "#",
+  },
+  {
+    name: "개같이 XX",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbUuDwM%2FbtruNXmbxQE%2FlBVKfwcJG7FsKUZpwqZcSk%2Fimg.png",
+    content:
+      "XX에 특정한 행위를 적어 해당 행위를 강조하는 식으로 사용합니다. 보통 개같이 멸망 또는 개같이 부활 이런 식으로 사용됩니다. 처음 이 말을 본 사람들도 직관적으로 이해를 할 수 있기 때문에 여러 커뮤니티에서 사용되면서 유행어로 자리잡았어요. 2018년 전후로 인터넷 커뮤니티 디시인사이드 토토 갤러리에서 자주 사용되었습니다. 주로 경기를 중계하면서 지고 있는 팀에 돈을 배팅한 사람들을 놀리기 위해 '(지고 있는 팀에게 배팅한 애들) 개같이 사망' 이런 식으로 사용하다가 나중에는 '사망'보다 더 강렬한 표현인 '멸망'이라는 단어를 사용하게 되었어요.",
+    link: "#",
+  },
+  {
+    name: "머선129",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcS36mo%2FbtrqdTh66Ng%2FT3Txkrl0vB9gXDRw2hZKF0%2Fimg.png",
+    content:
+      "'머선129'는 '무슨 일이야?'를 동남 방언으로 발음한 '머선 일이고?'에서 '일이고'를 비슷한 발음의 숫자 129로 바꾼 신조어예요. 강호동의 아이덴티티격인 특유의 억양을 반영한 것이죠!",
+    link: "#",
+  },
+  {
+    name: "포브스 선정이 딸이에요",
+    imgSrc:
+      "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FecKuMh%2Fbtrqmo2pDc7%2FliszMD41zhXuTVDHGTi7ek%2Fimg.jpg",
+    content:
+      "포브스가 순위 선정으로 유명한 데서 나온 '포브스 선정' 드립이에요. 앞에는 '포브스 선정', 뒤에는 '(어떤 주제)1위'라는 내용으로 이루어진 드립인데, 포브스에서 절대 선정하지 않을 법한 하찮은 주제와 대상이 들어가는 게 웃음 포인트죠! 선정이, 포브스 딸이에요...(주르륵)",
+    link: "#",
+  },
+  {
+    name: "라고 할 뻔",
+    imgSrc: "https://i.ytimg.com/vi/els6S5jq2ck/maxresdefault.jpg",
+    content:
+      "디시인사이드 메이플스토리 갤러리에서 유래가 된 드립으로, 하고 싶은 말을 다 해놓고서 갑자기 '라고 할뻔'이라며 2차로 상대를 약올리는 드립이에요. 자매품 드립으로 '라고 함, 라고 말할뻔', '라고 하기 전에', '라고 하고 싶지만'등이 있어요!",
+    link: "#",
+  },
+  {
+    name: "깻잎 논쟁",
+    imgSrc: "https://hongwkim.files.wordpress.com/2022/03/eab9bbec9e8e.jpg",
+    content:
+      "2021년 말에 이른바 깻잎 논쟁이 트위터 및 여초 커뮤니티에서 유행하기 시작했어요. 그 내용은 '부부와 그 부부가 다 아는 친구인 여자가 같이 식사를 하는데, 여자가 여러 겹의 깻잎에서 한 장만 떼지 못하고 낑낑대는 걸 도와주려고 깻잎을 잡아주었다. 이게 아내가 화낼 일이냐 아니냐'는 것이에요. 이 논쟁의 원조는 노사연-이무송 부부의 실제 사건에서 나온 이야기로 보입니다. 두 사람이 여자 후배와 함께 식사하던 중, 여후배가 깻잎 절임을 낱장으로 떼어내지 못하는 것을 본 이무송이 아래 깻잎을 눌러주었기 때문에 노사연이 화냈다고... 즉 과거 예능에서 꺼냈던 발언이 뒤늦게 유행처럼 번지고 있는 것이죠!",
+    link: "https://www.youtube.com/watch?v=bkxeoZ_a4uA",
+  },
+  {
+    name: "점메추, 저메추",
+    imgSrc:
+      "https://blog.kakaocdn.net/dn/bfMXyW/btrep6FvfVp/rHW5vpC2WFbqJOMhTqxIr0/img.jpg",
+    content:
+      "점심 메뉴 추천, 저녁 메뉴 추천의 줄임말이에요! 일상에서도 많이 쓰이니 말이니 꼭 알아둬야겠죠?",
+    link: "#",
+  },
+  {
+    name: "한심좌",
+    imgSrc:
+      "https://media.tenor.com/XHlB7aJ7fMAAAAAC/%ED%95%9C%EC%8B%AC%EC%A2%8C-%ED%95%9C%EC%8B%AC.gif",
+    content:
+      "1억대의 틱톡 팔로우를 가지고 있으며, 6133만 인스타그램 팔로워를 보유중인 이탈리아의 틱톡커예요. 주로 올리는 영상은 틱톡에 자주 올라오는 영상의 종류인 일을 일부러 이상하게 처리하는 영상을 한심하다는 표정과 함께 비꼬듯 바로잡는 영상인데요. 잘못된 일을 바로잡은 후엔 이걸 좀 보라는 듯한 메시지의 손짓을 하며 게임 영상 등에선 헤드셋을 내려놓거나 다른 배역을 섭외하는 등 틱톡에 뻘짓이 올라올수록 영상이 발전해나가고 있습니다. 특유의 한심하다는 표정과 특유의 손짓이 워낙 적절하여 큰 인기를 끌어, 틱톡의 다른 영상에도 그의 영상을 편집해 붙이거나 비슷한 컨셉으로 패러디하는 인물도 많아요!",
+    link: "https://www.tiktok.com/@khaby.lame",
+  },
+  {
+    name: "제로투",
+    imgSrc: "https://thumbs.gfycat.com/RelievedHeavyKiwi-size_restricted.gif",
+    content:
+      "제로투 댄스는 달링 인 더 프랑키스의 여주인공인 제로투 캐릭터가 일본 애니메이션 ME! ME! ME! 오프닝에서 춘 춤입니다. 거기다 중국 틱톡에서 한 유저가 베트남 노래를 BGM으로 깔고 제로투 댄스를 업로드하면서 자연스럽게 인터넷 밈이 되어 퍼져나가게 되었습니다. 서로 연관성이 없는 노래와 춤, 캐릭터인 제로투가 인터넷 커뮤니티와 SNS를 거치면서 합쳐져 인기를 끌었어요!",
+    link: "https://www.youtube.com/watch?v=_AL4IwHuHlY",
+  },
 ];
 // =====================================================
 // 하나씩 파란색, 회색 번갈아가며 메세지를 .chat에서 출력
@@ -589,7 +718,7 @@ const printChat = function () {
 
 intervalID = setInterval(printChat, 2000);
 
-chat.addEventListener("dblclick", function() {
+chat.addEventListener("dblclick", function () {
   clearInterval(intervalID);
   intervalID = setInterval(printChat, 200);
 });
@@ -647,45 +776,45 @@ $(document).ready(function () {
 });
 // ===========heart로 정렬 ====================
 let heartSort = selector(".heart_sort");
-heartSort.addEventListener('click', function() {
+heartSort.addEventListener("click", function () {
   sortElementBySelector(".chat>.messages", ".chat>.messages .is_like");
   elementsReverseBySelector(".chat>.messages");
   chat.scrollTo(0, 0);
   let chats = selectorAll(".chat .chat_animation");
   let cards = selectorAll(".chat>.messages:not(.chat_animation)");
   let hearts = selectorAll(".heart");
-  for(let chat of chats) {
-    selector("img", chat).addEventListener("click", function() {
+  for (let chat of chats) {
+    selector("img", chat).addEventListener("click", function () {
       msg2card(chat);
     });
   }
-  for(let card of cards) {
-    card.addEventListener("click", function() {
+  for (let card of cards) {
+    card.addEventListener("click", function () {
       card2msg(card);
     });
   }
-  for(let heart of hearts) {
-    heart.addEventListener("click", function() {
+  for (let heart of hearts) {
+    heart.addEventListener("click", function () {
       heartToggle(heart);
     });
   }
 });
 
 // ============배경화면 바꾸는 기능 ============
-function bgChange() {
-  let bgUrl = [
-    "/static/image/indexbg1.jpg",
-    "/static/image/indexbg2.jpg",
-    "/static/image/indexbg3.jpg",
-    "/static/image/indexbg4.jpg",
-  ];
+// function bgChange() {
+//   let bgUrl = [
+//     "/static/image/indexbg1.jpg",
+//     "/static/image/indexbg2.jpg",
+//     "/static/image/indexbg3.jpg",
+//     "/static/image/indexbg4.jpg",
+//   ];
 
-  var num = Math.floor(Math.random() * bgUrl.length);
-  console.log(`'url("${bgUrl[num]}")'`);
-  // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
-  document.body.style.background = `url("${bgUrl[num]}")`;
-  document.body.style.backgroundSize = "cover";
-}
+//   var num = Math.floor(Math.random() * bgUrl.length);
+//   console.log(`'url("${bgUrl[num]}")'`);
+//   // document.body.style.backgroundImage = `url("${bgUrl[num]}")`
+//   document.body.style.background = `url("${bgUrl[num]}")`;
+//   document.body.style.backgroundSize = "cover";
+// }
 
 let inputName = selector(".input-name");
 let inputContent = selector(".input-content");
@@ -693,19 +822,18 @@ let inputLink = selector(".input-link");
 let inputImg = selector("#choose-file");
 let postButton = selector(".post-button");
 postButton.addEventListener("click", function () {
-
   // 만약 입력이 비었다면 작동하지 않음
   if (Boolean(!inputName.value.trim()) || !Boolean(inputContent.value.trim())) {
     return 1;
   }
   //
   let newMeme = {
-    name : inputName.value,
-    imgSrc : selector('#preview').src,
-    content : inputContent.value,
-    link : inputLink.value,
-    memeIndex : memeObjects.length,
-    'like': 0
+    name: inputName.value,
+    imgSrc: selector("#preview").src,
+    content: inputContent.value,
+    link: inputLink.value,
+    memeIndex: memeObjects.length,
+    like: 0,
   };
   memeObjects.push(newMeme);
   // 입력창 초기화
@@ -745,34 +873,34 @@ selector(".scroll_text").addEventListener("click", function (event) {
 });
 
 // 다크모드 기능
-let Mode = document.querySelector('body')
-let ModeChat = document.querySelector('.chat')
-let mg = document.querySelector('.message.last')
+let Mode = document.querySelector("body");
+let ModeChat = document.querySelector(".chat");
+let mg = document.querySelector(".message.last");
 
-let darkSp = document.querySelector('.dark')
-let lightSp = document.querySelector('.light')
+let darkSp = document.querySelector(".dark");
+let lightSp = document.querySelector(".light");
 
-darkSp.addEventListener('click', function () {
-  Mode.classList.toggle('dark-mode-body');
-  ModeChat.classList.toggle('dark-mode-chat');
+darkSp.addEventListener("click", function () {
+  Mode.classList.toggle("dark-mode-body");
+  ModeChat.classList.toggle("dark-mode-chat");
 
-  document.querySelector('.dark').classList.remove('small-around');
-  document.querySelector('.dark').classList.toggle('big-around');
+  document.querySelector(".dark").classList.remove("small-around");
+  document.querySelector(".dark").classList.toggle("big-around");
 
-  document.querySelector('.light').classList.remove('big-around');
-  document.querySelector('.light').classList.toggle('small-around');
-})
+  document.querySelector(".light").classList.remove("big-around");
+  document.querySelector(".light").classList.toggle("small-around");
+});
 
-lightSp.addEventListener('click', function () {
-  Mode.classList.toggle('dark-mode-body');
-  ModeChat.classList.toggle('dark-mode-chat');
+lightSp.addEventListener("click", function () {
+  Mode.classList.toggle("dark-mode-body");
+  ModeChat.classList.toggle("dark-mode-chat");
 
-  document.querySelector('.dark').classList.toggle('big-around');
-  document.querySelector('.dark').classList.add('small-around');
+  document.querySelector(".dark").classList.toggle("big-around");
+  document.querySelector(".dark").classList.add("small-around");
 
-  document.querySelector('.light').classList.toggle('small-around');
-  document.querySelector('.light').classList.add('big-around');
-})
+  document.querySelector(".light").classList.toggle("small-around");
+  document.querySelector(".light").classList.add("big-around");
+});
 
 // 마우스 클릭 이벤트
 let removeTimeOut;

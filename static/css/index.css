@@ -15,6 +15,12 @@ body {
   margin: 0;
   height: inherit;
   width: 100vw;
+  /* 별 */
+  /* background-image: url("https://xetown.com/files/attach/images/668344/626/038/c93876193c8802d9b97331e2c5025369.gif"); */
+  /* 하트비 */
+  background-image: url("https://mblogthumb-phinf.pstatic.net/20160517_236/jango53_1463465710397hR6e4_GIF/jango_p34.gif?type=w2");
+  /* 물방울 */
+  /* background-image: url("https://mblogthumb-phinf.pstatic.net/20160517_222/jango53_1463465704199cW6Rr_GIF/jango_p7.gif?type=w2"); */
 }
 
 .bg-change {
