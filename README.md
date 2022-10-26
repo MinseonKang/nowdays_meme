@@ -6,7 +6,7 @@
 <h4>발표용 ppt: https://www.miricanvas.com/v/11hxqu2</h4>
 
 <h2 align="center">제작기간 및 팀원 소개</h2>
-<p align="center">2022. 10. 11 ~2022. 10.26</p>
+<p align="center">2022. 10. 11 ~ 2022. 10.26</p>
 <p> 
     <code>강민선</code> : 시작 페이지, 퀴즈 페이지, 검색 기능 <br />
     <code>천현승</code> : 메인 페이지, 채팅 기능, 좋아요 기능 <br />
@@ -14,8 +14,7 @@
     <code>최우리</code> : 오늘의 밈 페이지 <br />
 </p>
 
-
-<h2 align="center">사용 기술</h2>
+<h2 align="center">기술 스택</h2>
 
 <h4>- 언어</h4>
 <p float="left">
@@ -24,20 +23,21 @@
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
 </p>
 
-<h4>-프레임워크 / 플랫폼 / 라이브러리</h4>
+<h4>- 프레임워크 / 플랫폼 / 라이브러리</h4>
 <p float="left">
 <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
 <img src="https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white">
 <img src="https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white">
 </p>
 
-<h4>-서버<h4>
+<h4>- 서버<h4>
 <img src="https://img.shields.io/badge/NAVER-03C75A?style=for-the-badge&logo=NAVER&logoColor=FFFFFF">
+<img src="https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=Apache&logoColor=white">
 
-<h4>-에디터</h4>
+<h4>- 에디터</h4>
 <img src="https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white">
 
-<h4>-협업툴</h4>
+<h4>- 협업툴</h4>
 <p float="left">
 <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
@@ -48,6 +48,5 @@
 <h2>트러블 슈팅</h2>
 
 <li>Git merge 이슈</li>
-<ul>Github의 pull request로 충돌 해결!</ul>
+<ol>Github의 pull request로 충돌 해결!</ol>
 <li></li>
-
