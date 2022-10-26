@@ -363,7 +363,8 @@ let memeObjects = [
   },
   {
     name: "아 진짜요?",
-    imgSrc: "https://img.koreapas.com/i/f1a06a2/resize",
+    imgSrc:
+      "https://w.namu.la/s/efde9efd15ac5e16b0839e1cd53abf16fe9cdb211f956d23d173e0292a1532a73f0a85b04d758cbf380b38fee0f1b1f56e77d99c591ceed7bc560c9a78069581bccf6ef3da8fe8f07c549604bd7eba1f13028d69fa49520ef9eab919dcc336b5",
     content:
       "한 아이돌 팬이 엄청난 거금을 들여 최애 팬 사인회에 갔다가 탈덕하게 된 계기에 대해 쓴 글이 화제가 되었어요. 이에 무엇인가에 관심이 없다는 것을 표현할 때 사용해요.",
     link: "https://www.youtube.com/watch?v=byHbe9g1tLE&feature=youtu.be",
