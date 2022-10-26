@@ -2,8 +2,8 @@
 요즘 밈들을 한눈에 볼 수 있는 웹페이지
 <br>밈을 좋아하고, 동시에 요즘 유행하는 밈이 무엇인지 알고 싶은 분들을 위해 만들었습니다!
 
-<h4>오늘의 밈 웹사이트: </h4>
-<h4>발표용 ppt: https://www.miricanvas.com/v/11hxqu2</h4>
+<h4>오늘의 밈 웹사이트: http://115.85.181.225:8000/</h4>
+<h4>프로젝트 소개 ppt: https://www.miricanvas.com/v/11hxqu2</h4>
 
 <h2 align="center">제작기간 및 팀원 소개</h2>
 <p align="center">2022. 10. 11 ~ 2022. 10.26</p>
