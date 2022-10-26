@@ -30,8 +30,6 @@ footer {
 }
 
 .input-div1 {
-  border: 2px solid lightgray;
-  border-radius: 18px;
   margin: 3px;
   display: flex;
   justify-content: space-between;
@@ -67,7 +65,7 @@ footer {
 
 .post-button {
   border: none;
-  background-color: lightgray;
+  background-color: transparent;
 }
 
 .bi-arrow-up-circle-fill {
@@ -99,9 +97,13 @@ footer {
   align-items: center;
 }
 
+.input-box2 p {
+  padding: 15px;
+}
+
 .meme-content input {
   border: 0;
-  width: 65vw;
+  width: 60vw;
   border-radius: 18px;
   margin: 2px;
   padding-left: 13px;
@@ -129,7 +131,7 @@ footer {
 }
 
 footer i {
-  font-size: 30px;
+  font-size:2rem
 }
 
 .slideout {
