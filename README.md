@@ -2,7 +2,7 @@
 
 * [요.밈.알 바로가기](http://115.85.181.225:8000/)
 
-* [요.밈.알 소개](https://drive.google.com/file/d/1eBD5S0ZDyI1NcIE1xzrV4smmx8mSKo1i/view?usp=sharing)
+* [요.밈.알 프로젝트 소개](https://drive.google.com/file/d/1eBD5S0ZDyI1NcIE1xzrV4smmx8mSKo1i/view?usp=sharing)
 
 요즘 밈들을 한눈에 볼 수 있는 웹페이지
 <br>밈을 좋아하고, 동시에 요즘 유행하는 밈이 무엇인지 알고 싶은 분들을 위해 개발했습니다!
@@ -17,13 +17,13 @@
 </p>
 
 <h2 align="center">🖤프로젝트 소개🖤</h2>
-<p>1. 시작 페이지</p>
+<p>1. 시작 페이지 : 킹받는 어쩔 티비 폭격!</p>
 <img src="https://user-images.githubusercontent.com/102302705/198199482-648d8bc2-b3f2-4c9d-b385-7c322502bd3b.gif">
-<p>2. 메인 페이지</p>
+<p>2. 메인 페이지 : 밈들을 채팅 형식으로 한눈에 볼 수 있어요!</p>
 <img src="https://user-images.githubusercontent.com/102302705/198203846-a5f055eb-764d-4fa6-9fec-7ba9979d1743.gif">
-<p>3. 오늘의 밈</p>
+<p>3. 오늘의 밈 : 오늘의 밈 랜덤 이미지를 뽑고 나서 SNS에 공유해 볼까요?</p>
 <img src="https://user-images.githubusercontent.com/102302705/198199476-a0a6c76f-df25-40a9-856c-b5b4f6526686.gif">
-<p>4. 퀴즈</p>
+<p>4. 2022 밈 퀴즈 : 당신의 밈력을 시험해 보세요!</p>
 <img src="https://user-images.githubusercontent.com/102302705/198200368-27c56571-1cd3-4caf-8063-5b7f02ff95e6.gif">
 
 <h2 align="center">🎁설치 방법🎁</h2>
@@ -33,7 +33,7 @@ git clone https://github.com/nowdays-meme/nowdays_meme.git
 npm install        
 node app.js    
 ```
-<br>- localhost:8000 접속
+- localhost:8000 접속
 
 <h2 align="center">🔍기술 스택🔍</h2>
 <h4>- Language</h4>
@@ -73,7 +73,7 @@ node app.js
 <br>
 <details>
 <summary>프로젝트 회고</summary>
-👍 잘한 점
+👍 <strong>잘한 점</strong>
 <br>
 <li> header, 검색, 채팅 기능, footer 등 기능을 컴포넌트로 나누어 만들어 유지 보수 용이 </li>
 <br>
@@ -89,11 +89,12 @@ node app.js
 <br>
 <li> setTimeout함수를 이용한 랜덤이미지 기능 게임 기능 구현 </li>
 <br>
-👎아쉬운 점
+👎<strong>아쉬운 점</strong>
 <br>
 <li> DB 사용을 못하는 환경이라 추가 기능 구현에 한계 </li>
 <li>bootstrap사용에 익숙하지 않아서 개발 중에 클래스가 겹쳐서 딜레이가 생겼던 문제 </li>
 </details>
 
-<h2>🥺최우수상!🥺</h2>
+🥺최우수상!🥺
+<br>
 <img src="https://user-images.githubusercontent.com/102302705/198202361-b3c6141f-add4-4f0d-a4f0-0d3a50872326.png">
