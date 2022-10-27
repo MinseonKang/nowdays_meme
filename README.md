@@ -1,6 +1,9 @@
 <h1 align="center">👾요.밈.알 : 요즘 밈 알려드립니다!👾</h1>
-<h5>요즘 밈 알려드립니다 웹사이트: http://115.85.181.225:8000/</h5>
-<h5>프로젝트 소개: https://drive.google.com/file/d/1eBD5S0ZDyI1NcIE1xzrV4smmx8mSKo1i/view?usp=sharing</h5>
+
+* [요.밈.알 바로가기](http://115.85.181.225:8000/)
+
+* [요.밈.알 소개](https://drive.google.com/file/d/1eBD5S0ZDyI1NcIE1xzrV4smmx8mSKo1i/view?usp=sharing)
+
 요즘 밈들을 한눈에 볼 수 있는 웹페이지
 <br>밈을 좋아하고, 동시에 요즘 유행하는 밈이 무엇인지 알고 싶은 분들을 위해 개발했습니다!
 
@@ -30,8 +33,6 @@ git clone https://github.com/nowdays-meme/nowdays_meme.git
 npm install        
 node app.js    
 ```
-
-
 <br>- localhost:8000 접속
 
 <h2 align="center">🔍기술 스택🔍</h2>
@@ -64,7 +65,7 @@ node app.js
 <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
 </p>
 
-<h2>📌트러블 슈팅📌</h2>
+<h2 align="center">📌트러블 슈팅📌</h2>
 <ol><strong>Git merge 관련 이슈</strong></ol>
 <li>local과 remote를 혼동해 프로젝트 파일이 뒤섞였던 이슈. 작업 파일만 따로 옮겨서 문제 해결!</li>
 <li>코드 수정 도중 문제가 발생해 github에서 예전 버전 브랜치를 가져와 문제 해결!</li>
@@ -74,24 +75,25 @@ node app.js
 <summary>프로젝트 회고</summary>
 👍 잘한 점
 <br>
-- header, 검색, 채팅 기능, footer 등 기능을 컴포넌트로 나누어 만들어 유지 보수 용이
+<li> header, 검색, 채팅 기능, footer 등 기능을 컴포넌트로 나누어 만들어 유지 보수 용이 </li>
 <br>
-- 기본적이고 자주 사용되는 기능은 함수로 지정해 javascript 간소화
+<li> 기본적이고 자주 사용되는 기능은 함수로 지정해 javascript 간소화 </li>
 <br>
-- setInterval함수를 이용해 실시간 채팅과 같은 애니메이션 효과 구현
+<li> setInterval함수를 이용해 실시간 채팅과 같은 애니메이션 효과 구현 </li>
 <br>
-- 실제 채팅과 같은 애니메이션 효과가 추가 된 채팅 입력 박스 기능 구현
+<li> 실제 채팅과 같은 애니메이션 효과가 추가 된 채팅 입력 박스 기능 구현 </li>
 <br>
-- map, fliter, includes 메서드를 사용한 배열 객체 검색 기능 구현
+<li> map, fliter, includes 메서드를 사용한 배열 객체 검색 기능 구현 </li>
 <br>
-- 다크모드, 좋아요 하트 누르기 기능, 좋아요 누른 항목 보여주기 기능 구현
+<li> 다크모드, 좋아요 하트 누르기 기능, 좋아요 누른 항목 보여주기 기능 구현 </li>
 <br>
-- setTimeout함수를 이용한 랜덤이미지 기능 게임 기능 구현
+<li> setTimeout함수를 이용한 랜덤이미지 기능 게임 기능 구현 </li>
 <br>
 👎아쉬운 점
 <br>
-- DB 사용을 못하는 환경이라 추가 기능 구현에 한계
+<li> DB 사용을 못하는 환경이라 추가 기능 구현에 한계 </li>
+<li>bootstrap사용에 익숙하지 않아서 개발 중에 클래스가 겹쳐서 딜레이가 생겼던 문제 </li>
 </details>
 
-<h2>수상 : 최우수상</h2>
+<h2>🥺최우수상!🥺</h2>
 <img src="https://user-images.githubusercontent.com/102302705/198202361-b3c6141f-add4-4f0d-a4f0-0d3a50872326.png">
