@@ -4,8 +4,8 @@
 html {
   scroll-behavior: smooth;
 }
-
 body {
+  background-color: #066aff;
   font-family: "Galmuri9" !important; /* 폰트: 갈무리9 */
   display: flex;
   flex-direction: column;
@@ -21,18 +21,11 @@ body {
   /* 물방울 */
   /* background-image: url("https://mblogthumb-phinf.pstatic.net/20160517_222/jango53_1463465704199cW6Rr_GIF/jango_p7.gif?type=w2"); */
 }
-
-.bg-change {
-  font-size: 0.8em;
-  position: fixed;
-  margin: 8px;
-  top: 0;
-  right: 0px;
-}
-
 a {
   text-decoration: none;
 }
+
+/* imessage 관련 css */
 .chat_container {
   display: flex;
   flex-direction: column;
@@ -59,20 +52,17 @@ a {
   background-color: lightgray;
   border-radius: 4px;
 }
-
 .messages {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
-
 .chat_animation.mine {
   animation: chatAnimationMine 1s;
 }
 .chat_animation.yours {
   animation: chatAnimationYours 1s;
 }
-
 .message {
   border-radius: 20px;
   padding: 8px 15px;
@@ -89,16 +79,13 @@ a {
   background-color: inherit;
   padding: 0;
 }
-
 .yours {
   align-items: flex-start;
 }
-
 .yours .message {
   background-color: #eee;
   position: relative;
 }
-
 .yours .message.last:before {
   content: "";
   position: absolute;
@@ -110,7 +97,6 @@ a {
   background: #eee;
   border-bottom-right-radius: 15px;
 }
-
 .yours .message.last:after {
   content: "";
   position: absolute;
@@ -122,33 +108,15 @@ a {
   border-bottom-right-radius: 10px;
   background-color: white;
 }
-
-.dark-mode-body .mine .message.last:after,
-.dark-mode-body .yours .message.last:after {
-  background-color: rgb(60, 60, 60);
-}
-
-.yours .memeCard,
-.yours .memeCard a {
-  color: black;
-  text-decoration: none;
-}
-
 .mine {
   align-items: flex-end;
 }
-
-/* 에니메이션을 위해 그라데이션을 평균값으로 교체 */
 .mine .message {
   color: white;
-  /* margin-left: 25%; */
-  /* background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%); */
   background-color: #066aff;
   background-attachment: fixed;
   position: relative;
-  /* margin-right: 8px; */
 }
-
 .mine .message.last:before {
   content: "";
   position: absolute;
@@ -162,7 +130,6 @@ a {
   background-attachment: fixed;
   border-bottom-left-radius: 15px;
 }
-
 .mine .message.last:after {
   content: "";
   position: absolute;
@@ -174,41 +141,15 @@ a {
   background: var(--mgAfterBackColor, white);
   border-bottom-left-radius: 10px;
 }
-
 .chat_img {
   width: 40vw;
   border-radius: 10px;
   margin: 0 8px;
   cursor: pointer;
 }
-
 .chat_img :not(.last) {
   margin-bottom: -25px;
 }
-
-.scroll_text {
-  position: fixed;
-  color: lightgray;
-  bottom: 100px;
-  right: 10vw;
-  cursor: pointer;
-  user-select: none;
-}
-.scroll_text i {
-  color: inherit;
-}
-.heart_container {
-  display: flex;
-  margin: 0 8px;
-  align-items: center;
-}
-.heart {
-  margin: 4px;
-  user-select: none;
-  cursor: pointer;
-  z-index: 2;
-}
-
 @media screen and (min-width: 1000px) {
   .chat_img {
     width: 400px;
@@ -220,8 +161,6 @@ a {
     max-width: 400px;
   }
 }
-
-/* 채팅 생성시 에니메이션에 .chat의 모서리 에서 점점 나오는 에니메이션을 추가 */
 @keyframes chatAnimationMine {
   from {
     opacity: 0;
@@ -241,6 +180,32 @@ a {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+/* 위로가기 버튼 */
+.scroll_text {
+  position: fixed;
+  color: lightgray;
+  bottom: 100px;
+  right: 10vw;
+  cursor: pointer;
+  user-select: none;
+}
+.scroll_text i {
+  color: inherit;
+}
+
+/* 좋아요 버튼 관련 */
+.heart_container {
+  display: flex;
+  margin: 0 8px;
+  align-items: center;
+}
+.heart {
+  margin: 4px;
+  user-select: none;
+  cursor: pointer;
+  z-index: 2;
 }
 .heart_sort {
   position: absolute;
@@ -265,224 +230,6 @@ a {
   font-size: 1.5rem;
   color: #ff9999;
 }
-
-/* popup function */
-#hide_back {
-  position: absolute;
-  background-color: lightgray;
-  opacity: 0.5;
-  z-index: 1;
-  /* height: inherit; */
-}
-#hide_container {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  height: 100%;
-}
-.popup_animation {
-  width: 100%;
-  height: 100vh;
-  transition: 0.5s;
-}
-
-/* .popup_name 삭제 */
-.hide {
-  z-index: -1 !important;
-  width: 0;
-  height: 0;
-  opacity: 0;
-  /* opacity 카드<->채팅 에서 변경됨 */
-}
-.close_btn {
-  width: 4rem;
-  height: 2rem;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  margin-top: 10px;
-}
-/* 디자인에 관한 논의가 필요함 */
-.close_btn:hover {
-  background-color: black;
-  color: white;
-  transition: 1s;
-}
-@media screen and (min-width: 1000px) {
-  /* #popup {
-      width: 600px;
-    }   */
-  .close_btn {
-    left: 268px;
-  }
-}
-
-/* card function */
-.memeCard {
-  display: flex;
-  flex-direction: column;
-  color: white;
-  border: 1px solid inherit;
-  background-color: #066aff;
-  width: 40vw;
-  height: 100%;
-  padding: 16px;
-  border-radius: 20px;
-  animation: card_animation 1s;
-  overflow: hidden;
-}
-
-.card_message {
-  padding: 0;
-}
-
-.card_img {
-  width: 40vw;
-  border-radius: 20px 20px 0 0;
-}
-
-.card_name {
-  text-align: center;
-  margin: 2rem 1rem;
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-.mine .card_name a {
-  text-decoration: none;
-  color: white;
-  cursor: pointer;
-}
-.card_to_string {
-  overflow: hidden;
-}
-.card_text {
-  margin: 0 2rem 2rem 2rem;
-  animation: card_text_animation 1s;
-}
-
-@media screen and (min-width: 1000px) and (max-width: 1200px) {
-  .memeCard {
-    width: 400px;
-    animation: card_animation1000 1s;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .chat > .messages.mine:not(.chat_animation) {
-    animation: chatAnimationMine 1s;
-  }
-  .chat > .messages.yours:not(.chat_animation) {
-    animation: chatAnimationYours 1s;
-  }
-  .memeCard {
-    /* animation: none; */
-    flex-direction: row;
-    align-items: center;
-    min-width: 700px;
-    /* width: 700px; */
-  }
-  .memeCard img {
-    width: 100%;
-    min-width: 400px;
-    border-radius: 20px;
-    margin: 20px 0 20px 20px;
-    z-index: 2;
-  }
-  .card_text {
-    animation: none;
-  }
-}
-
-@keyframes card_animation {
-  from {
-    width: 0;
-    height: 0;
-  }
-  to {
-    width: 40vw;
-    height: 100%;
-  }
-}
-@keyframes card_animation1000 {
-  from {
-    width: 0;
-    height: 0;
-  }
-  to {
-    width: 400px;
-    height: 100%;
-  }
-}
-@keyframes card_text_animation {
-  from {
-    width: 300%;
-    height: 0;
-  }
-  to {
-    width: auto;
-    height: auto;
-  }
-}
-
-/* 이 밑으로는 search css */
-.panel {
-  display: none;
-  width: 80vw;
-  padding: 50px;
-  margin: 10px;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  background-color: white;
-  /* border: 1px solid white; */
-  border-radius: 10px;
-}
-
-.search_result {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1.5fr 2fr;
-  grid-template-areas:
-    "img name"
-    "img content"
-    "img content"
-    "img content"
-    "img link";
-}
-
-#result_img {
-  grid-area: img;
-  width: 100%;
-}
-
-#result_name {
-  grid-area: name;
-  font-size: 3vw;
-  margin-left: 4vw;
-}
-
-#result_content {
-  grid-area: content;
-  text-align: left;
-  margin-bottom: 2vw;
-  margin-left: 4vw;
-}
-
-#result_link {
-  grid-area: link;
-}
-
-.result_link_btn {
-  margin: 2vw;
-  width: 18vw;
-  height: 4vw;
-  background-color: #066aff;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  margin-left: 4vw;
-}
-
 .material-symbols-outlined {
   color: #ff9999;
   font-variation-settings: "wght" 400, "GRAD" 0, "opsz" 48;
@@ -521,6 +268,229 @@ a {
   }
 }
 
+/* 다크모드 사용시 색상변경 */
+.dark-mode-body .mine .message.last:after,
+.dark-mode-body .yours .message.last:after {
+  background-color: rgb(60, 60, 60);
+}
+.yours .memeCard,
+.yours .memeCard a {
+  color: black;
+  text-decoration: none;
+}
+.dark-mode-body {
+  color: white;
+  background-color: #282828;
+}
+.dark-mode-chat {
+  background: rgb(60, 60, 60) !important;
+  color: black;
+}
+.light,
+.dark {
+  font-size: 3.5vw;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
+.big-around {
+  animation: big-around 1s linear forwards;
+}
+.small-around {
+  animation: small-around 1s linear forwards;
+}
+@keyframes big-around {
+  0% {
+    z-index: 1;
+  }
+  50% {
+    font-size: 4vw;
+    transform: rotate(0.5turn);
+    visibility: hidden;
+    z-index: 1;
+  }
+  100% {
+    transform: rotate(1turn);
+    visibility: hidden;
+    z-index: 1;
+  }
+}
+@keyframes small-around {
+  0% {
+  }
+  50% {
+    font-size: 4vw;
+    transform: rotate(0.5turn);
+    visibility: visible;
+  }
+  100% {
+    transform: rotate(1turn);
+    visibility: visible;
+  }
+}
+
+/* 일부데이터를 태그 내부에 숨길때 사용하는 클레스 */
+.hide {
+  z-index: -1 !important;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+/* card function */
+.memeCard {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border: 1px solid inherit;
+  background-color: #066aff;
+  width: 40vw;
+  height: 100%;
+  padding: 16px;
+  border-radius: 20px;
+  animation: card_animation 1s;
+  overflow: hidden;
+}
+.card_message {
+  padding: 0;
+}
+.card_img {
+  width: 40vw;
+  border-radius: 20px 20px 0 0;
+}
+.card_name {
+  text-align: center;
+  margin: 2rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.mine .card_name a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+.card_to_string {
+  overflow: hidden;
+}
+.card_text {
+  margin: 0 2rem 2rem 2rem;
+  animation: card_text_animation 1s;
+}
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+  .memeCard {
+    width: 400px;
+    animation: card_animation1000 1s;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .chat > .messages.mine:not(.chat_animation) {
+    animation: chatAnimationMine 1s;
+  }
+  .chat > .messages.yours:not(.chat_animation) {
+    animation: chatAnimationYours 1s;
+  }
+  .memeCard {
+    /* animation: none; */
+    flex-direction: row;
+    align-items: center;
+    min-width: 700px;
+    /* width: 700px; */
+  }
+  .memeCard img {
+    width: 100%;
+    min-width: 400px;
+    border-radius: 20px;
+    margin: 20px 0 20px 20px;
+    z-index: 2;
+  }
+  .card_text {
+    animation: none;
+  }
+}
+@keyframes card_animation {
+  from {
+    width: 0;
+    height: 0;
+  }
+  to {
+    width: 40vw;
+    height: 100%;
+  }
+}
+@keyframes card_animation1000 {
+  from {
+    width: 0;
+    height: 0;
+  }
+  to {
+    width: 400px;
+    height: 100%;
+  }
+}
+@keyframes card_text_animation {
+  from {
+    width: 300%;
+    height: 0;
+  }
+  to {
+    width: auto;
+    height: auto;
+  }
+}
+
+/* search기능 관련 */
+.panel {
+  display: none;
+  width: 80vw;
+  padding: 50px;
+  margin: 10px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  /* border: 1px solid white; */
+  border-radius: 10px;
+}
+.search_result {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1.5fr 2fr;
+  grid-template-areas:
+    "img name"
+    "img content"
+    "img content"
+    "img content"
+    "img link";
+}
+#result_img {
+  grid-area: img;
+  width: 100%;
+}
+#result_name {
+  grid-area: name;
+  font-size: 3vw;
+  margin-left: 4vw;
+}
+#result_content {
+  grid-area: content;
+  text-align: left;
+  margin-bottom: 2vw;
+  margin-left: 4vw;
+}
+#result_link {
+  grid-area: link;
+}
+.result_link_btn {
+  margin: 2vw;
+  width: 18vw;
+  height: 4vw;
+  background-color: #066aff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-left: 4vw;
+}
+
+/* 페이지 상단 링크들 css */
 .nav-link {
   font-size: 1vw;
   color: white !important;
@@ -532,13 +502,11 @@ a {
     transform: scale(0);
     opacity: 0;
   }
-
   to {
     transform: scale(1);
     opacity: 1;
   }
 }
-
 #clickEffect {
   display: none;
   position: fixed;
@@ -549,7 +517,6 @@ a {
   pointer-events: none;
   z-index: 5;
 }
-
 #clickEffect::after {
   content: "";
   display: block;
@@ -557,77 +524,9 @@ a {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
 }
-
 #clickEffect.effect {
   display: block;
 }
-
 #clickEffect.effect::after {
   animation: clicked 0.5s cubic-bezier(0.29, 0, 0.15, 1);
-}
-
-/* 다크 모드 기능 */
-body {
-  background-color: #066aff;
-}
-
-.dark-mode-body {
-  color: white;
-  background-color: #282828;
-}
-
-.dark-mode-chat {
-  background: rgb(60, 60, 60) !important;
-  color: black;
-}
-
-.light,
-.dark {
-  font-size: 3.5vw;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-}
-
-.big-around {
-  animation: big-around 1s linear forwards;
-}
-
-.small-around {
-  animation: small-around 1s linear forwards;
-}
-
-@keyframes big-around {
-  0% {
-    z-index: 1;
-  }
-
-  50% {
-    font-size: 4vw;
-    transform: rotate(0.5turn);
-    visibility: hidden;
-    z-index: 1;
-  }
-
-  100% {
-    transform: rotate(1turn);
-    visibility: hidden;
-    z-index: 1;
-  }
-}
-
-@keyframes small-around {
-  0% {
-  }
-
-  50% {
-    font-size: 4vw;
-    transform: rotate(0.5turn);
-    visibility: visible;
-  }
-
-  100% {
-    transform: rotate(1turn);
-    visibility: visible;
-  }
 }

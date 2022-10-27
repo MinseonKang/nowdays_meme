@@ -36,42 +36,28 @@ const imgSrc = "imgSrc";
 const content = "content";
 const link = "link";
 
-// ============sleep 함수(코드 실행 지연) ============================
-function sleep(sec) {
-  let start = Date.now();
-  now = start;
-  while (now - start < sec * 1000) {
-    now = Date.now();
-  }
-  print("now" + now);
-  print("start" + start);
-}
-
 // ===========================채팅박스================
 const makeChatBox = function (data, isMine, memeIndex = 0) {
-  //data: memeObjectf -> {'name':, 'imgSrc':, 'content':,'link':}
-  //  -> 이미지가 없다면?
-  //isMine: true, false
-  // return을 <div class="chat"></div>에 추가
-  let imageWrap = create("div");
+  //data형식 memeObjects -> {'name':, 'imgSrc':, 'content':,'link':}
+  //isMine: true, false -> 내가 보낸 메세지라면 ture
+  // return을 html의 <div class="chat"></div>에 추가
+  let imageWrap = create("div"); // 메세지 하나를 감싸는 태그
   addClass(imageWrap, isMine ? "mine" : "yours");
   addClass(imageWrap, "messages");
-  let image = create("img");
+  let image = create("img"); // 메세지 내부의 이미지
   image.src = data.imgSrc;
   addClass(image, "chat_img");
   imageWrap.append(image);
   let messagesWrap = create("div");
   messagesWrap.append(imageWrap);
-
+  // 메세지에 필요한 클래스 추가
   addClass(messagesWrap, isMine ? "mine" : "yours");
   addClass(messagesWrap, "messages");
-
-  let messageText = create("div");
+  let messageText = create("div"); // 메세지 내용(밈 이름)
   messageText.innerText = data.name;
   addClass(messageText, "message");
   addClass(messageText, "last");
-
-  let heartIcon = create("span");
+  let heartIcon = create("span"); // 좋아요 버튼
   addClass(heartIcon, "material-symbols-outlined");
   addClass(heartIcon, "heart");
   Boolean(data.like) ? addClass(heartIcon, "like") : null;
@@ -79,30 +65,30 @@ const makeChatBox = function (data, isMine, memeIndex = 0) {
   heartIcon.addEventListener("click", function () {
     heartToggle(this);
   });
-
+  // 좋아요, 텍스트를 포함하는 태그
   let heartContainer = create("div");
   addClass(heartContainer, "heart_container");
   heartContainer.append(messageText);
   isMine ? heartContainer.prepend(heartIcon) : heartContainer.append(heartIcon);
   messagesWrap.append(heartContainer);
-
+  // 밈의 index 저장 (표시x)
   let memeIdNum = create("span");
   addClass(memeIdNum, "hide");
   memeIdNum.innerText = memeIndex;
   messagesWrap.append(memeIdNum);
-
+  // 좋아요 상태(표시x)
   let isLikeSpan = create("span");
   addClass(isLikeSpan, "is_like");
   addClass(isLikeSpan, "hide");
   isLikeSpan.innerText = data.like;
   messagesWrap.append(isLikeSpan);
-
   //animation을위해 추가됨
   addClass(messagesWrap, "chat_animation");
-
   return messagesWrap;
 };
+
 // =====================heart switch ==================
+// 좋아요의 에니메이션, 태그 내부의 좋아요 정보 수정
 const heartToggle = function (heart) {
   // heart : .chat>.messages>.heart_container>.heart
   let isLike = Number(
@@ -119,6 +105,7 @@ const heartToggle = function (heart) {
 //=======================카드 =========================
 const makeCard = function (data, memeIndex = -1) {
   //data: memeObjectf -> {'name':, 'imgSrc':, 'content':,'link':}
+  // 밈 객체를 입력받고 카드를 리턴(다른태그에 추가해서 사용)
   let card = create("div");
   addClass(card, "memeCard");
   // bootstrap 과 충돌로 class를 조정
@@ -150,6 +137,7 @@ const makeCard = function (data, memeIndex = -1) {
   return card;
 };
 
+// 클릭시 메세지, 카드를 왔다갔다 하기위해 사용
 // =====================메세지 -> 카드 =======================
 const msg2card = function (msg) {
   isMine = hasClass(msg, "mine");
@@ -175,9 +163,7 @@ const msg2card = function (msg) {
     heartToggle(this);
   });
 };
-
 // =====================카드 -> 메세지 ======================
-
 const card2msg = function (card) {
   // 처음에 메세지를 어떻게 만들었는지 생각 하자
   // card2msg()는 msg2card()의 msg태그를 입력받는다.
@@ -205,10 +191,11 @@ const card2msg = function (card) {
     heartToggle(this);
   });
 };
-// ================= element sort =========================
 
+// ================= element sort =========================
 const tag2value = function (element) {
   //일부tag 값의 예외를 다루기위한 함수
+  //태그내부의 내용을 비교하기 위해 사용
   let answer;
   if (element.tagName == "INPUT") {
     if (element.type == "checkbox") {
@@ -219,7 +206,6 @@ const tag2value = function (element) {
   } else {
     answer = element.innerText;
   }
-  // return answer;
   // 문자열 판별을 위해 수정됨
   if (Number(answer) == answer) {
     return Number(answer);
@@ -266,14 +252,13 @@ const sortElementBySelector = function (selector, oprandSelector) {
   for (let i = 0; i < map.length; i++) {
     targetTags[i].innerHTML = targetTagsHTML[map[i]];
     clearClass(targetTags[i]);
-    print(targetTags[i].classList);
     for (let c of targetTagsClassList[map[i]]) {
       addClass(targetTags[i], c);
     }
   }
-  print(map);
 };
 const elementsReverseBySelector = function (selector) {
+  // querySelectorAll로 선택 & 순서를 뒤집기
   let targetTags = document.querySelectorAll(selector);
   let reversedTagsHTML = [];
   let reversedTagsClassList = [];
@@ -289,9 +274,10 @@ const elementsReverseBySelector = function (selector) {
     }
   }
 };
-// ================= 메인 코드:채팅========================
-let chat = selector(".chat");
 
+// ================= 메인 코드:채팅========================
+let chat = selector(".chat"); // <- html의 채팅박스
+// 밈 객체의 배열
 let memeObjects = [
   {
     name: "구워버린다",
@@ -694,13 +680,11 @@ const printChat = function () {
     msg2card(tag);
   });
   chat.prepend(tag);
-  // chat.scrollTo(0, chatContainer.scrollHeight);
   memeIndex++;
   isMineBool = !isMineBool;
 };
-
 intervalID = setInterval(printChat, 2000);
-
+// 더블클릭을 받으면 기존 setInterval 수정, 10배 빠른 속도로 이어하기
 chat.addEventListener("dblclick", function () {
   clearInterval(intervalID);
   intervalID = setInterval(printChat, 200);
@@ -735,7 +719,6 @@ function searchMeme(e) {
     "link",
     keyword
   ).filter((d) => d !== undefined);
-
   // 결과 값 화면 출력
   document.getElementById("result_name").innerHTML = result.map((d) => d.name);
   document.getElementById("result_img").src = result.map((d) => {
@@ -746,10 +729,8 @@ function searchMeme(e) {
   );
   document.getElementById("result_link").href = result.map((d) => d.link);
 }
-
 // 클릭 시 searchMeme 함수 호출
 document.querySelector(".search_box").addEventListener("submit", searchMeme);
-
 // slide jQuery
 $(document).ready(function () {
   $(".search_btn").click(function () {
@@ -762,7 +743,8 @@ let heartSort = selector(".heart_sort");
 heartSort.addEventListener("click", function () {
   sortElementBySelector(".chat>.messages", ".chat>.messages .is_like");
   elementsReverseBySelector(".chat>.messages");
-  chat.scrollTo(0, 0);
+  chat.scrollTo(0, 0); // -> 정렬후 좋아요 가 보이도록 스크롤업
+  // 정렬과정에서 사라진 리스너 다시 추가
   let chats = selectorAll(".chat .chat_animation");
   let cards = selectorAll(".chat>.messages:not(.chat_animation)");
   let hearts = selectorAll(".heart");
@@ -783,6 +765,7 @@ heartSort.addEventListener("click", function () {
   }
 });
 
+// ======================= 밈 입력받기 =========================
 let inputName = selector(".input-name");
 let inputContent = selector(".input-content");
 let inputLink = selector(".input-link");
@@ -793,7 +776,6 @@ postButton.addEventListener("click", function () {
   if (Boolean(!inputName.value.trim()) || !Boolean(inputContent.value.trim())) {
     return 1;
   }
-
   let newMeme = {
     name: inputName.value,
     imgSrc: selector("#preview").src,
@@ -803,14 +785,11 @@ postButton.addEventListener("click", function () {
     like: 0,
   };
   memeObjects.push(newMeme);
-
   // 입력창 초기화
   removeClass(selector(".input-box2"), "slidein");
   addClass(selector(".input-box2"), "slideout");
   removeClass(selector(".input-box1"), "slideout");
   addClass(selector(".input-box1"), "slidein");
-
-  // 만약 x 버튼 추가하면 위 두줄만 추가하면 됨->더블클릭으로 구현됨
   inputName.value = "";
   inputContent.value = "";
   inputLink.value = "";
@@ -818,23 +797,18 @@ postButton.addEventListener("click", function () {
   selector("#preview").src = "";
   selector(".input-origin").style = "display: auto";
   selector(".preview").style = "display: none";
-
   // 채팅창에 입력받은 내용 추가
   let inputChat = makeChatBox(newMeme, true, newMeme.memeIndex);
-
-  // 파란메세지인지 회색인지 결정
   inputChat.addEventListener("click", function () {
     msg2card(inputChat);
   });
   chat.prepend(inputChat);
 });
-
 // 밈 입력, 업로드 후 사진을 다시 선택하면 새로고침이 표시되지 않는 문제를 위해 추가
 inputImg.addEventListener("change", function () {
   selector(".preview").style = "display: auto";
 });
 
-// 자동스크롤기능->페이지 로드후 채팅이 하나하나 .chat에서 출력되는 걸로 사용
 // 위로가기 기능
 selector(".scroll_text").addEventListener("click", function (event) {
   chat.scrollTo(0, 0);
@@ -844,39 +818,32 @@ selector(".scroll_text").addEventListener("click", function (event) {
 let Mode = document.querySelector("body");
 let ModeChat = document.querySelector(".chat");
 let mg = document.querySelector(".message.last");
-
 let darkSp = document.querySelector(".dark");
 let lightSp = document.querySelector(".light");
-
 darkSp.addEventListener("click", function () {
   Mode.classList.toggle("dark-mode-body");
   ModeChat.classList.toggle("dark-mode-chat");
-
+  // 다크모드 버튼의 에니메이션
   document.querySelector(".dark").classList.remove("small-around");
   document.querySelector(".dark").classList.toggle("big-around");
-
   document.querySelector(".light").classList.remove("big-around");
   document.querySelector(".light").classList.toggle("small-around");
 });
-
 lightSp.addEventListener("click", function () {
   Mode.classList.toggle("dark-mode-body");
   ModeChat.classList.toggle("dark-mode-chat");
-
+  // 다크모드 버튼의 에니메이션
   document.querySelector(".dark").classList.toggle("big-around");
   document.querySelector(".dark").classList.add("small-around");
-
   document.querySelector(".light").classList.toggle("small-around");
   document.querySelector(".light").classList.add("big-around");
 });
 
 // 마우스 클릭 이벤트
 let removeTimeOut;
-
 function clickPosition(e) {
   const target = document.getElementById("clickEffect"),
     a = 40; // #clickEffect의 너비 & 높이 값 / 2
-
   e.button === 0 &&
     ((target.style.transform = `translate(${e.clientX - a}px, ${
       e.clientY - a
@@ -889,11 +856,9 @@ function clickPosition(e) {
         removeEffect())
       : (target.classList.add("effect"), removeEffect()));
 }
-
 function removeEffect() {
   removeTimeOut = setTimeout(function () {
     document.getElementById("clickEffect").classList.remove("effect");
   }, 500); // #clickEffect.effect::after의 시간 (.5s) * 1000
 }
-
 document.addEventListener("mousedown", clickPosition);
