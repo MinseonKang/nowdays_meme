@@ -14,7 +14,23 @@
 </p>
 
 <h2 align="center">🖤프로젝트 소개🖤</h2>
+<p>1. 시작 페이지</p>
+![start](https://user-images.githubusercontent.com/102302705/198199482-648d8bc2-b3f2-4c9d-b385-7c322502bd3b.gif)
+<p>2. 메인 페이지</p>
+![main](https://user-images.githubusercontent.com/102302705/198199481-3327817c-68bc-42d2-83ef-5ac9c94bbb47.gif)
+<p>3. 오늘의 밈</p>
+![today](https://user-images.githubusercontent.com/102302705/198199476-a0a6c76f-df25-40a9-856c-b5b4f6526686.gif)
+<p>4. 퀴즈</p>
+![quiz](https://user-images.githubusercontent.com/102302705/198199472-a38c2806-2bb9-4c04-aea2-ead38b7f829f.gif)
 
+<h2 align="center">🎁설치 방법🎁</h2>
+```
+git clone https://github.com/nowdays-meme/nowdays_meme.git
+npm install express
+npm install ejs
+node app.js
+```
+<br>- localhost:8000 접속
 
 <h2 align="center">🔍기술 스택🔍</h2>
 <h4>- Language</h4>
@@ -51,4 +67,26 @@
 <li>local과 remote를 혼동해 프로젝트 파일이 뒤섞였던 이슈. 작업 파일만 따로 옮겨서 문제 해결!</li>
 <li>코드 수정 도중 문제가 발생해 github에서 예전 버전 브랜치를 가져와 문제 해결!</li>
 <li>Github의 pull request를 사용해 충돌 문제 해결!</li>
-
+<br>
+<details>
+<summary>프로젝트 회고</summary>
+👍 잘한 점
+<br>
+- header, 검색, 채팅 기능, footer 등 기능을 컴포넌트로 나누어 만들어 유지 보수 용이
+<br>
+- 기본적이고 자주 사용되는 기능은 함수로 지정해 javascript 간소화
+<br>
+- setInterval함수를 이용해 실시간 채팅과 같은 애니메이션 효과 구현
+<br>
+- 실제 채팅과 같은 애니메이션 효과가 추가 된 채팅 입력 박스 기능 구현
+<br>
+- map, fliter, includes 메서드를 사용한 배열 객체 검색 기능 구현
+<br>
+- 다크모드, 좋아요 하트 누르기 기능, 좋아요 누른 항목 보여주기 기능 구현
+<br>
+- setTimeout함수를 이용한 랜덤이미지 기능 게임 기능 구현
+<br>
+👎아쉬운 점
+<br>
+- DB 사용을 못하는 환경이라 추가 기능 구현에 한계
+</details>
