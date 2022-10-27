@@ -15,21 +15,23 @@
 
 <h2 align="center">🖤프로젝트 소개🖤</h2>
 <p>1. 시작 페이지</p>
-![start](https://user-images.githubusercontent.com/102302705/198199482-648d8bc2-b3f2-4c9d-b385-7c322502bd3b.gif)
+<img src="https://user-images.githubusercontent.com/102302705/198199482-648d8bc2-b3f2-4c9d-b385-7c322502bd3b.gif">
 <p>2. 메인 페이지</p>
-![main](https://user-images.githubusercontent.com/102302705/198199481-3327817c-68bc-42d2-83ef-5ac9c94bbb47.gif)
+<img src="https://user-images.githubusercontent.com/102302705/198199481-3327817c-68bc-42d2-83ef-5ac9c94bbb47.gif">
 <p>3. 오늘의 밈</p>
-![today](https://user-images.githubusercontent.com/102302705/198199476-a0a6c76f-df25-40a9-856c-b5b4f6526686.gif)
+<img src="https://user-images.githubusercontent.com/102302705/198199476-a0a6c76f-df25-40a9-856c-b5b4f6526686.gif">
 <p>4. 퀴즈</p>
-![quiz](https://user-images.githubusercontent.com/102302705/198199472-a38c2806-2bb9-4c04-aea2-ead38b7f829f.gif)
+<img src="https://user-images.githubusercontent.com/102302705/198200368-27c56571-1cd3-4caf-8063-5b7f02ff95e6.gif">
 
 <h2 align="center">🎁설치 방법🎁</h2>
+
+```bash
+git clone https://github.com/nowdays-meme/nowdays_meme.git    
+npm install        
+node app.js    
 ```
-git clone https://github.com/nowdays-meme/nowdays_meme.git
-npm install express
-npm install ejs
-node app.js
-```
+
+
 <br>- localhost:8000 접속
 
 <h2 align="center">🔍기술 스택🔍</h2>
@@ -90,3 +92,6 @@ node app.js
 <br>
 - DB 사용을 못하는 환경이라 추가 기능 구현에 한계
 </details>
+
+<h2>수상 : 최우수상</h2>
+<img src="https://user-images.githubusercontent.com/102302705/198202361-b3c6141f-add4-4f0d-a4f0-0d3a50872326.png">
