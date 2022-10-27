@@ -5,7 +5,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* imessage */
 body {
   font-family: "Galmuri9" !important; /* 폰트: 갈무리9 */
   display: flex;
@@ -334,7 +333,7 @@ a {
   animation: card_animation 1s;
   overflow: hidden;
 }
-/* 카드 사이즈 조정시 에니메이션 속성도 수정해야됨 */
+
 .card_message {
   padding: 0;
 }

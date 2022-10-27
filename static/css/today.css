@@ -13,13 +13,6 @@ body {
   z-index: 1;
 }
 
-/* .logo {
-  width: 1vw;
-  height: 1vw;
-  z-index: 4;
-  margin: 1vw;
-} */
-
 .containerOpp {
   display: flex;
   flex-direction: column;
