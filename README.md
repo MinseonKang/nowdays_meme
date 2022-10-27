@@ -20,7 +20,7 @@
 <p>1. 시작 페이지</p>
 <img src="https://user-images.githubusercontent.com/102302705/198199482-648d8bc2-b3f2-4c9d-b385-7c322502bd3b.gif">
 <p>2. 메인 페이지</p>
-<img src="https://user-images.githubusercontent.com/102302705/198199481-3327817c-68bc-42d2-83ef-5ac9c94bbb47.gif">
+<img src="https://user-images.githubusercontent.com/102302705/198203846-a5f055eb-764d-4fa6-9fec-7ba9979d1743.gif">
 <p>3. 오늘의 밈</p>
 <img src="https://user-images.githubusercontent.com/102302705/198199476-a0a6c76f-df25-40a9-856c-b5b4f6526686.gif">
 <p>4. 퀴즈</p>
