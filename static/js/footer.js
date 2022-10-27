@@ -21,41 +21,21 @@ function readURL(input) {
   }
 }
 
-
-// // input.div1 클릭하면 input.div2로 바뀜
-// let inputBox1 = document.querySelector(".input-box1");
-// let inputBox2 = document.querySelector(".input-box2");
-// let inputDiv1 = document.querySelector(".input-div1");
-// let inputDiv2 = document.querySelector(".input-div2");
-
-// inputBox1.addEventListener("click", function () {
-//   inputBox2.style.display = "flex";
-//   inputBox1.style.display = "none";
-// });
-
-// // **********
-// //.input.div2 더블 클릭하면 input-div1으로 다시 바뀜
-// inputBox2.addEventListener("dblclick", function() {
-//  inputBox1.style.display = 'flex';
-//  inputBox2.style.display = 'none';
-// })
-
 // input.div1 클릭하면 input.div2로 바뀜
 let inputBox1 = document.querySelector(".input-box1");
 let inputBox2 = document.querySelector(".input-box2");
 
 inputBox1.addEventListener("click", function () {
-  inputBox1.classList.remove('slidein');
-  inputBox1.classList.add('slideout');
-  inputBox2.classList.remove('slideout');
-  inputBox2.classList.add('slidein');
+  inputBox1.classList.remove("slidein");
+  inputBox1.classList.add("slideout");
+  inputBox2.classList.remove("slideout");
+  inputBox2.classList.add("slidein");
 });
 
-// **********
 //.input.div2 더블 클릭하면 input-div1으로 다시 바뀜
 inputBox2.addEventListener("dblclick", function () {
-  inputBox1.classList.remove('slideout');
-  inputBox1.classList.add('slidein');
-  inputBox2.classList.remove('slidein');
-  inputBox2.classList.add('slideout');
+  inputBox1.classList.remove("slideout");
+  inputBox1.classList.add("slidein");
+  inputBox2.classList.remove("slidein");
+  inputBox2.classList.add("slideout");
 });

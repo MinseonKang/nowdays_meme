@@ -1,12 +1,12 @@
 {
   "name": "nowdays_meme",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "요즘 유행하는 밈들을 한눈에 볼 수 있는 웹사이트입니다.",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "kdt3기 f팀",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.8",
