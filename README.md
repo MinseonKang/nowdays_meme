@@ -92,6 +92,7 @@ node app.js
 👎<strong>아쉬운 점</strong>
 <br>
 <li> DB 사용을 못하는 환경이라 추가 기능 구현에 한계 </li>
+<br>
 <li>bootstrap사용에 익숙하지 않아서 개발 중에 클래스가 겹쳐서 딜레이가 생겼던 문제 </li>
 </details>
 
