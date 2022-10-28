@@ -97,4 +97,4 @@ node app.js
 
 🥺최우수상!🥺
 <br>
-<img src="https://user-images.githubusercontent.com/102302705/198202361-b3c6141f-add4-4f0d-a4f0-0d3a50872326.png">
+<img src="https://ifh.cc/g/LFy8nJ.jpg">
